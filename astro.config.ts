@@ -23,6 +23,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
+  base: '/page-AstroWind/', // <--- ✅ 就是这里！加上这一行，注意仓库名大小写要完全一致
 
   integrations: [
     tailwind({
