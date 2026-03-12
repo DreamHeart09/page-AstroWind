@@ -1,399 +1,2653 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
-import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import Steps from '~/components/widgets/Steps.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'AIGov-Insight - 全球领先的AI自主智能体全链路可观测平台',
   ignoreTitleTemplate: true,
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
+  <style>
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-30px) rotate(2deg);
+      }
+    }
+    @keyframes pulse-glow {
+      0%,
+      100% {
+        opacity: 0.4;
+        transform: scale(1);
+        filter: blur(60px);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+        filter: blur(80px);
+      }
+    }
+    @keyframes gradient-shift {
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes scale-in {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+    @keyframes breathe {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.7;
+      }
+    }
+    .animate-float {
+      animation: float 8s ease-in-out infinite;
+    }
+    .animate-pulse-glow {
+      animation: pulse-glow 6s ease-in-out infinite;
+    }
+    .animate-gradient {
+      background-size: 200% 200%;
+      animation: gradient-shift 8s ease infinite;
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.8s ease-out forwards;
+    }
+    .animate-scale-in {
+      animation: scale-in 0.6s ease-out forwards;
+    }
+    .animate-pulse-ring {
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    .animate-breathe {
+      animation: breathe 4s ease-in-out infinite;
+    }
 
-  <Hero
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-      { text: 'Learn more', href: '#features' },
-    ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
-  >
-    <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white"> Astro 5.0</span> + Tailwind CSS
-    </Fragment>
+    .delay-100 {
+      animation-delay: 0.1s;
+    }
+    .delay-200 {
+      animation-delay: 0.2s;
+    }
+    .delay-300 {
+      animation-delay: 0.3s;
+    }
+    .delay-400 {
+      animation-delay: 0.4s;
+    }
+    .delay-500 {
+      animation-delay: 0.5s;
+    }
 
-    <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 5.0
-        + Tailwind CSS.</span
+    .text-gradient {
+      background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #14b8a6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-badge {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    :global(.dark) .hero-badge {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.6) 100%);
+    }
+
+    .hero-button-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #14b8a6 100%);
+      background-size: 200% 200%;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-button-primary:hover {
+      background-position: 100% 50%;
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px -12px rgba(59, 130, 246, 0.4);
+    }
+
+    .hero-button-secondary {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    :global(.dark) .hero-button-secondary {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.5) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    .hero-button-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+    }
+    :global(.dark) .hero-button-secondary:hover {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.7) 100%);
+      border-color: rgba(6, 182, 212, 0.4);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(6, 182, 212, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: breathe 6s ease-in-out infinite;
+    }
+
+    .feature-tab.bg-gray-900:hover {
+      color: white;
+    }
+    :global(.dark) .feature-tab.dark\:bg-white:hover {
+      color: rgb(17 24 39);
+    }
+  </style>
+
+  <section class="relative pt-24 pb-20 md:pt-36 md:pb-32 lg:pt-44 lg:pb-40 overflow-visible">
+    <div class="absolute inset-0 pointer-events-none overflow-visible">
+      <div
+        class="glow-orb w-[700px] h-[700px] -top-40 left-1/4 bg-gradient-to-br from-blue-200/50 via-cyan-100/30 to-transparent dark:from-blue-600/20 dark:via-cyan-500/10"
       >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages &
-      Blogs.
-    </Fragment>
-  </Hero>
+      </div>
+      <div
+        class="glow-orb w-[600px] h-[600px] top-1/3 -right-20 bg-gradient-to-bl from-cyan-200/40 via-teal-100/20 to-transparent dark:from-cyan-600/15 dark:via-teal-500/8"
+        style="animation-delay: 2s;"
+      >
+      </div>
+      <div
+        class="glow-orb w-[500px] h-[500px] -bottom-20 left-1/3 bg-gradient-to-tr from-teal-200/30 via-emerald-100/15 to-transparent dark:from-teal-600/10 dark:via-emerald-500/5"
+        style="animation-delay: 4s;"
+      >
+      </div>
 
-  <!-- Note Widget ******************* -->
+      <div class="absolute top-20 left-10 w-2 h-2 rounded-full bg-blue-400/60 dark:bg-blue-500/40 animate-pulse"></div>
+      <div
+        class="absolute top-40 right-20 w-1.5 h-1.5 rounded-full bg-cyan-400/60 dark:bg-cyan-500/40 animate-pulse"
+        style="animation-delay: 1s;"
+      >
+      </div>
+      <div
+        class="absolute bottom-32 left-1/4 w-1 h-1 rounded-full bg-teal-400/60 dark:bg-teal-500/40 animate-pulse"
+        style="animation-delay: 2s;"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 right-1/3 w-1.5 h-1.5 rounded-full bg-blue-400/40 dark:bg-blue-500/30 animate-pulse"
+        style="animation-delay: 0.5s;"
+      >
+      </div>
+    </div>
 
-  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="animate-fade-in-up opacity-0" style="animation-delay: 0.1s;">
+        <div
+          class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full hero-badge border border-blue-100/80 dark:border-cyan-800/50 mb-10 md:mb-14 shadow-lg shadow-blue-500/5 dark:shadow-cyan-500/5"
+        >
+          <span class="relative flex h-2.5 w-2.5">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 opacity-75"
+            ></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-gradient-to-r from-blue-500 to-cyan-500"
+            ></span>
+          </span>
+          <span class="text-sm font-semibold tracking-[0.15em] text-gradient uppercase"
+            >Eversec AI Governance Insight</span
+          >
+        </div>
+      </div>
 
-  <!-- Features Widget *************** -->
+      <h1
+        class="animate-fade-in-up opacity-0 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight dark:text-white mb-6 md:mb-8 leading-[1.1]"
+        style="animation-delay: 0.2s;"
+      >
+        <span class="relative inline-block overflow-visible">
+          <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[200%] bg-blue-500 blur-3xl opacity-30 animate-glow-1 pointer-events-none"></span>
+          <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[180%] bg-cyan-400 blur-3xl opacity-25 animate-glow-2 pointer-events-none"></span>
+          <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[220%] bg-purple-500 blur-3xl opacity-20 animate-glow-3 pointer-events-none"></span>
+          <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[160%] bg-indigo-500 blur-3xl opacity-25 animate-glow-4 pointer-events-none"></span>
+          <span class="relative text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-400 to-purple-500 bg-[length:200%_auto] animate-gradient">AI 世界的「全息沙盘」</span>
+        </span>
+      </h1>
 
-  <Features
-    id="features"
-    tagline="Features"
-    title="What you get with AstroWind"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022, 2023 and 2024."
-    items={[
-      {
-        title: 'Astro + Tailwind CSS Integration',
-        description:
-          'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
-        icon: 'tabler:brand-tailwind',
-      },
-      {
-        title: 'Ready-to-use Components',
-        description:
-          'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
-        icon: 'tabler:components',
-      },
-      {
-        title: 'Best Practices',
-        description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check',
-      },
-      {
-        title: 'Excellent Page Speed',
-        description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        icon: 'tabler:rocket',
-      },
-      {
-        title: 'Search Engine Optimization (SEO)',
-        description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        icon: 'tabler:arrows-right-left',
-      },
-      {
-        title: 'Open to new ideas and contributions',
-        description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
-        icon: 'tabler:bulb',
-      },
-    ]}
-  />
+      <p
+        class="animate-fade-in-up opacity-0 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight dark:text-white mb-8 md:mb-12 leading-tight"
+        style="animation-delay: 0.3s;"
+      >
+        让 AI 的每一次"思考"与"行动"<br class="hidden sm:block" />
+        <span class="text-slate-500 dark:text-slate-400 font-normal">全程透明、可溯、可控</span>
+      </p>
 
-  <!-- Content Widget **************** -->
+      <p
+        class="animate-fade-in-up opacity-0 text-lg md:text-xl lg:text-2xl text-slate-500 dark:text-slate-400 max-w-4xl mx-auto leading-relaxed mb-12 md:mb-16"
+        style="animation-delay: 0.4s;"
+      >
+        <span class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-400 to-purple-500 bg-[length:200%_auto] animate-gradient">AIGov-Insight</span> 是恒安嘉新打造的全球领先 AI 自主智能体全链路可观测平台<br
+          class="hidden md:block"
+        />
+        专为 <span class="font-medium text-slate-700 dark:text-slate-300">LLM / Agent / MCP / RAG / OpenClaw</span> 打造
+      </p>
 
-  <Content
-    isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
-    items={[
-      {
-        title: 'Built on top of Astro 5.0',
-        description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
-      },
-      {
-        title: 'Styled using Tailwind CSS',
-        description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
-      },
-      {
-        title: 'Cross-browser compatibility',
-        description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-      Gain a competitive advantage by incorporating industry leading practices
-    </Fragment>
+      <div
+        class="animate-fade-in-up opacity-0 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5"
+        style="animation-delay: 0.5s;"
+      >
+        <a
+          href="#quickstart"
+          class="hero-button-primary inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-white font-semibold text-lg shadow-xl shadow-blue-500/25"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+            ></path>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+          </svg>
+          快速开始
+        </a>
+        <a
+          href="https://github.com/Eversec-ai/AIGov-Insight-Web"
+          target="_blank"
+          class="hero-button-secondary inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-slate-700 dark:text-slate-200 font-semibold text-lg border border-slate-200/80 dark:border-slate-700/50"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+            ></path>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+  <section id="advantages" class="py-24 bg-black dark:bg-black relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-transparent to-transparent"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-3xl">
+    </div>
 
-  <!-- Content Widget **************** -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="text-center mb-20">
+        <p class="text-sm font-medium text-blue-400 tracking-widest uppercase mb-4">Core Advantages</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">三大核心能力</h2>
+        <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light">重新定义 AI 可观测性标准</p>
+      </div>
 
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
-      },
-      {
-        title: 'Multiple layout possibilities',
-        description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
-      },
-      {
-        title: 'Fully responsive design',
-        description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
-      },
-      {
-        title: 'Integration of media',
-        description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
-    }}
-  >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
+      <div class="space-y-32">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div class="order-2 lg:order-1">
+            <div class="mb-6">
+              <span
+                class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium"
+              >
+                Depth Monitoring
+              </span>
+            </div>
+            <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">看得深</h3>
+            <p class="text-lg md:text-xl text-gray-400 leading-relaxed mb-8">
+              基于 eBPF 内核级探针技术，深度捕获系统命令执行、敏感文件访问、工具调用等底层行为。完整还原 Shell
+              命令行参数、可执行文件路径、文件读写内容。
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>EXEC 命令捕获</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>FILE 访问监控</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>MCP 工具追踪</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-1 lg:order-2">
+            <div class="relative">
+              <div
+                class="absolute -inset-4 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 rounded-3xl blur-2xl opacity-50"
+              >
+              </div>
+              <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900 border border-gray-800">
+                <img
+                  src="/screenshots/advantage-deep.png"
+                  alt="EXEC 命令捕获详情"
+                  class="w-full aspect-[4/3] object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div class="order-2">
+            <div class="mb-6">
+              <span
+                class="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium"
+              >
+                Full Visibility
+              </span>
+            </div>
+            <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">看得全</h3>
+            <p class="text-lg md:text-xl text-gray-400 leading-relaxed mb-8">
+              独创全链路智能会话关联算法，自动聚合多源异构日志。精准建立"用户提问 → AI 推理 → 工具调用 →
+              系统执行"的完整因果链。
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>多源日志聚合</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>因果链还原</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>黑盒消除</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-1">
+            <div class="relative">
+              <div
+                class="absolute -inset-4 bg-gradient-to-r from-cyan-600/30 to-blue-600/30 rounded-3xl blur-2xl opacity-50"
+              >
+              </div>
+              <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900 border border-gray-800">
+                <img
+                  src="/screenshots/advantage-full.png"
+                  alt="会话关联全景视图"
+                  class="w-full aspect-[4/3] object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <!-- Content Widget **************** -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div class="order-2 lg:order-1">
+            <div class="mb-6">
+              <span
+                class="inline-block px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium"
+              >
+                Real-time Response
+              </span>
+            </div>
+            <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">看得快</h3>
+            <p class="text-lg md:text-xl text-gray-400 leading-relaxed mb-8">
+              高风险事件毫秒级识别，异常行为 5 秒内定位。可视化时间轴直观呈现攻击突变过程，将传统 30+
+              分钟的日志排查缩短至 1 分钟内完成。
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>毫秒级识别</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>&lt;1% 性能损耗</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>可视化时间轴</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-1 lg:order-2">
+            <div class="relative">
+              <div
+                class="absolute -inset-4 bg-gradient-to-r from-purple-600/30 to-pink-600/30 rounded-3xl blur-2xl opacity-50"
+              >
+              </div>
+              <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900 border border-gray-800">
+                <img
+                  src="/screenshots/advantage-fast.png"
+                  alt="时间轴风险高亮界面"
+                  class="w-full aspect-[4/3] object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
-      },
-      {
-        title: 'Continuous improvement',
-        description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
-      },
-      {
-        title: 'Time and resource efficiency',
-        description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
-      },
-      {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
-    }}
-  >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
+  <section id="features" class="py-24 bg-white dark:bg-slate-900 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="text-center mb-16">
+        <p class="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-widest uppercase mb-4">Core Features</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+          全链路可观测
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto font-light">
+          让 AI 行为无所遁形
+        </p>
+      </div>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+      <div class="flex justify-center mb-12">
+        <div
+          class="inline-flex gap-1 p-1 bg-gray-100 dark:bg-slate-800 rounded-full border border-gray-200 dark:border-slate-700"
+        >
+          <button
+            onclick="switchFeature(0)"
+            id="feature-tab-0"
+            class="feature-tab px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-gray-900 dark:bg-white text-white dark:text-gray-900"
+          >
+            深度监测
+          </button>
+          <button
+            onclick="switchFeature(1)"
+            id="feature-tab-1"
+            class="feature-tab px-6 py-2.5 rounded-full text-sm font-medium transition-all text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          >
+            智能关联
+          </button>
+          <button
+            onclick="switchFeature(2)"
+            id="feature-tab-2"
+            class="feature-tab px-6 py-2.5 rounded-full text-sm font-medium transition-all text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          >
+            可视化分析
+          </button>
+          <button
+            onclick="switchFeature(3)"
+            id="feature-tab-3"
+            class="feature-tab px-6 py-2.5 rounded-full text-sm font-medium transition-all text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          >
+            风险识别
+          </button>
+          <button
+            onclick="switchFeature(4)"
+            id="feature-tab-4"
+            class="feature-tab px-6 py-2.5 rounded-full text-sm font-medium transition-all text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          >
+            全局视角
+          </button>
+        </div>
+      </div>
 
-  <!-- Steps Widget ****************** -->
+      <div class="relative">
+        <div id="feature-panel-0" class="feature-panel">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="order-2 lg:order-1">
+              <div class="mb-6">
+                <span
+                  class="inline-block px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 text-blue-600 dark:text-blue-400 text-sm font-medium"
+                >
+                  Depth Monitoring
+                </span>
+              </div>
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                流量、指令、文件全景监测
+              </h3>
+              <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
+                基于 eBPF 内核探针技术，毫秒级捕获大模型流量、系统命令执行与敏感文件访问。完整还原LLM
+                Query/Answer、Shell 命令行参数、可执行文件路径、文件读写内容，让 AI 的每一次"动手"操作无所遁形。
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div
+                    class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-indigo-600 dark:text-indigo-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">Agent</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-blue-600 dark:text-blue-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">EXEC</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div
+                    class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-emerald-600 dark:text-emerald-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">FILE</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-amber-600 dark:text-amber-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                      ></path><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">MCP</span>
+                </div>
+              </div>
+            </div>
+            <div class="order-1 lg:order-2">
+              <div class="relative">
+                <div
+                  class="absolute -inset-4 bg-gradient-to-r from-blue-100 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30 rounded-3xl blur-2xl opacity-60"
+                >
+                </div>
+                <div
+                  class="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <img
+                    src="/screenshots/exec-monitoring.png"
+                    alt="EXEC 与 FILE 监测界面"
+                    class="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <Steps
-    title="Get your dream website up and running in no time with AstroWind."
-    items={[
-      {
-        title: 'Step 1: <span class="font-medium">Download</span>',
-        description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
-      },
-      {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
-        description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
-      },
-      {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
-        description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
-      },
-      {
-        title: 'Ready!',
-        icon: 'tabler:check',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
-    }}
-  />
+        <div id="feature-panel-1" class="feature-panel hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="order-2">
+              <div class="mb-6">
+                <span
+                  class="inline-block px-4 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-900/30 border border-cyan-200 dark:border-cyan-700 text-cyan-600 dark:text-cyan-400 text-sm font-medium"
+                >
+                  Intelligent Correlation
+                </span>
+              </div>
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                会话智能关联
+              </h3>
+              <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
+                独创全链路智能会话关联算法，自动聚合 AGUI、LLM、MCP、EXEC、FILE 等多源异构日志。精准建立"用户提问 → AI
+                推理 → 工具调用 → 系统执行"的完整因果链。
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-cyan-600 dark:text-cyan-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">日志聚合</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-cyan-600 dark:text-cyan-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">因果链还原</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-cyan-600 dark:text-cyan-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">黑盒消除</span>
+                </div>
+              </div>
+            </div>
+            <div class="order-1">
+              <div class="relative">
+                <div
+                  class="absolute -inset-4 bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900/30 dark:to-blue-900/30 rounded-3xl blur-2xl opacity-60"
+                >
+                </div>
+                <div
+                  class="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <img
+                    src="/screenshots/session-correlation.png"
+                    alt="会话关联全景视图"
+                    class="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <!-- Features2 Widget ************** -->
+        <div id="feature-panel-2" class="feature-panel hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="order-2 lg:order-1">
+              <div class="mb-6">
+                <span
+                  class="inline-block px-4 py-1.5 rounded-full bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-700 text-purple-600 dark:text-purple-400 text-sm font-medium"
+                >
+                  Visual Analytics
+                </span>
+              </div>
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                交互式时间轴
+              </h3>
+              <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
+                用可视化时间线、时序图、拓扑图替代晦涩的文本日志，5
+                秒内定位异常行为发生时刻。直观呈现从"平静聊天"到"危险执行"的突变过程。
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div
+                    class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-purple-600 dark:text-purple-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">动态时间线</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div
+                    class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-purple-600 dark:text-purple-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">风险高亮</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div
+                    class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-purple-600 dark:text-purple-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">上下文展开</span>
+                </div>
+              </div>
+            </div>
+            <div class="order-1 lg:order-2">
+              <div class="relative">
+                <div
+                  class="absolute -inset-4 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-3xl blur-2xl opacity-60"
+                >
+                </div>
+                <div
+                  class="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <img
+                    src="/screenshots/interactive-timeline.png"
+                    alt="交互式时间轴界面"
+                    class="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    tagline="Components"
-    items={[
-      {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: 'flat-color-icons:template',
-      },
-      {
-        title: 'Heros',
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: 'flat-color-icons:gallery',
-      },
-      {
-        title: 'Features',
-        description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval',
-      },
-      {
-        title: 'Content',
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document',
-      },
-      {
-        title: 'Call-to-Action',
-        description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
-        icon: 'flat-color-icons:advertising',
-      },
-      {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange',
-      },
-      {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
-        icon: 'flat-color-icons:voice-presentation',
-      },
-      {
-        title: 'Contact',
-        description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
-        icon: 'flat-color-icons:business-contact',
-      },
-      {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: 'flat-color-icons:database',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features2>
+        <div id="feature-panel-3" class="feature-panel hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="order-2">
+              <div class="mb-6">
+                <span
+                  class="inline-block px-4 py-1.5 rounded-full bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 text-red-600 dark:text-red-400 text-sm font-medium"
+                >
+                  Risk Detection
+                </span>
+              </div>
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                高风险事件分析
+              </h3>
+              <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
+                自动识别系统命令执行、敏感文件访问、密钥读取等高风险行为。启发式展示完整攻击链路，直接决定企业是否会被
+                AI"反向操控"。
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-red-600 dark:text-red-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">智能识别</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-red-600 dark:text-red-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">链路可视化</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-red-600 dark:text-red-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">毫秒响应</span>
+                </div>
+              </div>
+            </div>
+            <div class="order-1">
+              <div class="relative">
+                <div
+                  class="absolute -inset-4 bg-gradient-to-r from-red-100 to-orange-100 dark:from-red-900/30 dark:to-orange-900/30 rounded-3xl blur-2xl opacity-60"
+                >
+                </div>
+                <div
+                  class="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <img
+                    src="/screenshots/risk-analysis.png"
+                    alt="高风险事件分析界面"
+                    class="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <!-- HighlightedPosts Widget ******* -->
+        <div id="feature-panel-4" class="feature-panel hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="order-2 lg:order-1">
+              <div class="mb-6">
+                <span
+                  class="inline-block px-4 py-1.5 rounded-full bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 text-green-600 dark:text-green-400 text-sm font-medium"
+                >
+                  Global Perspective
+                </span>
+              </div>
+              <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                进程树与会话时序拓扑
+              </h3>
+              <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
+                上帝视角的"X
+                光机"。进程树视图清晰透视系统内部结构，会话级时序图与拓扑图采用先进的力导向布局算法，让整个微服务架构下的
+                AI 流量交互一目了然。
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-green-600 dark:text-green-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">进程树透视</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-green-600 dark:text-green-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">智能布局</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/50 flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-green-600 dark:text-green-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path></svg
+                    >
+                  </div>
+                  <span class="text-gray-700 dark:text-gray-300 text-sm font-medium">流量全景</span>
+                </div>
+              </div>
+            </div>
+            <div class="order-1 lg:order-2">
+              <div class="relative">
+                <div
+                  class="absolute -inset-4 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 rounded-3xl blur-2xl opacity-60"
+                >
+                </div>
+                <div
+                  class="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
+                >
+                  <img
+                    src="/screenshots/process-topology.png"
+                    alt="进程树与拓扑图界面"
+                    class="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
-                `}
-  />
+      <div class="flex justify-center mt-12 gap-2">
+        <button
+          onclick="prevFeature()"
+          class="w-12 h-12 rounded-full bg-gray-100 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-slate-600 transition-all"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg
+          >
+        </button>
+        <button
+          onclick="nextFeature()"
+          class="w-12 h-12 rounded-full bg-gray-100 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-slate-600 transition-all"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg
+          >
+        </button>
+      </div>
+    </div>
 
-  <!-- FAQs Widget ******************* -->
+    <script is:inline>
+      let currentFeature = 0;
+      const totalFeatures = 5;
+
+      function switchFeature(index) {
+        currentFeature = index;
+
+        document.querySelectorAll('.feature-tab').forEach((tab, i) => {
+          if (i === index) {
+            tab.classList.add('bg-gray-900', 'dark:bg-white', 'text-white', 'dark:text-gray-900');
+            tab.classList.remove('text-gray-500', 'dark:text-gray-400');
+          } else {
+            tab.classList.remove('bg-gray-900', 'dark:bg-white', 'text-white', 'dark:text-gray-900');
+            tab.classList.add('text-gray-500', 'dark:text-gray-400');
+          }
+        });
+
+        document.querySelectorAll('.feature-panel').forEach((panel, i) => {
+          if (i === index) {
+            panel.classList.remove('hidden');
+            panel.style.opacity = '0';
+            panel.style.transform = 'translateX(20px)';
+            requestAnimationFrame(() => {
+              panel.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+              panel.style.opacity = '1';
+              panel.style.transform = 'translateX(0)';
+            });
+          } else {
+            panel.classList.add('hidden');
+          }
+        });
+      }
+
+      function prevFeature() {
+        const newIndex = currentFeature === 0 ? totalFeatures - 1 : currentFeature - 1;
+        switchFeature(newIndex);
+      }
+
+      function nextFeature() {
+        const newIndex = currentFeature === totalFeatures - 1 ? 0 : currentFeature + 1;
+        switchFeature(newIndex);
+      }
+    </script>
+  </section>
+
+  <section id="openclaw" class="py-24 bg-black dark:bg-black relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-transparent to-transparent"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-3xl">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="text-center mb-16">
+        <p class="text-sm font-medium text-cyan-400 tracking-widest uppercase mb-4">OpenClaw x AIGov-Insight</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+          应对 OpenClaw「自主智能体」的安全挑战
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light">
+          当 AI 学会"做事"，谁来监管它的每一次行动？
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <div
+          class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all"
+        >
+          <div
+            class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6"
+          >
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+              ></path></svg
+            >
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">背景摘要</h3>
+          <p class="text-gray-400 leading-relaxed">
+            OpenClaw 代表了 AI
+            发展的新范式——从"聊天机器人"进化为"做事智能体"。它通过即时通讯工具直连本地系统，拥有操控文件、执行代码的高权限，正在重塑人机交互方式。
+          </p>
+        </div>
+
+        <div
+          class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all"
+        >
+          <div
+            class="w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center mb-6"
+          >
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              ></path></svg
+            >
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">核心风险</h3>
+          <p class="text-gray-400 leading-relaxed">
+            当 AI
+            被赋予"做事"的能力却缺乏监管时，"提示词注入"将直接转化为"系统入侵"。非专业开发者在开放端口、未设鉴权的情况下部署此类工具，等同于为黑客敞开了大门。
+          </p>
+        </div>
+
+        <div
+          class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all"
+        >
+          <div
+            class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center mb-6"
+          >
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path></svg
+            >
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">我们的定位</h3>
+          <p class="text-gray-400 leading-relaxed">
+            在具备自动化处置能力之前，"极致的可观测性"是第一道防线。AIGov-Insight 致力于让 OpenClaw
+            的每一次"动手"操作都清晰可见，为安全审计提供无可辩驳的证据链。
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl p-8 md:p-12 border border-cyan-500/20">
+        <div class="grid grid-cols-1 lg:grid-cols-10 gap-8 items-center">
+          <div class="lg:col-span-3">
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">🦞龙虾的「全息沙盘」</h3>
+            <p class="text-gray-400 text-lg leading-relaxed mb-6">
+              在 OpenClaw 让 AI 学会"做事"的时代，我们确保它的每一个动作都有迹可循、有据可查，让安全风险无处遁形。
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <span class="px-4 py-2 rounded-full bg-cyan-500/20 text-cyan-300 text-sm font-medium">实时监控</span>
+              <span class="px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 text-sm font-medium">行为溯源</span>
+              <span class="px-4 py-2 rounded-full bg-purple-500/20 text-purple-300 text-sm font-medium">风险告警</span>
+            </div>
+          </div>
+          <div class="lg:col-span-7 relative">
+            <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-3xl blur-2xl"></div>
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900 border border-gray-700">
+              <img
+                src="/screenshots/openclaw-solution.png"
+                alt="OpenClaw 解决方案"
+                class="w-full h-auto object-contain object-left"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="architecture" class="py-24 md:py-32 bg-gray-50 dark:bg-slate-900 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 md:mb-20">
+        <p class="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-widest uppercase mb-4">
+          Product Architecture
+        </p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+          双引擎架构
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto font-light">
+          采集 + 分析完美协同，构建 AI 可观测完整闭环
+        </p>
+      </div>
+
+      <div class="relative mb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-11 gap-4 lg:gap-6 items-start">
+          <div class="lg:col-span-5">
+            <div
+              class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-10 shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-cyan-100 to-blue-100 dark:from-cyan-900/30 dark:to-blue-900/30 rounded-bl-full opacity-50"
+              >
+              </div>
+              <div class="relative">
+                <div
+                  class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300 text-xs font-semibold mb-6"
+                >
+                  <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
+                  数据采集引擎
+                </div>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
+                  AIGov-Insight<br /><span class="text-cyan-600 dark:text-cyan-400">Agent</span>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-6">
+                  eBPF 内核级流量捕获引擎，零侵入、高性能的流量感知基石
+                </p>
+
+                <div class="grid grid-cols-3 gap-3 mb-6">
+                  <div
+                    class="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 rounded-xl p-3 text-center border border-cyan-100 dark:border-cyan-800/50"
+                  >
+                    <div class="text-2xl font-bold text-cyan-600 dark:text-cyan-400">&lt;1%</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">性能损耗</div>
+                  </div>
+                  <div
+                    class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-3 text-center border border-blue-100 dark:border-blue-800/50"
+                  >
+                    <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">7类</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">解码分析</div>
+                  </div>
+                  <div
+                    class="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl p-3 text-center border border-indigo-100 dark:border-indigo-800/50"
+                  >
+                    <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">零侵入</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">代码改动</div>
+                  </div>
+                </div>
+
+                <div class="space-y-3 mb-6">
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-cyan-100 dark:bg-cyan-900/40 flex items-center justify-center flex-shrink-0 mt-0.5"
+                    >
+                      <svg
+                        class="w-4 h-4 text-cyan-600 dark:text-cyan-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        ></path></svg
+                      >
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 dark:text-white">流量监听与协议解析</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400">
+                        TC eBPF 挂载 ingress/egress，自动识别 LLM API 请求
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center flex-shrink-0 mt-0.5"
+                    >
+                      <svg
+                        class="w-4 h-4 text-blue-600 dark:text-blue-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        ></path></svg
+                      >
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 dark:text-white">Prompt 完整捕获</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400">
+                        提取 messages、functions、function_call 等关键字段
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center flex-shrink-0 mt-0.5"
+                    >
+                      <svg
+                        class="w-4 h-4 text-indigo-600 dark:text-indigo-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
+                      >
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 dark:text-white">MCP 工具调用追踪</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400">
+                        监控 Agent 决策-行动闭环，适配 LangChain/Dify
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-5 border-t border-gray-100 dark:border-slate-700">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">支持的日志类型</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      class="px-2.5 py-1 bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-md text-xs font-medium"
+                      >HTTP</span
+                    >
+                    <span
+                      class="px-2.5 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-md text-xs font-medium"
+                      >LLM</span
+                    >
+                    <span
+                      class="px-2.5 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-md text-xs font-medium"
+                      >AGENT</span
+                    >
+                    <span
+                      class="px-2.5 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-md text-xs font-medium"
+                      >RAG</span
+                    >
+                    <span
+                      class="px-2.5 py-1 bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-md text-xs font-medium"
+                      >MCP</span
+                    >
+                    <span
+                      class="px-2.5 py-1 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-md text-xs font-medium"
+                      >AG-UI</span
+                    >
+                    <span
+                      class="px-2.5 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-md text-xs font-medium"
+                      >FILE</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-1 flex justify-center">
+            <div class="hidden lg:flex flex-col items-center gap-2">
+              <div class="w-px h-20 bg-gradient-to-b from-transparent via-blue-300 dark:via-blue-600 to-transparent">
+              </div>
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-lg shadow-blue-500/25"
+              >
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path></svg
+                >
+              </div>
+              <div class="w-px h-20 bg-gradient-to-b from-transparent via-blue-300 dark:via-blue-600 to-transparent">
+              </div>
+            </div>
+            <div class="lg:hidden flex items-center gap-3 py-4">
+              <div class="h-px w-12 bg-gradient-to-r from-transparent via-blue-300 dark:via-blue-600 to-transparent">
+              </div>
+              <div
+                class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-lg shadow-blue-500/25"
+              >
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path></svg
+                >
+              </div>
+              <div class="h-px w-12 bg-gradient-to-r from-transparent via-blue-300 dark:via-blue-600 to-transparent">
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div
+              class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-10 shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-orange-100 to-red-100 dark:from-orange-900/30 dark:to-red-900/30 rounded-br-full opacity-50"
+              >
+              </div>
+              <div class="relative">
+                <div
+                  class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 text-xs font-semibold mb-6"
+                >
+                  <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                  分析可视化引擎
+                </div>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
+                  AIGov-Insight<br /><span class="text-orange-600 dark:text-orange-400">Web</span>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-6">
+                  现代化"智能大厦"架构，流畅、直观、美观的可观测体验
+                </p>
+
+                <div class="grid grid-cols-3 gap-3 mb-6">
+                  <div
+                    class="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-xl p-3 text-center border border-orange-100 dark:border-orange-800/50"
+                  >
+                    <div class="text-2xl font-bold text-orange-600 dark:text-orange-400">Next.js</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">16</div>
+                  </div>
+                  <div
+                    class="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-xl p-3 text-center border border-amber-100 dark:border-amber-800/50"
+                  >
+                    <div class="text-2xl font-bold text-amber-600 dark:text-amber-400">React</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">19</div>
+                  </div>
+                  <div
+                    class="bg-gradient-to-br from-yellow-50 to-lime-50 dark:from-yellow-900/20 dark:to-lime-900/20 rounded-xl p-3 text-center border border-yellow-100 dark:border-yellow-800/50"
+                  >
+                    <div class="text-2xl font-bold text-yellow-600 dark:text-yellow-400">TypeScript</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">类型安全</div>
+                  </div>
+                </div>
+
+                <div class="space-y-3 mb-6">
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center flex-shrink-0 mt-0.5"
+                    >
+                      <svg
+                        class="w-4 h-4 text-orange-600 dark:text-orange-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                        ></path></svg
+                      >
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 dark:text-white">模块化组件设计</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400">
+                        Dashboard、TimelineView、ProcessTreeView、SessionTimelineView
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center flex-shrink-0 mt-0.5"
+                    >
+                      <svg
+                        class="w-4 h-4 text-amber-600 dark:text-amber-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
+                      >
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 dark:text-white">性能优化策略</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400">虚拟滚动、懒加载、代码分割、智能缓存</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-yellow-100 dark:bg-yellow-900/40 flex items-center justify-center flex-shrink-0 mt-0.5"
+                    >
+                      <svg
+                        class="w-4 h-4 text-yellow-600 dark:text-yellow-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                        ></path></svg
+                      >
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 dark:text-white">多维度数据聚合</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400">时间聚合、会话聚合、进程聚合、统计计算</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-5 border-t border-gray-100 dark:border-slate-700">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">核心功能模块</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      class="px-2.5 py-1 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-md text-xs font-medium"
+                      >实时日志</span
+                    >
+                    <span
+                      class="px-2.5 py-1 bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded-md text-xs font-medium"
+                      >进程分类分析</span
+                    >
+                    <span
+                      class="px-2.5 py-1 bg-lime-50 dark:bg-lime-900/30 text-lime-700 dark:text-lime-300 rounded-md text-xs font-medium"
+                      >会话级时间轴</span
+                    >
+                    <span
+                      class="px-2.5 py-1 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-md text-xs font-medium"
+                      >会话级时序图</span
+                    >
+                    <span
+                      class="px-2.5 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-md text-xs font-medium"
+                      >会话级分析</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 dark:border-slate-700"
+      >
+        <div class="text-center mb-10">
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">协同价值</h3>
+          <p class="text-gray-500 dark:text-gray-400">双引擎协同，实现完整的 AI 可观测能力</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div class="text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-cyan-100 to-blue-100 dark:from-cyan-900/40 dark:to-blue-900/40 flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-cyan-600 dark:text-cyan-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+                ></path></svg
+              >
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">数据从哪来</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              Agent 高效采集大模型或智能体特有流量，精准捕获每一个 AI 行为
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/40 dark:to-pink-900/40 flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-purple-600 dark:text-purple-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path></svg
+              >
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">数据怎么看</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Web 智能还原与可视化分析，让复杂数据变得直观易懂</p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-orange-100 to-red-100 dark:from-orange-900/40 dark:to-red-900/40 flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-orange-600 dark:text-orange-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                ></path></svg
+              >
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">可观测能力</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">看得见、看得懂、看得准，全面掌控 AI 系统运行状态</p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-green-600 dark:text-green-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path></svg
+              >
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">开放赋能生态</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              赋能风险研判平台、AI 合规审计、LLM 性能优化等安全能力
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="techstack" class="py-16 bg-white dark:bg-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <p class="text-base text-cyan-600 dark:text-cyan-400 font-bold tracking-wide uppercase mb-2">技术栈</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">现代化技术架构</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          采用业界领先的技术栈，确保高性能、可维护性和开发效率
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div class="text-center p-6 bg-gray-50 dark:bg-slate-700 rounded-xl hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 mx-auto mb-3 bg-black rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-lg">N</span>
+          </div>
+          <h4 class="font-semibold text-gray-900 dark:text-white">Next.js 16</h4>
+          <p class="text-sm text-gray-500 dark:text-gray-400">React 全栈框架</p>
+        </div>
+        <div class="text-center p-6 bg-gray-50 dark:bg-slate-700 rounded-xl hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 mx-auto mb-3 bg-cyan-500 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-lg">R</span>
+          </div>
+          <h4 class="font-semibold text-gray-900 dark:text-white">React 19</h4>
+          <p class="text-sm text-gray-500 dark:text-gray-400">UI 库</p>
+        </div>
+        <div class="text-center p-6 bg-gray-50 dark:bg-slate-700 rounded-xl hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 mx-auto mb-3 bg-cyan-600 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-lg">T</span>
+          </div>
+          <h4 class="font-semibold text-gray-900 dark:text-white">Tailwind CSS 4</h4>
+          <p class="text-sm text-gray-500 dark:text-gray-400">样式框架</p>
+        </div>
+        <div class="text-center p-6 bg-gray-50 dark:bg-slate-700 rounded-xl hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 mx-auto mb-3 bg-purple-500 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-lg">F</span>
+          </div>
+          <h4 class="font-semibold text-gray-900 dark:text-white">Framer Motion</h4>
+          <p class="text-sm text-gray-500 dark:text-gray-400">动画库</p>
+        </div>
+        <div class="text-center p-6 bg-gray-50 dark:bg-slate-700 rounded-xl hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 mx-auto mb-3 bg-blue-500 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-lg">R</span>
+          </div>
+          <h4 class="font-semibold text-gray-900 dark:text-white">Recharts</h4>
+          <p class="text-sm text-gray-500 dark:text-gray-400">图表库</p>
+        </div>
+        <div class="text-center p-6 bg-gray-50 dark:bg-slate-700 rounded-xl hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 mx-auto mb-3 bg-blue-600 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-lg">TS</span>
+          </div>
+          <h4 class="font-semibold text-gray-900 dark:text-white">TypeScript</h4>
+          <p class="text-sm text-gray-500 dark:text-gray-400">类型安全</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="quickstart" class="py-16 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <p class="text-base text-cyan-600 dark:text-cyan-400 font-bold tracking-wide uppercase mb-2">拥抱开源</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">AIGov-Insight Web 现已开源</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          这是一套专为新一代 AI 系统（LLM / Agent / OpenClaw / MCP / RAG）量身定制的现代化可观测工具
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-gray-100 dark:border-slate-700">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center"
+            >
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"
+                ><path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                ></path></svg
+              >
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">AIGov-Insight Web</h3>
+              <p class="text-gray-500 dark:text-gray-400">可视化分析层</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            恒安嘉新大模型与智能体安全治理平台的可视化分析层，为安全分析师提供极致丝滑、极具视觉冲击力的观测界面。
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full text-sm font-medium"
+              >实时日志监控</span
+            >
+            <span
+              class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium"
+              >Dashboard 仪表盘</span
+            >
+            <span
+              class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium"
+              >会话全景分析</span
+            >
+            <span
+              class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-medium"
+              >全流程拓扑图</span
+            >
+          </div>
+          <a
+            href="https://github.com/Eversec-ai/AIGov-Insight-Web"
+            target="_blank"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-cyan-600 text-white rounded-lg font-semibold hover:bg-gray-800 dark:hover:bg-cyan-500 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+              ><path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              ></path></svg
+            >
+            查看源码
+          </a>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-gray-100 dark:border-slate-700">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center"
+            >
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                ></path></svg
+              >
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">AIGov-Insight Agent</h3>
+              <p class="text-gray-500 dark:text-gray-400">智能数据采集探针</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            基于 eBPF 技术的 AI 智能体全链路可观测探针，用于观测 AI 智能体和 LLM 应用的网络流量、ROS2
+            通信以及系统指令执行、系统文件访问等行为。
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium"
+              >eBPF 技术</span
+            >
+            <span
+              class="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-full text-sm font-medium"
+              >零侵入</span
+            >
+            <span
+              class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded-full text-sm font-medium"
+              >&lt;1% 性能损耗</span
+            >
+            <span
+              class="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full text-sm font-medium"
+              >多协议支持</span
+            >
+          </div>
+          <a
+            href="https://github.com/Eversec-ai/AIGov-Insight-Agent"
+            target="_blank"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-orange-600 text-white rounded-lg font-semibold hover:bg-gray-800 dark:hover:bg-orange-500 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg
+            >
+            获取探针
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-8 shadow-xl">
+        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+          <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg
+          >
+          快速开始
+        </h3>
+        <div class="bg-slate-950 rounded-lg p-6 overflow-x-auto">
+          <pre
+            class="text-sm text-gray-300"><code><span class="text-gray-500"># 克隆仓库</span>
+<span class="text-cyan-400">git clone</span> https://github.com/Eversec-ai/AIGov-Insight-Web.git
+<span class="text-cyan-400">cd</span> AIGov-Insight-Web
+
+<span class="text-gray-500"># 安装依赖</span>
+<span class="text-cyan-400">npm install</span> --legacy-peer-deps
+
+<span class="text-gray-500"># 开发模式</span>
+<span class="text-cyan-400">npm run dev</span>
+
+<span class="text-gray-500"># 生产模式</span>
+<span class="text-cyan-400">npm run build</span>
+<span class="text-cyan-400">npm run start</span></code></pre>
+        </div>
+        <p class="text-gray-400 mt-4 text-sm">
+          访问 <span class="text-cyan-400 font-mono">http://localhost:3000</span> 开启全链路安全洞察之旅 🎉
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="efficiency" class="py-24 md:py-32 relative overflow-visible">
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-[120px] animate-float-slow"></div>
+      <div class="absolute bottom-1/4 -right-32 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/15 to-pink-500/15 rounded-full blur-[120px] animate-float-slow animation-delay-2000"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="text-center mb-20 md:mb-28">
+        <p class="text-base text-cyan-600 dark:text-cyan-400 font-bold tracking-wide uppercase mb-2">Efficiency Comparison</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-8 tracking-tight">
+          <span class="block">AIGov-Insight vs 传统产品</span>
+    </h2>
+        <div class="flex items-end justify-center gap-3 mb-4">
+          <span class="text-xl md:text-2xl text-gray-500 dark:text-gray-400 font-light">效率提升</span>
+          <span class="relative inline-block">
+            <span class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 blur-xl opacity-50 animate-pulse-slow"></span>
+            <span class="relative text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-[length:200%_auto] animate-gradient">15x</span>
+          </span>
+        </div>
+        <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          告别繁琐的手动排查，让 AIGov 在数秒内完成原本需要数小时的溯源分析工作，让安全团队专注于真正重要的事情。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 mb-16">
+        <div class="comparison-card traditional group" data-delay="0">
+          <div class="card-glow-container">
+            <div class="card-glow card-glow-red"></div>
+            <div class="card-glow card-glow-orange"></div>
+          </div>
+          <div class="relative bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl rounded-[2rem] p-6 lg:p-8 border border-gray-200/60 dark:border-slate-700/60 h-full shadow-[0_8px_60px_-12px_rgba(239,68,68,0.15)] dark:shadow-[0_8px_60px_-12px_rgba(239,68,68,0.1)] overflow-visible">
+            <div class="flex flex-col items-center text-center mb-8">
+              <div class="relative mb-4">
+                <div class="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-700 scale-150"></div>
+                <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center shadow-2xl shadow-red-500/30 transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">传统安全产品</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">手动排查，效率低下</p>
+            </div>
+
+            <div class="space-y-5 mb-8">
+              <div class="progress-item">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">定位日志</span>
+                  <span class="text-sm font-bold text-red-500 dark:text-red-400">10+ 分钟</span>
+                </div>
+                <div class="h-2.5 bg-gray-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
+                  <div class="progress-bar-traditional h-full rounded-full relative">
+                    <div class="progress-shimmer"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="progress-item">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">还原上下文</span>
+                  <span class="text-sm font-bold text-red-500 dark:text-red-400">20+ 分钟</span>
+                </div>
+                <div class="h-2.5 bg-gray-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
+                  <div class="progress-bar-traditional h-full rounded-full relative" style="--width: 98%">
+                    <div class="progress-shimmer"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="progress-item">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">关联分析</span>
+                  <span class="text-sm font-bold text-red-500 dark:text-red-400">30+ 分钟</span>
+                </div>
+                <div class="h-2.5 bg-gray-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
+                  <div class="progress-bar-traditional h-full rounded-full relative" style="--width: 100%">
+                    <div class="progress-shimmer"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative pt-6 border-t border-gray-200/80 dark:border-slate-700/80">
+              <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-300/50 to-transparent dark:via-red-700/50"></div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-medium text-gray-500 dark:text-gray-400">总耗时</span>
+                <div class="text-right">
+                  <span class="text-3xl font-black text-red-500 dark:text-red-400">60+</span>
+                  <span class="text-base font-semibold text-red-500 dark:text-red-400 ml-1">分钟</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-card group" data-delay="100">
+          <div class="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 border border-gray-200/60 dark:border-slate-700/60 h-full shadow-xl shadow-gray-200/50 dark:shadow-none hover:shadow-2xl hover:shadow-gray-200/80 dark:hover:shadow-none transition-all duration-500">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/40 dark:to-orange-900/40 flex items-center justify-center shadow-lg shadow-red-100/50 dark:shadow-none">
+                <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white">传统排查流程</h3>
+            </div>
+
+            <div class="space-y-6">
+              <div class="timeline-item relative pl-8">
+                <div class="absolute left-0 top-1 w-5 h-5 rounded-full bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/50 dark:to-orange-900/50 flex items-center justify-center ring-4 ring-red-50 dark:ring-red-900/30 shadow-lg">
+                  <span class="text-xs font-bold text-red-500 dark:text-red-400">1</span>
+                </div>
+                <div class="absolute left-[9px] top-6 bottom-0 w-0.5 bg-gradient-to-b from-red-300 to-transparent dark:from-red-700/50"></div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">定位日志</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">手动搜索 FILE 日志，过滤时间范围。面对海量原始日志，如同"大海捞针"。</p>
+              </div>
+
+              <div class="timeline-item relative pl-8">
+                <div class="absolute left-0 top-1 w-5 h-5 rounded-full bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/50 dark:to-orange-900/50 flex items-center justify-center ring-4 ring-red-50 dark:ring-red-900/30 shadow-lg">
+                  <span class="text-xs font-bold text-red-500 dark:text-red-400">2</span>
+                </div>
+                <div class="absolute left-[9px] top-6 bottom-0 w-0.5 bg-gradient-to-b from-red-300 to-transparent dark:from-red-700/50"></div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">还原上下文</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">分别查 AG-UI、LLM、MCP 日志拼接行为。日志割裂，无法回答"是哪个用户的哪句话导致了这个危险命令的执行？"</p>
+              </div>
+
+              <div class="timeline-item relative pl-8">
+                <div class="absolute left-0 top-1 w-5 h-5 rounded-full bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/50 dark:to-orange-900/50 flex items-center justify-center ring-4 ring-red-50 dark:ring-red-900/30 shadow-lg">
+                  <span class="text-xs font-bold text-red-500 dark:text-red-400">3</span>
+                </div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">关联分析</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">人工建立日志间的因果关系，耗时且易出错。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-card aigov group" data-delay="200">
+          <div class="card-glow-container">
+            <div class="card-glow card-glow-blue"></div>
+            <div class="card-glow card-glow-cyan"></div>
+          </div>
+          <div class="relative bg-gradient-to-br from-blue-50/95 to-cyan-50/95 dark:from-slate-900/95 dark:to-slate-800/95 backdrop-blur-2xl rounded-[2rem] p-6 lg:p-8 border-2 border-blue-300/50 dark:border-blue-700/50 h-full shadow-[0_8px_60px_-12px_rgba(59,130,246,0.25)] dark:shadow-[0_8px_60px_-12px_rgba(59,130,246,0.15)] overflow-visible">
+            <div class="absolute top-4 right-4">
+              <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 blur-lg opacity-60 animate-pulse"></div>
+                <div class="relative px-3 py-1 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold tracking-wide shadow-lg">
+                  推荐
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-center text-center mb-8">
+              <div class="relative mb-4">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl blur-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-700 scale-150"></div>
+                <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-2xl shadow-blue-500/40 transform group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">AIGov-Insight</h3>
+              <p class="text-sm text-blue-600 dark:text-blue-400 font-semibold">智能关联，极速定位</p>
+            </div>
+
+            <div class="space-y-5 mb-8">
+              <div class="progress-item">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">时间轴高亮定位</span>
+                  <span class="text-sm font-bold text-blue-500 dark:text-blue-400">10 秒</span>
+                </div>
+                <div class="h-2.5 bg-gray-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
+                  <div class="progress-bar-aigov h-full rounded-full relative" style="--width: 5%">
+                    <div class="progress-shimmer"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="progress-item">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">一键展开会话</span>
+                  <span class="text-sm font-bold text-blue-500 dark:text-blue-400">20 秒</span>
+                </div>
+                <div class="h-2.5 bg-gray-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
+                  <div class="progress-bar-aigov h-full rounded-full relative" style="--width: 6%">
+                    <div class="progress-shimmer"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="progress-item">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">完整链路溯源</span>
+                  <span class="text-sm font-bold text-blue-500 dark:text-blue-400">30 秒</span>
+                </div>
+                <div class="h-2.5 bg-gray-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
+                  <div class="progress-bar-aigov h-full rounded-full relative" style="--width: 8%">
+                    <div class="progress-shimmer"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative pt-6 border-t border-blue-200/80 dark:border-blue-800/80">
+              <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent dark:via-blue-600/50"></div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-medium text-gray-500 dark:text-gray-400">总耗时</span>
+                <div class="text-right">
+                  <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">&lt;1</span>
+                  <span class="text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 ml-1">分钟</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-card group" data-delay="300">
+          <div class="relative bg-gradient-to-br from-blue-50/80 to-cyan-50/80 dark:from-slate-900/80 dark:to-slate-800/80 backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 border border-blue-200/50 dark:border-blue-800/50 h-full shadow-xl shadow-blue-500/10 dark:shadow-none hover:shadow-2xl hover:shadow-blue-500/20 dark:hover:shadow-none transition-all duration-500">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/40 dark:to-cyan-900/40 flex items-center justify-center shadow-lg shadow-blue-100/50 dark:shadow-none">
+                <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white">智能排查流程</h3>
+            </div>
+
+            <div class="space-y-6">
+              <div class="timeline-item relative pl-8">
+                <div class="absolute left-0 top-1 w-5 h-5 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/50 dark:to-cyan-900/50 flex items-center justify-center ring-4 ring-blue-50 dark:ring-blue-900/30 shadow-lg">
+                  <span class="text-xs font-bold text-blue-500 dark:text-blue-400">1</span>
+                </div>
+                <div class="absolute left-[9px] top-6 bottom-0 w-0.5 bg-gradient-to-b from-blue-300 to-transparent dark:from-blue-700/50"></div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">时间轴高亮</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">时间轴自动高亮红色风险节点。可视化呈现"平静聊天 → 突然调用 Exec 工具 → 执行高危命令"的突变过程。</p>
+              </div>
+
+              <div class="timeline-item relative pl-8">
+                <div class="absolute left-0 top-1 w-5 h-5 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/50 dark:to-cyan-900/50 flex items-center justify-center ring-4 ring-blue-50 dark:ring-blue-900/30 shadow-lg">
+                  <span class="text-xs font-bold text-blue-500 dark:text-blue-400">2</span>
+                </div>
+                <div class="absolute left-[9px] top-6 bottom-0 w-0.5 bg-gradient-to-b from-blue-300 to-transparent dark:from-blue-700/50"></div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">一键展开</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">点击节点自动展开完整会话时间线。清晰看到"用户在 10:01 发送指令 → Agent 在 10:02 决定调用 Exec 工具 → 10:03 执行了高危命令"。</p>
+              </div>
+
+              <div class="timeline-item relative pl-8">
+                <div class="absolute left-0 top-1 w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center ring-4 ring-blue-50 dark:ring-blue-900/30 shadow-lg shadow-blue-500/30">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">完整溯源</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">自动关联 AG-UI、LLM、MCP、EXEC、FILE 多源日志，一键获取完整因果链。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-cyan-500/10 to-purple-500/10 rounded-[2.5rem] blur-3xl scale-105"></div>
+        <div class="relative bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-gray-200/50 dark:border-slate-700/50 shadow-2xl shadow-gray-200/50 dark:shadow-none">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <div class="stat-item text-center">
+              <div class="relative inline-block mb-4">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 blur-3xl scale-150 pointer-events-none stat-glow-blue"></div>
+                <div class="relative text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 counter-animate" data-target="15">0</div>
+              </div>
+              <div class="text-sm md:text-base text-gray-600 dark:text-gray-400 font-semibold">效率提升</div>
+            </div>
+            <div class="stat-item text-center">
+              <div class="relative inline-block mb-4">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-500 blur-3xl scale-150 pointer-events-none stat-glow-green"></div>
+                <div class="relative text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500 counter-animate" data-target="60" data-suffix="x">0</div>
+              </div>
+              <div class="text-sm md:text-base text-gray-600 dark:text-gray-400 font-semibold">时间节省</div>
+            </div>
+            <div class="stat-item text-center">
+              <div class="relative inline-block mb-4">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-500 blur-3xl scale-150 pointer-events-none stat-glow-purple"></div>
+                <div class="relative text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500">&lt;1<span class="text-2xl md:text-3xl">%</span></div>
+              </div>
+              <div class="text-sm md:text-base text-gray-600 dark:text-gray-400 font-semibold">性能损耗</div>
+            </div>
+            <div class="stat-item text-center">
+              <div class="relative inline-block mb-4">
+                <div class="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-500 blur-3xl scale-150 pointer-events-none stat-glow-orange"></div>
+                <div class="relative text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-500">100<span class="text-2xl md:text-3xl">%</span></div>
+              </div>
+              <div class="text-sm md:text-base text-gray-600 dark:text-gray-400 font-semibold">零侵入</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient {
+      animation: gradient 3s ease infinite;
+    }
+
+    @keyframes float-slow {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+    .animate-float-slow {
+      animation: float-slow 20s ease-in-out infinite;
+    }
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-drift-1 {
+      0%, 100% { 
+        opacity: 0.2; 
+        transform: translate(-25%, -40%) scale(0.9);
+      }
+      33% { 
+        opacity: 0.35; 
+        transform: translate(20%, -25%) scale(1.1);
+      }
+      66% { 
+        opacity: 0.25; 
+        transform: translate(10%, 50%) scale(1);
+      }
+    }
+    @keyframes glow-drift-2 {
+      0%, 100% { 
+        opacity: 0.15; 
+        transform: translate(30%, 35%) scale(1.1);
+      }
+      25% { 
+        opacity: 0.3; 
+        transform: translate(-15%, 55%) scale(0.95);
+      }
+      50% { 
+        opacity: 0.2; 
+        transform: translate(-30%, -20%) scale(1.05);
+      }
+      75% { 
+        opacity: 0.35; 
+        transform: translate(15%, -45%) scale(1);
+      }
+    }
+    @keyframes glow-drift-3 {
+      0%, 100% { 
+        opacity: 0.25; 
+        transform: translate(15%, -55%) scale(1.05);
+      }
+      50% { 
+        opacity: 0.15; 
+        transform: translate(-20%, 40%) scale(0.9);
+      }
+    }
+    @keyframes glow-drift-4 {
+      0%, 100% { 
+        opacity: 0.2; 
+        transform: translate(-35%, 20%) scale(1);
+      }
+      33% { 
+        opacity: 0.3; 
+        transform: translate(25%, -35%) scale(1.1);
+      }
+      66% { 
+        opacity: 0.15; 
+        transform: translate(-10%, 60%) scale(0.95);
+      }
+    }
+    .animate-glow-1 { animation: glow-drift-1 14s ease-in-out infinite; }
+    .animate-glow-2 { animation: glow-drift-2 18s ease-in-out infinite; }
+    .animate-glow-3 { animation: glow-drift-3 22s ease-in-out infinite; }
+    .animate-glow-4 { animation: glow-drift-4 16s ease-in-out infinite; }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+    .animate-shimmer {
+      animation: shimmer 2s ease-in-out infinite;
+    }
+    .animate-shimmer-fast {
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    @keyframes progress-fill {
+      from { width: 0; }
+      to { width: var(--width, 95%); }
+    }
+
+    .progress-bar-traditional {
+      background: linear-gradient(90deg, #ef4444, #f97316);
+      animation: progress-fill 1.5s ease-out forwards;
+      animation-delay: 0.5s;
+      width: 0;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+      position: relative;
+    }
+
+    .progress-bar-aigov {
+      background: linear-gradient(90deg, #3b82f6, #06b6d4);
+      animation: progress-fill 1.5s ease-out forwards;
+      animation-delay: 0.8s;
+      width: 0;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      position: relative;
+    }
+
+    .progress-shimmer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+      );
+      animation: shimmer 2s ease-in-out infinite;
+      animation-delay: 2s;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+
+    .progress-shimmer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        transparent 100%
+      );
+      animation: shimmer 2.5s ease-in-out infinite;
+      animation-delay: 2.5s;
+    }
+
+    @keyframes fade-up {
+      from { 
+        opacity: 0; 
+        transform: translateY(40px) scale(0.95); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+      }
+    }
+
+    .comparison-card {
+      opacity: 0;
+      animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .comparison-card[data-delay="0"] { animation-delay: 0s; }
+    .comparison-card[data-delay="100"] { animation-delay: 0.15s; }
+    .comparison-card[data-delay="200"] { animation-delay: 0.3s; }
+    .comparison-card[data-delay="300"] { animation-delay: 0.45s; }
+
+    .card-glow-container {
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      overflow: visible;
+      z-index: -1;
+    }
+
+    .card-glow {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .comparison-card:hover .card-glow {
+      opacity: 0.6;
+    }
+
+    .card-glow-red {
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.4) 0%, transparent 70%);
+      top: -50px;
+      left: -50px;
+      animation: glow-float-1 6s ease-in-out infinite;
+    }
+
+    .card-glow-orange {
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.3) 0%, transparent 70%);
+      bottom: -50px;
+      right: -50px;
+      animation: glow-float-2 6s ease-in-out infinite;
+      animation-delay: 3s;
+    }
+
+    .card-glow-blue {
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+      top: -50px;
+      right: -50px;
+      animation: glow-float-1 6s ease-in-out infinite;
+    }
+
+    .card-glow-cyan {
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%);
+      bottom: -50px;
+      left: -50px;
+      animation: glow-float-2 6s ease-in-out infinite;
+      animation-delay: 3s;
+    }
+
+    @keyframes glow-float-1 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, 30px); }
+    }
+
+    @keyframes glow-float-2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-30px, -30px); }
+    }
+
+    .timeline-item {
+      opacity: 0;
+      animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .timeline-item:nth-child(1) { animation-delay: 0.5s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.65s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.8s; }
+
+    .progress-item {
+      opacity: 0;
+      animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .progress-item:nth-child(1) { animation-delay: 0.6s; }
+    .progress-item:nth-child(2) { animation-delay: 0.75s; }
+    .progress-item:nth-child(3) { animation-delay: 0.9s; }
+
+    .stat-item {
+      opacity: 0;
+      animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .stat-item:nth-child(1) { animation-delay: 1s; }
+    .stat-item:nth-child(2) { animation-delay: 1.15s; }
+    .stat-item:nth-child(3) { animation-delay: 1.3s; }
+    .stat-item:nth-child(4) { animation-delay: 1.45s; }
+
+    @keyframes breathe-glow {
+      0%, 100% { 
+        opacity: 0.25; 
+        transform: scale(1);
+      }
+      50% { 
+        opacity: 0.55; 
+        transform: scale(1.15);
+      }
+    }
+
+    .stat-glow-blue,
+    .stat-glow-green,
+    .stat-glow-purple,
+    .stat-glow-orange {
+      animation: breathe-glow 4s ease-in-out infinite;
+    }
+
+    .stat-glow-blue {
+      animation-delay: 0s;
+    }
+
+    .stat-glow-green {
+      animation-delay: 1s;
+    }
+
+    .stat-glow-purple {
+      animation-delay: 2s;
+    }
+
+    .stat-glow-orange {
+      animation-delay: 3s;
+    }
+
+    @keyframes count-up {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .counter-animate {
+      animation: count-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .comparison-card.traditional:hover {
+      transform: translateY(-8px);
+    }
+
+    .comparison-card.aigov:hover {
+      transform: translateY(-8px);
+    }
+
+    .comparison-card {
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-gradient,
+      .animate-float-slow,
+      .animate-pulse-slow,
+      .animate-shimmer,
+      .animate-shimmer-fast,
+      .progress-bar-traditional,
+      .progress-bar-aigov,
+      .comparison-card,
+      .timeline-item,
+      .progress-item,
+      .stat-item,
+      .counter-animate,
+      .card-glow,
+      .progress-shimmer,
+      .stat-glow-blue,
+      .stat-glow-green,
+      .stat-glow-purple,
+      .stat-glow-orange {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+      .progress-bar-traditional,
+      .progress-bar-aigov {
+        width: var(--width, 95%);
+      }
+      .stat-glow-blue,
+      .stat-glow-green,
+      .stat-glow-purple,
+      .stat-glow-orange {
+        opacity: 0.4;
+      }
+    }
+  </style>
+
+  <script>
+    const counters = document.querySelectorAll('.counter-animate');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target as HTMLElement;
+          const target = parseInt(counter.dataset.target || '0');
+          const suffix = counter.dataset.suffix || 'x';
+          let current = 0;
+          const increment = target / 40;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              counter.textContent = target + suffix;
+              clearInterval(timer);
+            } else {
+              counter.textContent = Math.floor(current) + suffix;
+            }
+          }, 40);
+          observer.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.3 });
+    counters.forEach(counter => observer.observe(counter));
+  </script>
 
   <FAQs
-    title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    id="faq"
+    title="常见问题"
+    subtitle="关于 AIGov-Insight 和 AI 安全可观测性的常见疑问"
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Why AstroWind?',
+        title: 'AIGov-Insight 与传统安全工具有什么区别？',
         description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+          '传统 WAF 和防火墙基于规则、特征码、IP 和端口工作，看不懂自然语言指令背后的恶意意图。AIGov-Insight 专为 AI 系统设计，能够深度解析 AI 对话内容、工具调用、系统命令执行等底层行为，实现语义层面的安全监控。',
       },
       {
-        title: 'What do I need to start?',
+        title: '部署 AIGov-Insight 需要修改现有代码吗？',
         description:
-          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+          '不需要。AIGov-Insight Agent 基于 eBPF 技术运行在操作系统内核态，通过挂载内核的 eBPF 钩子进行旁路采集，零业务代码侵入。您只需在服务器上部署探针，即可开始采集 AI 系统的运行数据。',
       },
       {
-        title: 'How to install the Astro + Tailwind CSS template?',
+        title: 'AIGov-Insight 支持哪些 AI 框架？',
         description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+          '目前支持主流的大语言模型框架（Ollama、vLLM）、智能体框架（Dify、OpenClaw）、以及 MCP 协议。我们持续更新解析器以支持更多框架。',
       },
       {
-        title: "What's something that you don't understand?",
+        title: 'OpenClaw 场景下能监控到什么？',
         description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+          '当 OpenClaw 执行系统命令或访问文件时，AIGov-Insight 能够捕获完整的命令行参数、文件路径、执行结果，并将其与用户的原始 Prompt 关联。您可以清晰看到"用户说了什么 → AI 决定做什么 → 系统执行了什么"的完整链路。',
       },
       {
-        title: 'What is something that you would like to try again?',
+        title: '探针会影响 AI 系统性能吗？',
         description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+          '几乎不会。eBPF 探针运行在内核态，性能损耗小于 1%，完美适应大流量的高并发 AI 推理场景。同时，探针采用纯 C 语言编写，没有臃肿的第三方运行库依赖。',
       },
       {
-        title: 'If you could only ask one question to each person you meet, what would that question be?',
+        title: '如何预约演示？',
         description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+          '请通过页面底部的联系方式与我们取得联系，我们的团队将为您提供产品演示和试用申请流程。恒安嘉新致力于为企业级客户提供专业的 AI 安全解决方案。',
       },
     ]}
   />
-
-  <!-- Stats Widget ****************** -->
-
-  <Stats
-    stats={[
-      { title: 'Downloads', amount: '132K' },
-      { title: 'Stars', amount: '24.8K' },
-      { title: 'Forks', amount: '10.3K' },
-      { title: 'Users', amount: '48.4K' },
-    ]}
-  />
-
-  <!-- CallToAction Widget *********** -->
 
   <CallToAction
+    id="contact"
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
+        text: '预约演示',
+        href: 'mailto:contact@eversec.com.cn',
+        icon: 'tabler:mail',
       },
+      { text: 'GitHub', href: 'https://github.com/Eversec-ai/AIGov-Insight-Web', icon: 'tabler:brand-github' },
     ]}
   >
-    <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
-    </Fragment>
+    <Fragment slot="title"> 开启 AI 安全可观测之旅 </Fragment>
 
     <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
+      部署后 5 分钟内，您将看到第一个 AI 会话的完整时间轴<br class="hidden md:inline" />
+      无需配置，无需培训，开箱即用
     </Fragment>
   </CallToAction>
 </Layout>
