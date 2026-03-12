@@ -3,180 +3,112 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Homes',
+      text: '产品能力',
       links: [
         {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas'),
+          text: '核心能力',
+          href: getPermalink('/#advantages'),
         },
         {
-          text: 'Startup',
-          href: getPermalink('/homes/startup'),
-        },
-        {
-          text: 'Mobile App',
-          href: getPermalink('/homes/mobile-app'),
-        },
-        {
-          text: 'Personal',
-          href: getPermalink('/homes/personal'),
-        },
-      ],
-    },
-    {
-      text: 'Pages',
-      links: [
-        {
-          text: 'Features (Anchor Link)',
+          text: '全链路可观测',
           href: getPermalink('/#features'),
         },
         {
-          text: 'Services',
-          href: getPermalink('/services'),
+          text: 'OpenClaw 监管',
+          href: getPermalink('/#openclaw'),
         },
         {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
+          text: '双引擎架构',
+          href: getPermalink('/#architecture'),
         },
         {
-          text: 'About us',
+          text: '效率提升',
+          href: getPermalink('/#efficiency'),
+        },
+      ],
+    },
+    {
+      text: '解决方案',
+      links: [
+        {
+          text: 'OpenClaw 安全审计',
+          href: getPermalink('/#openclaw'),
+        },
+        {
+          text: 'Agent/LLM/MCP 安全监控',
+          href: getPermalink('/#features'),
+        },
+      ],
+    },
+    {
+      text: '开源项目',
+      links: [
+        {
+          text: '概览',
+          href: getPermalink('/#quickstart'),
+        },
+        {
+          text: 'AIGov-Insight Web',
+          href: 'https://github.com/Eversec-ai/AIGov-Insight-Web',
+        },
+        {
+          text: 'AIGov-Insight Agent',
+          href: 'https://github.com/Eversec-ai/AIGov-Insight-Agent',
+        }        
+      ],
+    },
+    {
+      text: '恒安嘉新',
+      links: [
+        {
+          text: '关于我们',
           href: getPermalink('/about'),
         },
         {
-          text: 'Contact',
-          href: getPermalink('/contact'),
-        },
-        {
-          text: 'Terms',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy'),
-        },
-      ],
-    },
-    {
-      text: 'Landing',
-      links: [
-        {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
-        },
-        {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
-        },
-        {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
-        },
-        {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
-        },
-        {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
-        },
-        {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
-        },
-      ],
-    },
-    {
-      text: 'Blog',
-      links: [
-        {
-          text: 'Blog List',
+          text: '新闻动态',
           href: getBlogPermalink(),
-        },
-        {
-          text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
-        },
-        {
-          text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
-        },
-        {
-          text: 'Category Page',
-          href: getPermalink('tutorials', 'category'),
-        },
-        {
-          text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
-        },
+        },        
       ],
-    },
-    {
-      text: 'Widgets',
-      href: '#',
     },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/arthelokyo/astrowind', target: '_blank' }],
+  actions: [
+    { text: 'GitHub', href: 'https://github.com/Eversec-ai/AIGov-Insight-Web', icon: 'tabler:brand-github' },
+    { text: '预约演示', href: '#contact', icon: 'tabler:mail', variant: 'primary' },
+  ],
 };
 
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: '产品',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' },
+        { text: 'AIGov-Insight 全链路可观测', href: '/#advantages' },
       ],
     },
     {
-      title: 'Platform',
+      title: '开源项目',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' },
+        { text: 'AIGov-Insight Web', href: 'https://github.com/Eversec-ai/AIGov-Insight-Web' },
+        { text: 'AIGov-Insight Agent', href: 'https://github.com/Eversec-ai/AIGov-Insight-Agent' },
       ],
     },
     {
-      title: 'Support',
+      title: '公司',
       links: [
-        { text: 'Docs', href: '#' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' },
-      ],
-    },
-    {
-      title: 'Company',
-      links: [
-        { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Careers', href: '#' },
-        { text: 'Press', href: '#' },
-        { text: 'Inclusion', href: '#' },
-        { text: 'Social Impact', href: '#' },
-        { text: 'Shop', href: '#' },
+        { text: '关于恒安嘉新', href: '/about' },
+        { text: '新闻动态', href: getBlogPermalink() },
+        { text: '联系我们', href: '/#contact' },
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: '全球领先的AI自主智能体全链路可观测平台', href: '#' },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/arthelokyo/astrowind' },
+    { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/Eversec-ai/AIGov-Insight-Web' },
+    { ariaLabel: '微信公众号', icon: 'tabler:brand-wechat', href: 'https://mp.weixin.qq.com/s/FzRoOqZ3iMfT1QDwEQ7_qg?mpshare=1&scene=1&srcid=0309KjYhEGtvLBUldOf5dW20&sharer_shareinfo=c5df1490ab1717d7bf08776535c5736f&sharer_shareinfo_first=c5df1490ab1717d7bf08776535c5736f&version=5.0.6.91166&platform=mac#rd' },
   ],
   footNote: `
-    Made by <a class="text-blue-600 underline dark:text-muted" href="https://github.com/arthelokyo"> Arthelokyo</a> · All rights reserved.
+    © 2026 恒安嘉新 Eversec. All rights reserved.
   `,
 };
