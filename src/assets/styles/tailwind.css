@@ -22,11 +22,11 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
+    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-200 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-700 cursor-pointer;
   }
 
   .btn-primary {
-    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
+    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-cyan-600 dark:border-cyan-600 dark:hover:border-cyan-500 dark:hover:bg-cyan-500;
   }
 
   .btn-secondary {
@@ -34,7 +34,7 @@
   }
 
   .btn-tertiary {
-    @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+    @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-300 dark:hover:text-white;
   }
 }
 
@@ -44,12 +44,9 @@
 }
 .dark #header.scroll > div:first-child,
 #header.scroll.dark > div:first-child {
-  @apply bg-page md:bg-[#030621e6] border-b border-gray-500/20;
-  box-shadow: none;
+  @apply bg-page md:bg-slate-900/95 border-b border-cyan-500/10;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
-/* #header.scroll > div:last-child {
-  @apply py-3;
-} */
 
 #header.expanded nav {
   position: fixed;
@@ -85,8 +82,53 @@
   @apply rotate-45 translate-y-[-8px] translate-x-[14px];
 }
 
-/* To deprecated */
-
 .dd *:first-child {
   margin-top: 0;
+}
+
+.dark .prose {
+  --tw-prose-body: rgb(226 232 240);
+  --tw-prose-headings: rgb(248 250 252);
+  --tw-prose-links: rgb(34 211 238);
+  --tw-prose-bold: rgb(248 250 252);
+  --tw-prose-code: rgb(34 211 238);
+  --tw-prose-quotes: rgb(226 232 240);
+  --tw-prose-quote-borders: rgb(71 85 105);
+}
+
+.dark .prose code {
+  background-color: rgba(30, 41, 59, 0.8);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+.dark .prose pre {
+  background-color: rgb(15 23 42);
+  border: 1px solid rgba(71, 85, 105, 0.5);
+}
+
+.dark .prose a:hover {
+  color: rgb(56 189 248);
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.dark .card-hover {
+  @apply hover:bg-slate-700/50;
+}
+
+.dark .text-gradient {
+  @apply bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent;
 }
