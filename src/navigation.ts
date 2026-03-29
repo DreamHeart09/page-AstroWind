@@ -18,6 +18,11 @@ export const headerData = {
           href: getPermalink('/#openclaw'),
         },
         {
+          text: 'OpenClaw 智能防护中心',
+          href: getPermalink('/#v030'),
+          isNew: true,
+        },
+        {
           text: '双引擎架构',
           href: getPermalink('/#architecture'),
         },

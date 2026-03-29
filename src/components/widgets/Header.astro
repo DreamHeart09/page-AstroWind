@@ -14,6 +14,7 @@ interface Link {
   href?: string;
   ariaLabel?: string;
   icon?: string;
+  isNew?: boolean;
 }
 
 interface MenuLink extends Link {
@@ -97,17 +98,25 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
                   </button>
-                  <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
-                    {links.map(({ text: text2, href: href2 }) => (
+                  <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded-xl md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl border border-gray-100/50 dark:border-gray-700/50">
+                    {links.map(({ text: text2, href: href2, isNew }) => (
                       <li>
                         <a
                           class:list={[
-                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
+                            'first:rounded-t-xl last:rounded-b-xl md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2.5 px-5 block whitespace-no-wrap',
                             { 'aw-link-active': href2 === currentPath },
                           ]}
                           href={href2}
                         >
-                          {text2}
+                          <span class="flex items-center gap-2">
+                            {text2}
+                            {isNew && (
+                              <span class="new-tag relative inline-flex items-center px-1.5 py-0 rounded-full text-[9px] font-bold bg-gradient-to-r from-violet-500 to-purple-500 text-white overflow-hidden">
+                                <span class="relative z-10">NEW</span>
+                                <span class="absolute inset-0 shimmer"></span>
+                              </span>
+                            )}
+                          </span>
                         </a>
                       </li>
                     ))}
@@ -165,3 +174,31 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
 </header>
+
+<style>
+  .new-tag {
+    letter-spacing: 0.02em;
+    box-shadow: 0 1px 2px rgba(139, 92, 246, 0.3);
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 60%,
+      transparent 100%
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+</style>

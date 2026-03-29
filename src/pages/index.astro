@@ -343,8 +343,8 @@ const base = import.meta.env.BASE_URL;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
       <div class="text-center mb-20">
         <p class="text-sm font-medium text-blue-400 tracking-widest uppercase mb-4">Core Advantages</p>
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">三大核心能力</h2>
-        <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light">重新定义 AI 可观测性标准</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">四大核心能力</h2>
+        <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light">重新定义 AI 安全可观测性标准</p>
       </div>
 
       <div class="space-y-32">
@@ -497,6 +497,57 @@ const base = import.meta.env.BASE_URL;
                 <img
                   src={`${base}screenshots/advantage-fast.png`}
                   alt="时间轴风险高亮界面"
+                  class="w-full aspect-[4/3] object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div class="order-2">
+            <div class="mb-6">
+              <span
+                class="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium"
+              >
+                Active Protection
+              </span>
+            </div>
+            <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">管得住</h3>
+            <p class="text-lg md:text-xl text-gray-400 leading-relaxed mb-8">
+              基于 OpenClaw 智能防护引擎，实现从"被动观测"到"主动治理"的跨越。支持拦截、二次确认、告警三种精细化处理模式，支持预置规则库可以开箱即用，也支持丰富的自定义规则拓展，为 AI 智能体加装"安全刹车片"。
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>智能拦截</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>二次确认</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>规则热加载</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-1">
+            <div class="relative">
+              <div
+                class="absolute -inset-4 bg-gradient-to-r from-emerald-600/30 to-teal-600/30 rounded-3xl blur-2xl opacity-50"
+              >
+              </div>
+              <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900 border border-gray-800">
+                <img
+                  src={`${base}screenshots/openclaw-analysis0.png`}
+                  alt="OpenClaw 智能防护中心"
                   class="w-full aspect-[4/3] object-cover"
                 />
               </div>
@@ -1260,6 +1311,405 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
+  <section id="v030" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"></div>
+      <div class="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-gradient-to-br from-violet-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl animate-float-slow"></div>
+      <div class="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-gradient-to-tl from-cyan-500/10 via-blue-500/5 to-transparent rounded-full blur-3xl animate-float-slow animation-delay-2000"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="text-center mb-16 md:mb-20">
+        <div class="inline-flex items-center gap-3 mb-8">
+          <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gradient-to-r from-violet-400 to-purple-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-gradient-to-r from-violet-500 to-purple-500"></span>
+          </span>
+          <span class="px-4 py-1.5 rounded-full bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-500/20 text-violet-600 dark:text-violet-400 text-sm font-semibold tracking-wide">
+            v0.3.0 Latest
+          </span>
+        </div>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-500 to-cyan-500 bg-[length:200%_auto] animate-gradient">OpenClaw 智能防护中心</span>
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
+          从「被动观测」到「主动治理」的跨越<br class="hidden md:block" />
+          为 AI 智能体加装「安全刹车片」
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+        <div class="group relative">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-violet-500 to-purple-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+          <div class="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-gray-200/50 dark:border-slate-700/50 h-full">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center mb-6 shadow-lg shadow-violet-500/25">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">一站式防护管理</h3>
+            <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+              全新上线的防护管理界面，集成防护总览、实时状态监控与数据统计，安全态势一目了然。
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 text-xs font-medium">防护总览</span>
+              <span class="px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-xs font-medium">实时监控</span>
+              <span class="px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400 text-xs font-medium">数据统计</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="group relative">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+          <div class="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-gray-200/50 dark:border-slate-700/50 h-full">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center mb-6 shadow-lg shadow-cyan-500/25">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">自定义规则引擎</h3>
+            <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+              支持规则的增删改查全生命周期管理，涵盖拦截、二次确认、告警三种精细化处理模式。
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-xs font-medium">拦截</span>
+              <span class="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-xs font-medium">二次确认</span>
+              <span class="px-3 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 text-xs font-medium">告警</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="group relative">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+          <div class="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-gray-200/50 dark:border-slate-700/50 h-full">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/25">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">开箱即用模板</h3>
+            <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+              内置 8 种行业级预置模板，一键启用，秒级构建专业防线。
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-medium">生产严格</span>
+              <span class="px-3 py-1 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-xs font-medium">Docker/K8s</span>
+              <span class="px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs font-medium">AWS云服务</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 md:p-10 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-violet-500/20 to-purple-500/10 rounded-full blur-3xl"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">会话分析与防护闭环</h3>
+                <p class="text-gray-400 text-sm">打破观测与治理的边界</p>
+              </div>
+            </div>
+            <p class="text-gray-300 leading-relaxed mb-6">
+              在会话分析页面新增快捷入口，支持将异常对话一键转化为防护规则。系统自动提取关键风险字段并预填充规则配置，大幅缩短从「发现威胁」到「阻断威胁」的响应时间。
+            </p>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                  </svg>
+                  <span class="text-white font-medium text-sm">一键转规则</span>
+                </div>
+                <p class="text-gray-400 text-xs">异常话单快速转化</p>
+              </div>
+              <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                  </svg>
+                  <span class="text-white font-medium text-sm">智能提取</span>
+                </div>
+                <p class="text-gray-400 text-xs">自动预填充配置</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 md:p-10 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-cyan-500/20 to-blue-500/10 rounded-full blur-3xl"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">视觉体验重构</h3>
+                <p class="text-gray-400 text-sm">精美与现代的设计语言</p>
+              </div>
+            </div>
+            <p class="text-gray-300 leading-relaxed mb-6">
+              引入全新拟态风格，配合 Tailwind CSS 4 的全新特性，打造通透、现代的视觉层次。基于 Framer Motion 引入物理缓动动画，页面切换与数据加载行云流水。
+            </p>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="text-center">
+                <div class="w-12 h-12 mx-auto mb-2 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur border border-white/10 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-300 text-xs font-medium">玻璃拟态</span>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 mx-auto mb-2 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur border border-white/10 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-300 text-xs font-medium">物理动效</span>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 mx-auto mb-2 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur border border-white/10 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-300 text-xs font-medium">深色模式</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-16">
+        <div class="relative">
+          <div class="overflow-hidden">
+            <div id="screenshot-slider" class="flex transition-transform duration-500 ease-out">
+              <div class="w-full flex-shrink-0 px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                  <div class="order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 text-xs font-semibold mb-4">
+                      <span class="w-1.5 h-1.5 rounded-full bg-violet-500"></span>
+                      防护总览
+                    </div>
+                    <h4 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">实时安全态势感知</h4>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+                      全新的防护管理界面，集成防护总览、实时状态监控与数据统计。一目了然地掌握拦截次数、二次确认次数、告警次数等关键指标，安全态势尽在掌控。
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                      <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>实时数据统计</span>
+                      </div>
+                      <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>状态监控面板</span>
+                      </div>
+                      <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>一键开关防护</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="order-1 lg:order-2">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg border border-gray-200/60 dark:border-slate-700/60">
+                      <img
+                        src={`${base}screenshots/openclaw-analysis1.png`}
+                        alt="防护总览界面"
+                        class="w-full aspect-video object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="w-full flex-shrink-0 px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                  <div class="order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400 text-xs font-semibold mb-4">
+                      <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
+                      规则管理
+                    </div>
+                    <h4 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">灵活强大的规则引擎</h4>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+                      支持规则的增删改查全生命周期管理，涵盖拦截、二次确认、告警三种精细化处理模式。内置 8 种行业级预置模板，一键启用，秒级构建专业防线。
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                      <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>自定义规则</span>
+                      </div>
+                      <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>预置模板库</span>
+                      </div>
+                      <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>热加载生效</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="order-1 lg:order-2">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg border border-gray-200/60 dark:border-slate-700/60">
+                      <img
+                        src={`${base}screenshots/openclaw-analysis2.png`}
+                        alt="规则管理界面"
+                        class="w-full aspect-video object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="w-full flex-shrink-0 px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                  <div class="order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold mb-4">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                      防护日志
+                    </div>
+                    <h4 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">完整审计日志追溯</h4>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+                      新增防护活动记录与详细审计日志查询功能，支持按时间、风险等级、操作类型等多维度组合筛选。让每一次拦截、告警都有迹可循，满足合规审计需求。
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                      <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>多维度筛选</span>
+                      </div>
+                      <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>可视化审计</span>
+                      </div>
+                      <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>完整追溯链</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="order-1 lg:order-2">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg border border-gray-200/60 dark:border-slate-700/60">
+                      <img
+                        src={`${base}screenshots/openclaw-analysis3.png`}
+                        alt="防护日志界面"
+                        class="w-full aspect-video object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center items-center gap-4 mt-8">
+            <button
+              onclick="prevScreenshot()"
+              class="w-12 h-12 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-slate-600 hover:shadow-lg transition-all"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <div class="flex gap-2">
+              <button
+                onclick="goToScreenshot(0)"
+                id="screenshot-dot-0"
+                class="screenshot-dot w-2.5 h-2.5 rounded-full bg-violet-500 dark:bg-violet-400 transition-all"
+              ></button>
+              <button
+                onclick="goToScreenshot(1)"
+                id="screenshot-dot-1"
+                class="screenshot-dot w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-slate-600 transition-all"
+              ></button>
+              <button
+                onclick="goToScreenshot(2)"
+                id="screenshot-dot-2"
+                class="screenshot-dot w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-slate-600 transition-all"
+              ></button>
+            </div>
+            <button
+              onclick="nextScreenshot()"
+              class="w-12 h-12 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-slate-600 hover:shadow-lg transition-all"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <script is:inline>
+          let currentScreenshot = 0;
+          const totalScreenshots = 3;
+
+          function updateScreenshotSlider() {
+            const slider = document.getElementById('screenshot-slider');
+            if (slider) {
+              slider.style.transform = `translateX(-${currentScreenshot * 100}%)`;
+            }
+
+            for (let i = 0; i < totalScreenshots; i++) {
+              const dot = document.getElementById(`screenshot-dot-${i}`);
+              if (dot) {
+                if (i === currentScreenshot) {
+                  dot.classList.remove('bg-gray-300', 'dark:bg-slate-600');
+                  dot.classList.add('bg-violet-500', 'dark:bg-violet-400');
+                  dot.style.width = '1.5rem';
+                } else {
+                  dot.classList.remove('bg-violet-500', 'dark:bg-violet-400');
+                  dot.classList.add('bg-gray-300', 'dark:bg-slate-600');
+                  dot.style.width = '0.625rem';
+                }
+              }
+            }
+          }
+
+          function prevScreenshot() {
+            currentScreenshot = currentScreenshot === 0 ? totalScreenshots - 1 : currentScreenshot - 1;
+            updateScreenshotSlider();
+          }
+
+          function nextScreenshot() {
+            currentScreenshot = currentScreenshot === totalScreenshots - 1 ? 0 : currentScreenshot + 1;
+            updateScreenshotSlider();
+          }
+
+          function goToScreenshot(index) {
+            currentScreenshot = index;
+            updateScreenshotSlider();
+          }
+        </script>
+      </div>
+
+    </div>
+  </section>
+
   <section id="architecture" class="py-24 md:py-32 bg-gray-50 dark:bg-slate-900 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16 md:mb-20">
@@ -1899,7 +2349,7 @@ const base = import.meta.env.BASE_URL;
 <span class="text-cyan-400">cd</span> AIGov-Insight-Web
 
 <span class="text-gray-500"># 安装依赖</span>
-<span class="text-cyan-400">npm install</span> --legacy-peer-deps
+<span class="text-cyan-400">npm install</span>
 
 <span class="text-gray-500"># 开发模式</span>
 <span class="text-cyan-400">npm run dev</span>
