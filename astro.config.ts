@@ -21,9 +21,11 @@ const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
+const siteBase = process.env.ASTRO_BASE ?? '/page-AstroWind/';
+
 export default defineConfig({
   output: 'static',
-  base: '/page-AstroWind/', 
+  base: siteBase, 
 
   integrations: [
     tailwind({
