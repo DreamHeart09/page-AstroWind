@@ -76,12 +76,3 @@ docker run -d -p 9000:8080 --name aigov-insight-page aigov-insight-page:v0.3.0
 #   - 9000:8080
 ```
 
-## 📋 系统要求
-
-- Docker 20.10+
-- Docker Compose 2.0+（可选）
-- 内存：至少 512MB
-
----
-
-**AIGov Insight** - 智能政务洞察平台
