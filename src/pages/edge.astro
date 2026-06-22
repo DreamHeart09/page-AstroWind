@@ -1,0 +1,1047 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'AIGov Insight Edge — AI-Native macOS 可观测平台',
+  description: 'AI 原生、本地优先的 AI Agent 工作流可观测与治理平台。',
+};
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout metadata={metadata}>
+  <style>
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(32px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes scale-in {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.05); }
+    }
+    .anim-fade-in-up { animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-fade-in { animation: fade-in 1s ease forwards; }
+    .anim-scale-in { animation: scale-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-float { animation: float-slow 6s ease-in-out infinite; }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    :global(.dark) .glass-card {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .glass-card:hover {
+      transform: translateY(-3px) scale(1.006);
+      box-shadow: 0 20px 60px -12px rgba(0,0,0,0.12), 0 0 48px -16px rgba(108,140,255,0.15);
+    }
+    :global(.dark) .glass-card:hover {
+      box-shadow: 0 20px 60px -12px rgba(0,0,0,0.4), 0 0 48px -16px rgba(108,140,255,0.2);
+    }
+
+    .feature-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .edge-gradient-text {
+      background: linear-gradient(135deg, #6c8cff 0%, #a78bfa 40%, #c084fc 70%, #818cf8 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 6s ease infinite;
+    }
+
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      animation: glow-pulse 8s ease-in-out infinite;
+    }
+
+    .screenshot-frame {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0) 100%);
+    }
+    :global(.dark) .screenshot-frame {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+    }
+    .screenshot-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.08);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .mac-window {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 20px 60px -12px rgba(0,0,0,0.2), 0 0 120px -40px rgba(108,140,255,0.15);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    :global(.dark) .mac-window {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 20px 60px -12px rgba(0,0,0,0.5), 0 0 120px -40px rgba(108,140,255,0.2);
+    }
+    .mac-window:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 30px 80px -12px rgba(0,0,0,0.25), 0 0 160px -40px rgba(108,140,255,0.2);
+    }
+    .mac-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: rgba(245, 245, 247, 0.95);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    :global(.dark) .mac-titlebar {
+      background: rgba(30, 30, 42, 0.95);
+      border-bottom-color: rgba(255,255,255,0.06);
+    }
+    .mac-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+    .stat-value { font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .plugin-badge { position: relative; overflow: hidden; }
+    .plugin-badge::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%, transparent 100%);
+      animation: shimmer 3s infinite;
+    }
+
+    .copilot-flow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .copilot-flow-step { text-align: center; padding: 16px 20px; border-radius: 12px; background: rgba(108,140,255,0.08); border: 1px solid rgba(108,140,255,0.15); min-width: 120px; }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #6c8cff, #a78bfa); color: white; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; }
+    .step-label { font-size: 13px; font-weight: 600; color: #1e293b; }
+    :global(.dark) .step-label { color: #e2e8f0; }
+    .step-sub { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+    .flow-arrow { color: #6c8cff; font-size: 20px; font-weight: 300; }
+
+    .tool-card-mockup { border-radius: 10px; padding: 14px 18px; margin-bottom: 8px; position: relative; overflow: hidden; }
+    .tool-card-mockup.executing { background: rgba(108,140,255,0.06); border: 1px solid rgba(108,140,255,0.2); }
+    .tool-card-mockup.success { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); }
+    .tool-card-mockup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .tool-card-mockup-name { font-size: 13px; font-weight: 600; font-family: monospace; color: #1e293b; }
+    :global(.dark) .tool-card-mockup-name { color: #e2e8f0; }
+    .tool-name-zh { font-size: 11px; color: #94a3b8; margin-left: 6px; font-weight: 400; font-family: system-ui; }
+    .tool-card-mockup-status { font-size: 11px; font-weight: 600; }
+    .tool-card-mockup-status.executing { color: #6c8cff; }
+    .tool-card-mockup-status.success { color: #10b981; }
+    .tool-card-mockup-params { font-size: 11px; color: #64748b; margin: 0; font-family: monospace; }
+    .tool-card-mockup-result { font-size: 11px; color: #10b981; margin-top: 6px; font-family: monospace; }
+    .tool-card-mockup-caption { font-size: 11px; color: #94a3b8; text-align: center; }
+
+    .copilot-dialogue { font-family: monospace; font-size: 12px; line-height: 1.8; white-space: pre-wrap; color: #475569; margin: 0; }
+    :global(.dark) .copilot-dialogue { color: #94a3b8; }
+    .dlg-user { color: #64748b; font-weight: 600; }
+    .dlg-ai { color: #6c8cff; font-weight: 600; }
+    .dlg-tool { color: #a78bfa; }
+    .dlg-reply { color: #10b981; }
+    .dialogue-label { font-size: 12px; font-weight: 600; color: #94a3b8; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .ai-native-card { padding: 28px; }
+    .ai-native-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .ai-native-title { font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
+    :global(.dark) .ai-native-title { color: #e2e8f0; }
+    .since-tag { font-size: 10px; color: #94a3b8; margin-left: 8px; font-weight: 400; }
+    .ai-native-desc { font-size: 13px; color: #64748b; line-height: 1.6; }
+    :global(.dark) .ai-native-desc { color: #94a3b8; }
+
+    .gui-stat-card { text-align: center; padding: 20px 16px; border-radius: 16px; background: rgba(255,255,255,0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.5); }
+    :global(.dark) .gui-stat-card { background: rgba(15,23,42,0.5); border-color: rgba(255,255,255,0.06); }
+
+    .benchmark-card { padding: 24px; border-radius: 16px; background: rgba(15,23,42,0.03); border: 1px solid rgba(0,0,0,0.06); text-align: center; }
+    :global(.dark) .benchmark-card { background: rgba(108,140,255,0.04); border-color: rgba(108,140,255,0.12); }
+
+    .roadmap-card { padding: 24px; border-radius: 16px; }
+    .roadmap-card h4 { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+    :global(.dark) .roadmap-card h4 { color: #e2e8f0; }
+    .roadmap-card p { font-size: 13px; color: #64748b; margin: 0; }
+    :global(.dark) .roadmap-card p { color: #94a3b8; }
+    .roadmap-pill { display: inline-block; padding: 4px 12px; border-radius: 100px; font-size: 11px; font-weight: 600; background: rgba(16,185,129,0.1); color: #10b981; margin-right: 6px; margin-bottom: 6px; }
+    :global(.dark) .roadmap-pill { background: rgba(16,185,129,0.15); }
+
+    @keyframes pulse-border {
+      0%, 100% { border-color: rgba(108,140,255,0.3); }
+      50% { border-color: rgba(108,140,255,0.6); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .anim-fade-in-up, .anim-fade-in, .anim-scale-in, .anim-float,
+      .reveal, .plugin-badge::after, .hero-glow, .edge-gradient-text {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+  <!-- ═══════════════════════════════════════════════════════
+       § 4  AI COPILOT DEEP DIVE
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32 bg-slate-50 dark:bg-[#0a0a0f]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="feature-pill bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 mb-6">AI Copilot · NEW</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+          🤖 AI Copilot · <span class="edge-gradient-text">真正操作 GUI 的智能体</span>
+        </h2>
+        <p class="text-xl text-slate-500 dark:text-slate-400 max-w-3xl mx-auto font-light">
+          ReAct Loop · 15 GUI 工具 · 屏幕感知 · 生产级 UX 控件
+        </p>
+      </div>
+
+      <!-- ReAct Loop Flow Diagram -->
+      <div class="reveal glass-card rounded-2xl p-8 md:p-10 mb-8">
+        <div class="text-xs font-semibold tracking-[0.1em] uppercase text-slate-400 dark:text-slate-500 mb-6">ReAct Loop · 最多 5 轮 · AbortController 可中断</div>
+        <div class="copilot-flow">
+          <div class="copilot-flow-step">
+            <div class="step-num">1</div>
+            <div class="step-label">User Prompt</div>
+            <div class="step-sub">用户输入</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="copilot-flow-step">
+            <div class="step-num">2</div>
+            <div class="step-label">Electron Main · LLM</div>
+            <div class="step-sub">node-llama-cpp</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="copilot-flow-step">
+            <div class="step-num">3</div>
+            <div class="step-label">&lt;tool_call&gt;</div>
+            <div class="step-sub">parse 4 formats</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="copilot-flow-step">
+            <div class="step-num">4</div>
+            <div class="step-label">IPC → Renderer</div>
+            <div class="step-sub">execute GUI tool</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="copilot-flow-step">
+            <div class="step-num">5</div>
+            <div class="step-label">Natural Reply</div>
+            <div class="step-sub">round &lt; 5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool Call Card Mockups -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="tool-card-mockup executing">
+            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#6c8cff,transparent);animation:shimmer 2s infinite;"></div>
+            <div class="tool-card-mockup-header">
+              <span class="tool-card-mockup-name">navigate<span class="tool-name-zh">导航</span></span>
+              <span class="tool-card-mockup-status executing">● executing</span>
+            </div>
+            <pre class="tool-card-mockup-params">&#123;"screen": "timeline"&#125;</pre>
+          </div>
+          <p class="tool-card-mockup-caption mt-2">执行中 · pulse 动画 · ToolCallCard.executing</p>
+        </div>
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="tool-card-mockup success">
+            <div class="tool-card-mockup-header">
+              <span class="tool-card-mockup-name">navigate<span class="tool-name-zh">导航</span></span>
+              <span class="tool-card-mockup-status success">✓ success</span>
+            </div>
+            <pre class="tool-card-mockup-params">&#123;"screen": "timeline"&#125;</pre>
+            <div class="tool-card-mockup-result">→ Navigated to Timeline · 142 LLM calls ready</div>
+          </div>
+          <p class="tool-card-mockup-caption mt-2">执行成功 · 携带结果 · ToolCallCard.success</p>
+        </div>
+      </div>
+
+      <!-- Example Dialogue -->
+      <div class="reveal glass-card rounded-2xl p-6 md:p-8 mb-8">
+        <div class="dialogue-label">Example Dialogue · 实际对话示例</div>
+        <pre class="copilot-dialogue"><span class="dlg-user">你 ›</span> 打开时间线, 筛选最近 7 天, 缩放到 1 小时
+
+<span class="dlg-ai">AI ›</span> 正在分析需求, 调用 3 个工具...
+<span class="dlg-tool">   &lt;tool_call&gt;&#123;"name":"navigate","args":&#123;"screen":"timeline"&#125;&#125;&lt;/tool_call&gt;</span>
+<span class="dlg-tool">   &lt;tool_call&gt;&#123;"name":"set_time_range","args":&#123;"preset":"7d"&#125;&#125;&lt;/tool_call&gt;</span>
+<span class="dlg-tool">   &lt;tool_call&gt;&#123;"name":"set_timeline_zoom","args":&#123;"level":9&#125;&#125;&lt;/tool_call&gt;</span>
+<span class="dlg-reply">已为你打开 Timeline 页面, 时间范围筛选为最近 7 天, 缩放级别 1h。
+当前显示 142 次 LLM 调用、56 次工具调用, 总成本 ¥0.84。
+需要进一步下钻或分析某条调用吗?</span></pre>
+      </div>
+
+      <!-- UX Controls -->
+      <div class="reveal glass-card rounded-2xl p-6 md:p-8">
+        <div class="text-sm font-bold text-slate-900 dark:text-white mb-3">Production-grade UX Controls · 生产级控件</div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+          <span class="font-semibold text-slate-700 dark:text-slate-200">Context 保持</span> · <span class="font-semibold text-slate-700 dark:text-slate-200">MaxTokens 6 档</span> · <span class="font-semibold text-slate-700 dark:text-slate-200">Tools 开关</span> · <span class="font-semibold text-slate-700 dark:text-slate-200">Stop 中断</span> · <span class="font-semibold text-slate-700 dark:text-slate-200">Detail Context 注入</span> · <span class="font-semibold text-slate-700 dark:text-slate-200">Streaming tok/s</span> · <span class="font-semibold text-slate-700 dark:text-slate-200">Regenerate 重新生成</span> — 全部 7 步 Onboarding 即可上手。
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       § 4b  AI-NATIVE CAPABILITIES
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="feature-pill bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mb-6">AI-Native · NEW</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+          🧠 AI-Native · <span class="edge-gradient-text">永远在线的智能洞察</span>
+        </h2>
+        <p class="text-xl text-slate-500 dark:text-slate-400 max-w-3xl mx-auto font-light">
+          4 个 AI 原生组件, 让数据自己说话
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div class="reveal glass-card ai-native-card rounded-2xl">
+          <div class="ai-native-icon" style="background: rgba(239,68,68,0.1); color: #ef4444;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="ai-native-title">AiAnomalyDetector <span class="since-tag">since v1.x</span></div>
+          <div class="ai-native-desc">异常检测 — 自动发现费用异常、错误聚集、Agent 异常行为，三档严重度 (HIGH / MED / LOW)，AI 给出诊断建议。</div>
+        </div>
+
+        <div class="reveal glass-card ai-native-card rounded-2xl">
+          <div class="ai-native-icon" style="background: rgba(245,158,11,0.1); color: #f59e0b;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="ai-native-title">AiCostSimulator <span class="since-tag">since v1.x</span></div>
+          <div class="ai-native-desc">成本模拟 — 一键模拟切换到 GPT-4o / Claude Sonnet / DeepSeek / Qwen，立即看到输入输出成本变化，AI 给出优化建议。</div>
+        </div>
+
+        <div class="reveal glass-card ai-native-card rounded-2xl">
+          <div class="ai-native-icon" style="background: rgba(59,130,246,0.1); color: #3b82f6;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </div>
+          <div class="ai-native-title">AiDailyBrief <span class="since-tag">since v1.x</span></div>
+          <div class="ai-native-desc">每日简报 — 每日早晨一眼掌握昨日关键数据：总会话、Token 消耗、费用、Top 模型、Top 工具、异常事件，AI 自动生成 Markdown 摘要。</div>
+        </div>
+
+        <div class="reveal glass-card ai-native-card rounded-2xl">
+          <div class="ai-native-icon" style="background: rgba(108,140,255,0.1); color: #6c8cff;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L9 9l-7 1 5 5-1 7 6-3 6 3-1-7 5-5-7-1z"/></svg>
+          </div>
+          <div class="ai-native-title">AiSpotlight <span class="since-tag">since v1.x</span></div>
+          <div class="ai-native-desc">AI Spotlight — 全局 ⌘K 唤起，NL-to-Filter 自然语言过滤，自动高亮最相关的 AI 洞察、异常、费用热点。</div>
+        </div>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-6 md:p-8 mt-8">
+        <div class="text-sm font-bold text-slate-900 dark:text-white mb-2">从「可观测」到「AI-Native」的跨越</div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+          传统监控让你<span class="font-semibold text-slate-700 dark:text-slate-200">看见</span>数据，AIGov Insight Edge 的 AI-Native 组件让你<span class="font-semibold text-slate-700 dark:text-slate-200">理解</span>数据。异常检测自动捕获风险、成本模拟给出 What-if、每日简报省下 30 分钟、Spotlight 一键直达最相关的洞察 — 这才是 AI 时代可观测工具应有的样子。
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       § 4c  GUI DESKTOP — 11 SCREENS
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32 bg-slate-50 dark:bg-[#0a0a0f]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="feature-pill bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 mb-6">GUI Desktop</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+          🖥️ 11 个 GUI 页面 · <span class="edge-gradient-text">重新定义桌面可观测</span>
+        </h2>
+        <p class="text-xl text-slate-500 dark:text-slate-400 max-w-3xl mx-auto font-light">
+          从数据浏览到 AI 交互，每个页面都是精心打磨的生产级界面
+        </p>
+      </div>
+
+      <!-- Tech Stack Bar -->
+      <div class="reveal flex flex-wrap items-center justify-center gap-3 mb-8">
+        <span class="feature-pill bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">Electron 37</span>
+        <span class="feature-pill bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">React 19</span>
+        <span class="feature-pill bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">Vite 6</span>
+        <span class="feature-pill bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">Tailwind CSS 4</span>
+        <span class="feature-pill bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400">llama.cpp</span>
+        <span class="feature-pill bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400">Zustand 5</span>
+        <span class="feature-pill bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400">SQLite</span>
+      </div>
+
+      <!-- Stat Highlights -->
+      <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div class="gui-stat-card">
+          <div class="text-2xl md:text-3xl font-bold text-indigo-600 dark:text-indigo-400 stat-value mb-1">6</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">AI 模块</div>
+        </div>
+        <div class="gui-stat-card">
+          <div class="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400 stat-value mb-1">17</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">GUI 工具</div>
+        </div>
+        <div class="gui-stat-card">
+          <div class="text-2xl md:text-3xl font-bold text-cyan-600 dark:text-cyan-400 stat-value mb-1">100%</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">本地优先</div>
+        </div>
+        <div class="gui-stat-card">
+          <div class="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400 stat-value mb-1">0</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">Cloud calls</div>
+        </div>
+      </div>
+
+      <!-- GUI Screen Categories -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center">
+              <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Home</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">仪表盘首页，关键指标一目了然，7 步引导式上手。</p>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+              <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Dashboard</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">多维度数据概览，Token 消耗、费用、模型使用分布。</p>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center">
+              <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Timeline</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">交互式时间轴，缩放、筛选、下钻，完整会话回放。</p>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/40 flex items-center justify-center">
+              <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Data Lists</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Sessions、LLM Calls、Tool Calls、Events 四大数据列表。</p>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center">
+              <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">AI Copilot GUI</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">聊天面板 + 工具调用卡片 + UX 控件栏，完整 Copilot 交互。</p>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center">
+              <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">AI-Native</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">异常检测、成本模拟、每日简报、AI Spotlight 四大模块。</p>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-900/40 flex items-center justify-center">
+              <svg class="w-5 h-5 text-rose-600 dark:text-rose-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Architecture</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">AI-Native 架构可视化，组件关系、数据流向一目了然。</p>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center">
+              <svg class="w-5 h-5 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Local LLM</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">本地 LLM 管理，模型加载、推理参数、性能监控。</p>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center">
+              <svg class="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Settings</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">13 色彩方案、自动/亮/暗主题、插件管理、数据导出。</p>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-pink-100 dark:bg-pink-900/40 flex items-center justify-center">
+              <svg class="w-5 h-5 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Onboarding</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">7 步引导式上手，零配置即可开始使用。</p>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+              <svg class="w-5 h-5 text-slate-600 dark:text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Performance</h3>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">性能监控面板，Hook 延迟、查询耗时、内存占用实时追踪。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       § 4d  PERFORMANCE & COMPETITIVE ADVANTAGES
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="feature-pill bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 mb-6">Performance</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+          ⚡ 性能基准 · <span class="edge-gradient-text">极致的本地体验</span>
+        </h2>
+      </div>
+
+      <!-- Benchmark Cards -->
+      <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="benchmark-card">
+          <div class="text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400 stat-value mb-2">&lt;1ms</div>
+          <div class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1">Hook 拦截延迟</div>
+          <div class="text-xs text-slate-400">Production-grade, 零感知开销</div>
+        </div>
+        <div class="benchmark-card">
+          <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 stat-value mb-2">&gt;99.9%</div>
+          <div class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1">数据捕获完整性</div>
+          <div class="text-xs text-slate-400">5 维度全覆盖, inode 检测</div>
+        </div>
+        <div class="benchmark-card">
+          <div class="text-3xl md:text-4xl font-bold text-cyan-600 dark:text-cyan-400 stat-value mb-2">&lt;10ms</div>
+          <div class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1">查询响应时间</div>
+          <div class="text-xs text-slate-400">10 索引, 优化 SQLite Schema</div>
+        </div>
+      </div>
+
+      <!-- Competitive Advantages -->
+      <div class="reveal glass-card rounded-2xl p-6 md:p-8">
+        <div class="text-sm font-bold text-slate-900 dark:text-white mb-6">AIGov Insight Edge 竞争优势</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">AI Copilot · ReAct Loop</p>
+              <p class="text-xs text-slate-400">真正操作 GUI 的智能体, 不只是聊天</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">AI-Native 洞察</p>
+              <p class="text-xs text-slate-400">异常检测、成本模拟、每日简报、Spotlight</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">100% Local-first</p>
+              <p class="text-xs text-slate-400">零云端依赖, 数据不出 Mac</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">macOS 原生</p>
+              <p class="text-xs text-slate-400">Glass UI, 13 色彩方案, Universal Binary</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">GUI + TUI 双模</p>
+              <p class="text-xs text-slate-400">桌面端 + 终端, 两种交互方式</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">插件生态</p>
+              <p class="text-xs text-slate-400">OpenClaw / Hermes / Claude Code</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">本地 LLM</p>
+              <p class="text-xs text-slate-400">llama.cpp 集成, 40+ 模型支持</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">7 步上手</p>
+              <p class="text-xs text-slate-400">引导式 Onboarding, 零配置运行</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       § 4e  ROADMAP
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32 bg-slate-50 dark:bg-[#0a0a0f]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="feature-pill bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 mb-6">Roadmap</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">🗺️ 路线图</h2>
+        <p class="text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto font-light">持续演进, 更多能力即将到来</p>
+      </div>
+
+      <!-- Recently Shipped -->
+      <div class="reveal mb-12">
+        <div class="text-sm font-semibold text-slate-400 dark:text-slate-500 mb-4 tracking-[0.1em] uppercase">Recently Shipped</div>
+        <div class="flex flex-wrap gap-2">
+          <span class="roadmap-pill">AI Copilot ReAct Loop</span>
+          <span class="roadmap-pill">AI-Native 四大组件</span>
+          <span class="roadmap-pill">11 GUI Pages</span>
+          <span class="roadmap-pill">Glass UI</span>
+          <span class="roadmap-pill">13 色彩方案</span>
+          <span class="roadmap-pill">7 步 Onboarding</span>
+          <span class="roadmap-pill">Local LLM</span>
+          <span class="roadmap-pill">TUI 9 Views</span>
+        </div>
+      </div>
+
+      <!-- Upcoming -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="reveal glass-card roadmap-card rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+          </div>
+          <h4>Claude Code 深度集成</h4>
+          <p>更完整的 Agent 会话捕获, Skills/Hooks/Monitors 全覆盖。</p>
+        </div>
+        <div class="reveal glass-card roadmap-card rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+          </div>
+          <h4>团队协作</h4>
+          <p>多用户数据共享, 团队仪表盘, 权限管理。</p>
+        </div>
+        <div class="reveal glass-card roadmap-card rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/40 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+          </div>
+          <h4>智能告警</h4>
+          <p>基于 AI-Native 的主动告警, 异常自动通知。</p>
+        </div>
+        <div class="reveal glass-card roadmap-card rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          </div>
+          <h4>更多 AI 能力</h4>
+          <p>Copilot 多轮记忆, RAG 知识库, 自定义 AI 管道。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       § 5  TUI SHOWCASE
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32 bg-slate-50 dark:bg-[#0a0a0f]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="feature-pill bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 mb-6">Terminal UI</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">终端里的全景仪表盘</h2>
+        <p class="text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto font-light">9 种视图 · 3 种模式 · 纯键盘 · 实时追踪</p>
+      </div>
+
+      <!-- TUI Screenshots Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-12">
+        <div class="reveal mac-window">
+          <div class="mac-titlebar">
+            <div class="mac-dot" style="background: #ff5f57;"></div>
+            <div class="mac-dot" style="background: #febc2e;"></div>
+            <div class="mac-dot" style="background: #28c840;"></div>
+            <span class="ml-3 text-xs font-medium text-slate-400 dark:text-slate-500">Terminal — Dashboard</span>
+          </div>
+          <img src={`${base}edge-screenshots/tui-dashboard.png`} alt="TUI Dashboard" class="w-full" loading="lazy" />
+        </div>
+        <div class="reveal mac-window">
+          <div class="mac-titlebar">
+            <div class="mac-dot" style="background: #ff5f57;"></div>
+            <div class="mac-dot" style="background: #febc2e;"></div>
+            <div class="mac-dot" style="background: #28c840;"></div>
+            <span class="ml-3 text-xs font-medium text-slate-400 dark:text-slate-500">Terminal — LLM Calls</span>
+          </div>
+          <img src={`${base}edge-screenshots/tui-llm-calls.png`} alt="TUI LLM Calls" class="w-full" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="reveal mac-window">
+          <div class="mac-titlebar">
+            <div class="mac-dot" style="background: #ff5f57;"></div>
+            <div class="mac-dot" style="background: #febc2e;"></div>
+            <div class="mac-dot" style="background: #28c840;"></div>
+            <span class="ml-3 text-xs font-medium text-slate-400 dark:text-slate-500">Tool Calls</span>
+          </div>
+          <img src={`${base}edge-screenshots/tui-tool-calls.png`} alt="TUI Tool Calls" class="w-full" loading="lazy" />
+        </div>
+        <div class="reveal mac-window">
+          <div class="mac-titlebar">
+            <div class="mac-dot" style="background: #ff5f57;"></div>
+            <div class="mac-dot" style="background: #febc2e;"></div>
+            <div class="mac-dot" style="background: #28c840;"></div>
+            <span class="ml-3 text-xs font-medium text-slate-400 dark:text-slate-500">Sessions</span>
+          </div>
+          <img src={`${base}edge-screenshots/tui-sessions.png`} alt="TUI Sessions" class="w-full" loading="lazy" />
+        </div>
+        <div class="reveal mac-window">
+          <div class="mac-titlebar">
+            <div class="mac-dot" style="background: #ff5f57;"></div>
+            <div class="mac-dot" style="background: #febc2e;"></div>
+            <div class="mac-dot" style="background: #28c840;"></div>
+            <span class="ml-3 text-xs font-medium text-slate-400 dark:text-slate-500">View Modes</span>
+          </div>
+          <img src={`${base}edge-screenshots/tui-view-modes.png`} alt="TUI View Modes" class="w-full" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       § 6  PLUGIN ECOSYSTEM
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="feature-pill bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 mb-6">Plugins</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">开放的插件生态</h2>
+        <p class="text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto font-light">三大官方插件覆盖主流 Agent 框架，统一数据模型</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <!-- OpenClaw -->
+        <div class="reveal glass-card rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-cyan-500/20">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">OpenClaw</h3>
+          <p class="text-sm text-slate-400 dark:text-slate-500 mb-4 font-medium">TypeScript · Plugin SDK</p>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+            10 种事件类型 · 5 个 Hook 模块 · Agent Turn / Tool / Session / 子 Agent / 生命周期全覆盖
+          </p>
+          <div class="mt-6">
+            <img src={`${base}edge-screenshots/plugin-openclaw.png`} alt="OpenClaw Plugin" class="w-full rounded-xl" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Hermes -->
+        <div class="reveal glass-card rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/20">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Hermes</h3>
+          <p class="text-sm text-slate-400 dark:text-slate-500 mb-4 font-medium">Python · Hook System</p>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+            7 种 Hook 类型 · 2 个 Agent 工具 · MCP Server 支持 · Gateway 事件钩子
+          </p>
+          <div class="mt-6">
+            <img src={`${base}edge-screenshots/plugin-hermes.png`} alt="Hermes Plugin" class="w-full rounded-xl" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Claude Code -->
+        <div class="reveal glass-card rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-400 to-rose-500 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-orange-500/20">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Claude Code</h3>
+          <p class="text-sm text-slate-400 dark:text-slate-500 mb-4 font-medium">Anthropic · Agent SDK</p>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+            Skills · Agents · Hooks · MCP/LSP Server · Monitors · 完整的 Agent 会话捕获
+          </p>
+          <div class="mt-6">
+            <img src={`${base}edge-screenshots/plugin-hermes-tools.png`} alt="Claude Code Plugin" class="w-full rounded-xl" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       § 7  LOCAL-FIRST
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32 bg-slate-50 dark:bg-[#0a0a0f]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      <div class="reveal">
+        <div class="feature-pill bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 mb-6">Local-First</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-8 leading-tight">
+          数据不出 Mac，<br />隐私零妥协
+        </h2>
+        <p class="text-lg text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed mb-16">
+          每一个会话、每一次 LLM 调用、每一个工具调用和事件，都存储在你 Mac 上的单个 SQLite 文件中。<br class="hidden md:block" />
+          <code class="text-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded font-mono">~/.aigov-insight-edge/observer.db</code> — 没有云同步，没有遥测上报，100% 离线可用。
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+        <div class="reveal glass-card rounded-2xl p-6 text-center">
+          <div class="text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400 stat-value mb-2">&lt;1ms</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">Hook 拦截延迟</div>
+        </div>
+        <div class="reveal glass-card rounded-2xl p-6 text-center">
+          <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 stat-value mb-2">99.9%</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">数据捕获完整性</div>
+        </div>
+        <div class="reveal glass-card rounded-2xl p-6 text-center">
+          <div class="text-3xl md:text-4xl font-bold text-cyan-600 dark:text-cyan-400 stat-value mb-2">&lt;10ms</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">查询响应时间</div>
+        </div>
+        <div class="reveal glass-card rounded-2xl p-6 text-center">
+          <div class="text-3xl md:text-4xl font-bold text-emerald-600 dark:text-emerald-400 stat-value mb-2">40+</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">模型定价覆盖</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       § 8  ARCHITECTURE
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="feature-pill bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 mb-6">Architecture</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">架构一瞥</h2>
+        <p class="text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto font-light">插件采集 → SQLite 存储 → Electron + React 渲染</p>
+      </div>
+
+      <div class="reveal">
+        <div class="glass-card rounded-2xl p-8 md:p-12 overflow-x-auto">
+          <pre class="text-xs sm:text-sm font-mono text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre"><code>{`┌─ Plugins ──────────────┐     ┌─ Edge Desktop ──────────────────────────┐
+│                        │     │                                        │
+│  OpenClaw (TS)         │     │  Electron Main                         │
+│  Hermes   (Python)     │     │  ├─ AI Engine (llama.cpp)              │
+│  Claude Code           │     │  ├─ Tool Calling Executor              │
+│                        │     │  └─ SQLite (observer.db)               │
+│  Hooks → write ────────┼────►│       ▲                                │
+│                        │     │       │ read                           │
+│  • session_start/end   │     │       ▼                                │
+│  • llm_input/output    │     │  Renderer (React 19 + Zustand 5)       │
+│  • before/after_tool   │     │  ├─ Dashboard · Timeline · Detail      │
+│  • agent_end           │     │  ├─ AI Chat Panel · Copilot Tools      │
+│  • gateway_start/stop  │     │  └─ Settings · Onboarding              │
+└────────────────────────┘     └────────────────────────────────────────┘`}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       § 9  QUICK START
+       ═══════════════════════════════════════════════════════ -->
+  <section id="quickstart" class="py-24 md:py-32 bg-slate-900 dark:bg-[#050508]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <div class="reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">立即开始</h2>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto font-light mb-12">下载安装包，7 步引导式上手，零配置即可运行</p>
+      </div>
+
+      <div class="reveal space-y-6">
+        <!-- DMG Install -->
+        <div class="glass-card rounded-2xl p-6 md:p-8 text-left" style="background: rgba(15, 23, 42, 0.5); border-color: rgba(255,255,255,0.06);">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-white font-semibold mb-2">DMG 安装（推荐）</h3>
+              <p class="text-slate-400 text-sm mb-4">Universal Binary — 支持 Apple Silicon (arm64) 和 Intel (x64)</p>
+              <div class="bg-black/40 rounded-xl p-4 font-mono text-sm">
+                <p class="text-slate-500 mb-2"># 下载 DMG 后双击打开，拖入 Applications</p>
+                <p class="text-emerald-400">open AIGov-Insight-Edge.dmg</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TUI Install -->
+        <div class="glass-card rounded-2xl p-6 md:p-8 text-left" style="background: rgba(15, 23, 42, 0.5); border-color: rgba(255,255,255,0.06);">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-white font-semibold mb-2">终端 TUI</h3>
+              <p class="text-slate-400 text-sm mb-4">GUI 安装时自动配置，也可独立使用</p>
+              <div class="bg-black/40 rounded-xl p-4 font-mono text-sm">
+                <p class="text-slate-500 mb-2"># 启动终端仪表盘</p>
+                <p class="text-emerald-400">aigov-insight-edge tui</p>
+                <p class="text-slate-500 mt-3 mb-2"># 查看统计概览</p>
+                <p class="text-emerald-400">aigov-insight-edge stats</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       § 10  CTA
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <div class="reveal">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+          准备好掌控你的 AI Agent 了吗？
+        </h2>
+        <p class="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mb-10">
+          AIGov Insight Edge 现已开放下载。本地运行，零配置上手。
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="#quickstart"
+            class="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-white font-semibold text-base shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/30 transition-all duration-300 hover:-translate-y-0.5"
+            style="background: linear-gradient(135deg, #6c8cff 0%, #a78bfa 100%);"
+          >
+            下载 Edge
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+            </svg>
+          </a>
+          <a
+            href="/"
+            class="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-slate-700 dark:text-slate-200 font-semibold text-base glass-card border border-slate-200/80 dark:border-slate-700/50 transition-all duration-300 hover:-translate-y-0.5"
+          >
+            了解 WEB / Agent 版本
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       Intersection Observer for .reveal
+       ═══════════════════════════════════════════════════════ -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      // For browsers without animation-timeline support, use IntersectionObserver
+      if (!CSS.supports('animation-timeline', 'view()')) {
+        document.querySelectorAll('.reveal').forEach((el) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(24px)';
+        });
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        );
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      }
+    });
+  </script>
+</Layout>

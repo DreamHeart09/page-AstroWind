@@ -3,32 +3,49 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: '产品能力',
+      text: '产品',
       links: [
         {
-          text: '核心能力',
-          href: getPermalink('/#advantages'),
+          text: 'WEB / Agent 版本',
+          href: getPermalink('/web'),
         },
         {
-          text: '全链路可观测',
-          href: getPermalink('/#features'),
-        },
-        {
-          text: 'OpenClaw 监管',
-          href: getPermalink('/#openclaw'),
-        },
-        {
-          text: 'OpenClaw 智能防护中心',
-          href: getPermalink('/#v030'),
+          text: 'Edge 桌面版 (macOS)',
+          href: getPermalink('/edge'),
           isNew: true,
         },
         {
-          text: '双引擎架构',
-          href: getPermalink('/#architecture'),
+          text: 'OpenClaw 安全引擎',
+          href: getPermalink('/#openclaw-brief'),
+        },
+      ],
+    },
+    {
+      text: '产品能力',
+      links: [
+        {
+          text: 'AI Copilot',
+          href: getPermalink('/edge'),
         },
         {
-          text: '效率提升',
-          href: getPermalink('/#efficiency'),
+          text: 'AI-Native 洞察',
+          href: getPermalink('/edge'),
+        },
+        {
+          text: 'GUI 桌面端 (11 页面)',
+          href: getPermalink('/edge'),
+        },
+        {
+          text: '终端 TUI (9 视图)',
+          href: getPermalink('/edge'),
+        },
+        {
+          text: 'eBPF 深度监测',
+          href: getPermalink('/web#advantages'),
+        },
+        {
+          text: 'OpenClaw 安全防护',
+          href: getPermalink('/#openclaw-brief'),
         },
       ],
     },
@@ -36,12 +53,12 @@ export const headerData = {
       text: '解决方案',
       links: [
         {
-          text: 'OpenClaw 安全审计',
-          href: getPermalink('/#openclaw'),
+          text: '生产环境 AI 监控',
+          href: getPermalink('/web'),
         },
         {
-          text: 'Agent/LLM/MCP 安全监控',
-          href: getPermalink('/#features'),
+          text: '开发者本地可观测',
+          href: getPermalink('/edge'),
         },
       ],
     },
@@ -50,7 +67,7 @@ export const headerData = {
       links: [
         {
           text: '概览',
-          href: getPermalink('/#quickstart'),
+          href: getPermalink('/#opensource'),
         },
         {
           text: 'AIGov-Insight Web',
@@ -59,7 +76,7 @@ export const headerData = {
         {
           text: 'AIGov-Insight Agent',
           href: 'https://github.com/Eversec-ai/AIGov-Insight-Agent',
-        }        
+        },
       ],
     },
     {
@@ -72,7 +89,7 @@ export const headerData = {
         {
           text: '新闻动态',
           href: getBlogPermalink(),
-        },        
+        },
       ],
     },
   ],
@@ -87,7 +104,9 @@ export const footerData = {
     {
       title: '产品',
       links: [
-        { text: 'AIGov-Insight 全链路可观测', href: getPermalink('/#advantages') },
+        { text: 'WEB / Agent 版本', href: getPermalink('/web') },
+        { text: 'Edge 桌面版 (macOS)', href: getPermalink('/edge') },
+        { text: 'OpenClaw 安全引擎', href: getPermalink('/#openclaw-brief') },
       ],
     },
     {
