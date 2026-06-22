@@ -230,9 +230,9 @@ const base = import.meta.env.BASE_URL;
       <div class="text-center mb-16">
         <p class="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-[0.2em] uppercase mb-4">Products</p>
         <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">选择适合你的方案</h2>
-        <p class="text-xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto font-light">从服务器到桌面，从安全引擎到插件生态——全场景 AI 治理覆盖</p>
+        <p class="text-xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto font-light">从生产服务器到开发者桌面——两套方案，一个数据模型</p>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
         <a href={`${base}web`} class="product-card group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-300 dark:hover:border-blue-600/40">
           <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-blue-500/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
           <div class="relative">
@@ -253,7 +253,7 @@ const base = import.meta.env.BASE_URL;
           </div>
         </a>
 
-        <a href={`${base}edge`} class="product-card group bg-slate-50 dark:bg-[#0a0a0f] border border-slate-200 dark:border-slate-800 hover:shadow-2xl hover:shadow-indigo-500/10 hover:border-indigo-300 dark:hover:border-indigo-500/40">
+        <a href={`${base}edge`} class="product-card group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-2xl hover:shadow-indigo-500/10 hover:border-indigo-300 dark:hover:border-indigo-500/40">
           <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-indigo-500/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
           <div class="relative">
             <div class="flex items-center gap-3 mb-6">
@@ -275,59 +275,46 @@ const base = import.meta.env.BASE_URL;
             <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 dark:text-indigo-400 group-hover:gap-2.5 transition-all">了解更多 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
           </div>
         </a>
-
-        <a href="#openclaw-brief" class="product-card group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-300 dark:hover:border-cyan-600/40">
-          <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-cyan-500/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-          <div class="relative">
-            <div class="flex items-center gap-3 mb-6">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-teal-500 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
-              </div>
-              <span class="text-xs font-semibold tracking-[0.1em] uppercase text-cyan-600 dark:text-cyan-400">Security Engine</span>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight"><span class="text-cyan-500">OpenClaw</span> 安全引擎</h3>
-            <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">AI Agent 安全治理引擎。拦截、确认、告警三种模式，实时防护 AI Agent 的每一次工具调用和系统命令执行。</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400">安全防护</span>
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400">实时拦截</span>
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400">规则引擎</span>
-            </div>
-            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-600 dark:text-cyan-400 group-hover:gap-2.5 transition-all">了解更多 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-          </div>
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ OPENCLAW BRIEF ═══ -->
-  <section id="openclaw-brief" class="py-24 md:py-32 bg-slate-50 dark:bg-slate-950">
+  <!-- ═══ WHY AIGOV INSIGHT ═══ -->
+  <section id="why" class="py-24 md:py-32 bg-slate-50 dark:bg-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16">
-        <p class="text-sm font-medium text-cyan-600 dark:text-cyan-400 tracking-[0.2em] uppercase mb-4">OpenClaw Security Engine</p>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">AI Agent 的安全守护者</h2>
-        <p class="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">OpenClaw 是 AIGov Insight 的核心安全治理引擎，为 AI Agent 的每一次操作提供实时防护</p>
+        <p class="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-[0.2em] uppercase mb-4">Why AIGov Insight</p>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">传统安全工具<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">看不见</span> AI 的行为</h2>
+        <p class="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">WAF、防火墙、SIEM 只能看 IP 和端口，看不懂自然语言指令背后的恶意意图。AIGov Insight 在语义层面对 AI 行为进行深度观测。</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-        <div class="tech-card text-center">
-          <div class="w-14 h-14 rounded-2xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center mx-auto mb-5">
-            <svg class="w-7 h-7 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="tech-card">
+          <div class="w-11 h-11 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
           </div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">拦截模式</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">高风险操作实时拦截，阻止 AI Agent 执行危险的系统命令或访问敏感文件</p>
+          <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2">Prompt Injection 无法防御</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">攻击者通过自然语言注入恶意指令，传统 WAF 和防火墙完全无法识别。AIGov Insight 在 LLM 语义层面实时监测异常意图。</p>
         </div>
-        <div class="tech-card text-center">
-          <div class="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mx-auto mb-5">
-            <svg class="w-7 h-7 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+        <div class="tech-card">
+          <div class="w-11 h-11 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"/></svg>
           </div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">确认模式</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">中等风险操作需人工确认后方可执行，确保关键操作在人类监督下进行</p>
+          <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2">Agent 工具调用是黑盒</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">AI Agent 执行系统命令、访问文件、调用 API 时，安全团队完全看不到过程。AIGov Insight 完整捕获每次工具调用的参数和结果。</p>
         </div>
-        <div class="tech-card text-center">
-          <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-5">
-            <svg class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+        <div class="tech-card">
+          <div class="w-11 h-11 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
           </div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">告警模式</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">低风险操作自动放行但记录告警，完整审计追踪，合规有据可查</p>
+          <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2">合规审计无据可查</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">监管要求记录 AI 决策过程，但现有系统只能记录最终输出。AIGov Insight 提供从 Prompt 到执行的完整审计链路。</p>
+        </div>
+        <div class="tech-card">
+          <div class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+          </div>
+          <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2">故障排查耗时数小时</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">AI 系统出问题后，工程师需要手动翻日志、拼因果链。AIGov Insight 自动关联会话→LLM→工具→执行，分钟级定位。</p>
         </div>
       </div>
     </div>

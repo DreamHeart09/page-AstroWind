@@ -14,38 +14,34 @@ export const headerData = {
           href: getPermalink('/edge'),
           isNew: true,
         },
-        {
-          text: 'OpenClaw 安全引擎',
-          href: getPermalink('/#openclaw-brief'),
-        },
       ],
     },
     {
       text: '产品能力',
       links: [
         {
-          text: 'AI Copilot',
-          href: getPermalink('/edge'),
-        },
-        {
-          text: 'AI-Native 洞察',
-          href: getPermalink('/edge'),
-        },
-        {
-          text: 'GUI 桌面端 (11 页面)',
-          href: getPermalink('/edge'),
-        },
-        {
-          text: '终端 TUI (9 视图)',
-          href: getPermalink('/edge'),
-        },
-        {
-          text: 'eBPF 深度监测',
+          text: 'WEB/Agent: eBPF 深度监测',
           href: getPermalink('/web#advantages'),
         },
         {
-          text: 'OpenClaw 安全防护',
-          href: getPermalink('/#openclaw-brief'),
+          text: 'WEB/Agent: 全链路可观测',
+          href: getPermalink('/web#features'),
+        },
+        {
+          text: 'WEB/Agent: OpenClaw 防护',
+          href: getPermalink('/web#openclaw'),
+        },
+        {
+          text: 'Edge: AI Copilot',
+          href: getPermalink('/edge#features'),
+        },
+        {
+          text: 'Edge: AI-Native 洞察',
+          href: getPermalink('/edge#features'),
+        },
+        {
+          text: 'Edge: GUI + TUI 双模',
+          href: getPermalink('/edge#features'),
         },
       ],
     },
@@ -106,7 +102,6 @@ export const footerData = {
       links: [
         { text: 'WEB / Agent 版本', href: getPermalink('/web') },
         { text: 'Edge 桌面版 (macOS)', href: getPermalink('/edge') },
-        { text: 'OpenClaw 安全引擎', href: getPermalink('/#openclaw-brief') },
       ],
     },
     {
