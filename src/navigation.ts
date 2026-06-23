@@ -17,7 +17,7 @@ export const headerData = {
       ],
     },
     {
-      text: '产品能力',
+      text: '能力',
       links: [
         {
           text: 'WEB/Agent: eBPF 深度监测',
@@ -33,28 +33,15 @@ export const headerData = {
         },
         {
           text: 'Edge: AI Copilot',
-          href: getPermalink('/edge#features'),
+          href: getPermalink('/edge#copilot'),
         },
         {
           text: 'Edge: AI-Native 洞察',
-          href: getPermalink('/edge#features'),
+          href: getPermalink('/edge#ai-native'),
         },
         {
           text: 'Edge: GUI + TUI 双模',
-          href: getPermalink('/edge#features'),
-        },
-      ],
-    },
-    {
-      text: '解决方案',
-      links: [
-        {
-          text: '生产环境 AI 监控',
-          href: getPermalink('/web'),
-        },
-        {
-          text: '开发者本地可观测',
-          href: getPermalink('/edge'),
+          href: getPermalink('/edge#desktop'),
         },
       ],
     },
