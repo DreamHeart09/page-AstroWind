@@ -325,6 +325,202 @@ const base = import.meta.env.BASE_URL;
         background: #000;
         color: #e8e9f0;
       }
+      .edge-section-dark .section-title {
+        color: #e8e9f0;
+      }
+      .edge-section-dark .section-subtitle {
+        color: #a0a0b8;
+      }
+      .edge-section-dark .section-kicker {
+        color: #a0a0b8;
+      }
+      .edge-section-dark .text-gradient {
+        background: linear-gradient(135deg, #7996ff 0%, #b98aff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .edge-section-dark .carousel-eyebrow {
+        color: #7996ff;
+      }
+      .edge-section-dark .carousel-title {
+        color: #e8e9f0;
+      }
+      .edge-section-dark .carousel-subtitle {
+        color: #a0a0b8;
+      }
+      .edge-section-dark .carousel-arrow {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.15);
+        color: #e8e9f0;
+      }
+      .edge-section-dark .carousel-arrow:hover {
+        border-color: #7996ff;
+        color: #7996ff;
+      }
+      .edge-section-dark .carousel-dot {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .edge-section-dark .carousel-dot.is-active {
+        background: linear-gradient(135deg, #7996ff 0%, #b98aff 100%);
+      }
+
+      /* ═══ Lightbox — Apple-style 弹出页 ═══ */
+      .edge-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 0 8px 0;
+        pointer-events: none;
+      }
+      .edge-lightbox.is-open {
+        pointer-events: auto;
+      }
+      .edge-lightbox-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
+        opacity: 0;
+        transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .edge-lightbox.is-open .edge-lightbox-backdrop {
+        opacity: 1;
+      }
+      .edge-lightbox-card {
+        position: relative;
+        width: min(1080px, calc(100% - 16px));
+        height: 88vh;
+        margin-bottom: 0;
+        border-radius: 20px 20px 0 0;
+        overflow: hidden;
+        background: #0e0e16;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: none;
+        box-shadow:
+          0 -1px 0 rgba(255, 255, 255, 0.04),
+          0 -60px 120px -40px rgba(0, 0, 0, 0.6),
+          0 -8px 60px -20px rgba(121, 150, 255, 0.06);
+        transform: translateY(100%);
+        transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .edge-lightbox.is-open .edge-lightbox-card {
+        transform: translateY(0);
+      }
+      .edge-lightbox-image {
+        position: relative;
+        width: 100%;
+        flex: 1 1 0;
+        min-height: 0;
+        overflow: hidden;
+        background: #0a0a10;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .edge-lightbox-image img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        opacity: 0;
+        transform: scale(1.02);
+        transition:
+          opacity 0.35s ease 0.12s,
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
+      }
+      .edge-lightbox.is-open .edge-lightbox-image img {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .edge-lightbox-image::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 120px;
+        background: linear-gradient(to top, #0e0e16, transparent);
+        pointer-events: none;
+      }
+      .edge-lightbox-body {
+        padding: 32px 48px 48px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition:
+          opacity 0.3s ease 0.2s,
+          transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+      }
+      .edge-lightbox.is-open .edge-lightbox-body {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .edge-lightbox-eyebrow {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: #7996ff;
+        margin-bottom: 12px;
+      }
+      .edge-lightbox-title {
+        font-size: clamp(22px, 3vw, 30px);
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        line-height: 1.2;
+        color: #e8e9f0;
+        margin-bottom: 16px;
+      }
+      .edge-lightbox-desc {
+        font-size: 16px;
+        line-height: 1.75;
+        color: #a0a0b8;
+        max-width: 640px;
+      }
+      .edge-lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 1;
+        z-index: 10;
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        opacity: 0;
+        transition:
+          opacity 0.25s ease 0.25s,
+          background 0.2s ease,
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .edge-lightbox.is-open .edge-lightbox-close {
+        opacity: 1;
+      }
+      .edge-lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        transform: scale(1.1);
+      }
 
       /* ═══ Glass Card 系统（refined glassmorphism） ═══ */
       .glass-card {
@@ -1059,7 +1255,6 @@ const base = import.meta.env.BASE_URL;
       }
       .carousel-slide.is-active {
         opacity: 1;
-        position: relative;
         transform: translateX(0);
         pointer-events: auto;
       }
@@ -1099,6 +1294,18 @@ const base = import.meta.env.BASE_URL;
       .carousel-image {
         position: relative;
       }
+      .carousel-screenshot {
+        border-radius: var(--edge-radius-lg);
+        box-shadow: var(--edge-glass-shadow-l3);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .carousel-image {
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        border-radius: var(--edge-radius-lg);
+      }
       .carousel-arrow {
         position: absolute;
         top: 50%;
@@ -1126,10 +1333,10 @@ const base = import.meta.env.BASE_URL;
         box-shadow: var(--edge-glow-primary);
       }
       .carousel-arrow.prev {
-        left: -16px;
+        left: -28px;
       }
       .carousel-arrow.next {
-        right: -16px;
+        right: -28px;
       }
       .carousel-dots {
         display: flex;
@@ -1392,78 +1599,6 @@ const base = import.meta.env.BASE_URL;
     </section>
 
     <!-- ════════════════════════════════════════════════════════════
-         痛点章节 — 黑箱困境（Task 3）
-         ════════════════════════════════════════════════════════════ -->
-    <section class="edge-section">
-      <div class="section-inner">
-        <div class="reveal">
-          <div class="section-kicker">Problem</div>
-          <h2 class="section-title">企业正在面临 <span class="text-gradient">AI Agent 的黑箱困境</span></h2>
-          <p class="section-subtitle">当 AI Agent 越来越自主地执行任务，企业却越来越难以了解和控制它们的行为</p>
-        </div>
-        <div class="cards-grid-3">
-          <div class="glass-card icon-card reveal">
-            <div class="card-icon red">!</div>
-            <div class="card-title red">看不见</div>
-            <div class="card-desc">
-              AI Agent 在做什么？调用了哪些工具？用了什么数据？<span class="highlight">一无所知</span>
-            </div>
-          </div>
-          <div class="glass-card icon-card reveal">
-            <div class="card-icon red">!</div>
-            <div class="card-title red">管不住</div>
-            <div class="card-desc">
-              Agent 是否越权操作？是否访问敏感数据？<span class="highlight">无法管控</span>
-            </div>
-          </div>
-          <div class="glass-card icon-card reveal">
-            <div class="card-icon red">!</div>
-            <div class="card-title red">花不明</div>
-            <div class="card-desc">
-              每次对话花了多少钱？Token 用在哪里？<span class="highlight">成本失控</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════════════════════
-         价值主张 — 监控摄像头（Task 4）
-         ════════════════════════════════════════════════════════════ -->
-    <section class="edge-section-alt">
-      <div class="section-inner">
-        <div class="reveal">
-          <div class="section-kicker">Value Proposition</div>
-          <h2 class="section-title">AIGov Insight Edge：<span class="text-gradient">AI Agent 的监控摄像头</span></h2>
-          <p class="section-subtitle">三大核心能力，让 AI Agent 的运行完全透明可控</p>
-        </div>
-        <div class="cards-grid-3">
-          <div class="glass-card icon-card reveal">
-            <div class="card-icon green">✓</div>
-            <div class="card-title green">看得见</div>
-            <div class="card-desc">
-              全链路实时监控，<span class="highlight">每一次 LLM 调用、工具执行、会话状态尽在掌握</span>
-            </div>
-          </div>
-          <div class="glass-card icon-card reveal">
-            <div class="card-icon green">✓</div>
-            <div class="card-title green">管得住</div>
-            <div class="card-desc">
-              完整审计追踪，<span class="highlight">所有操作留痕，合规有据可查</span>
-            </div>
-          </div>
-          <div class="glass-card icon-card reveal">
-            <div class="card-icon green">✓</div>
-            <div class="card-title green">花得明</div>
-            <div class="card-desc">
-              精准成本核算，<span class="highlight">40+ 模型实时定价，每一分钱都算得清</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════════════════════
          核心能力 Bento Grid（Task 5）
          ════════════════════════════════════════════════════════════ -->
     <section class="edge-section">
@@ -1693,20 +1828,12 @@ const base = import.meta.env.BASE_URL;
                   </p>
                 </div>
                 <div class="carousel-image">
-                  <div class="mac-window">
-                    <div class="mac-titlebar">
-                      <div class="mac-dot" style="background: #ff5f57;"></div>
-                      <div class="mac-dot" style="background: #febc2e;"></div>
-                      <div class="mac-dot" style="background: #28c840;"></div>
-                      <span class="ml-3 text-xs font-medium" style="color: var(--edge-text-tertiary);">ReAct Loop</span>
-                    </div>
-                    <img
-                      src={`${base}edge-screenshots/ai-copilot-react-loop.png`}
-                      alt="ReAct Loop 流程"
-                      class="w-full"
-                      loading="lazy"
-                    />
-                  </div>
+                  <img
+                    src={`${base}edge-screenshots/ai-copilot-react-loop.png`}
+                    alt="ReAct Loop 流程"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -1722,22 +1849,12 @@ const base = import.meta.env.BASE_URL;
                   </p>
                 </div>
                 <div class="carousel-image">
-                  <div class="mac-window">
-                    <div class="mac-titlebar">
-                      <div class="mac-dot" style="background: #ff5f57;"></div>
-                      <div class="mac-dot" style="background: #febc2e;"></div>
-                      <div class="mac-dot" style="background: #28c840;"></div>
-                      <span class="ml-3 text-xs font-medium" style="color: var(--edge-text-tertiary);"
-                        >AI Copilot 对话</span
-                      >
-                    </div>
-                    <img
-                      src={`${base}edge-screenshots/ai-copilot-dialogue.png`}
-                      alt="AI Copilot 对话示例"
-                      class="w-full"
-                      loading="lazy"
-                    />
-                  </div>
+                  <img
+                    src={`${base}edge-screenshots/ai-copilot-dialogue.png`}
+                    alt="AI Copilot 对话示例"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -1754,22 +1871,12 @@ const base = import.meta.env.BASE_URL;
                   </p>
                 </div>
                 <div class="carousel-image">
-                  <div class="mac-window">
-                    <div class="mac-titlebar">
-                      <div class="mac-dot" style="background: #ff5f57;"></div>
-                      <div class="mac-dot" style="background: #febc2e;"></div>
-                      <div class="mac-dot" style="background: #28c840;"></div>
-                      <span class="ml-3 text-xs font-medium" style="color: var(--edge-text-tertiary);"
-                        >AI Copilot UX</span
-                      >
-                    </div>
-                    <img
-                      src={`${base}edge-screenshots/gui-ai-copilot.png`}
-                      alt="AI Copilot UX 控件"
-                      class="w-full"
-                      loading="lazy"
-                    />
-                  </div>
+                  <img
+                    src={`${base}edge-screenshots/gui-ai-copilot.png`}
+                    alt="AI Copilot UX 控件"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -1821,21 +1928,12 @@ const base = import.meta.env.BASE_URL;
                   </p>
                 </div>
                 <div class="carousel-image">
-                  <div class="mac-window">
-                    <div class="mac-titlebar">
-                      <div class="mac-dot" style="background: #ff5f57;"></div>
-                      <div class="mac-dot" style="background: #febc2e;"></div>
-                      <div class="mac-dot" style="background: #28c840;"></div>
-                      <span class="ml-3 text-xs font-medium" style="color: var(--edge-text-tertiary);">AI 异常检测</span
-                      >
-                    </div>
-                    <img
-                      src={`${base}edge-screenshots/gui-ai-anomaly.png`}
-                      alt="AI 异常检测"
-                      class="w-full"
-                      loading="lazy"
-                    />
-                  </div>
+                  <img
+                    src={`${base}edge-screenshots/gui-ai-anomaly.png`}
+                    alt="AI 异常检测"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -1852,21 +1950,12 @@ const base = import.meta.env.BASE_URL;
                   </p>
                 </div>
                 <div class="carousel-image">
-                  <div class="mac-window">
-                    <div class="mac-titlebar">
-                      <div class="mac-dot" style="background: #ff5f57;"></div>
-                      <div class="mac-dot" style="background: #febc2e;"></div>
-                      <div class="mac-dot" style="background: #28c840;"></div>
-                      <span class="ml-3 text-xs font-medium" style="color: var(--edge-text-tertiary);">AI 每日简报</span
-                      >
-                    </div>
-                    <img
-                      src={`${base}edge-screenshots/gui-ai-daily-brief.png`}
-                      alt="AI 每日简报"
-                      class="w-full"
-                      loading="lazy"
-                    />
-                  </div>
+                  <img
+                    src={`${base}edge-screenshots/gui-ai-daily-brief.png`}
+                    alt="AI 每日简报"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -1882,21 +1971,12 @@ const base = import.meta.env.BASE_URL;
                   </p>
                 </div>
                 <div class="carousel-image">
-                  <div class="mac-window">
-                    <div class="mac-titlebar">
-                      <div class="mac-dot" style="background: #ff5f57;"></div>
-                      <div class="mac-dot" style="background: #febc2e;"></div>
-                      <div class="mac-dot" style="background: #28c840;"></div>
-                      <span class="ml-3 text-xs font-medium" style="color: var(--edge-text-tertiary);">AI 成本模拟</span
-                      >
-                    </div>
-                    <img
-                      src={`${base}edge-screenshots/gui-ai-cost-simulator.png`}
-                      alt="AI 成本模拟器"
-                      class="w-full"
-                      loading="lazy"
-                    />
-                  </div>
+                  <img
+                    src={`${base}edge-screenshots/gui-ai-cost-simulator.png`}
+                    alt="AI 成本模拟器"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -1912,22 +1992,12 @@ const base = import.meta.env.BASE_URL;
                   </p>
                 </div>
                 <div class="carousel-image">
-                  <div class="mac-window">
-                    <div class="mac-titlebar">
-                      <div class="mac-dot" style="background: #ff5f57;"></div>
-                      <div class="mac-dot" style="background: #febc2e;"></div>
-                      <div class="mac-dot" style="background: #28c840;"></div>
-                      <span class="ml-3 text-xs font-medium" style="color: var(--edge-text-tertiary);"
-                        >AI Spotlight</span
-                      >
-                    </div>
-                    <img
-                      src={`${base}edge-screenshots/gui-ai-spotlight.png`}
-                      alt="AI Spotlight"
-                      class="w-full"
-                      loading="lazy"
-                    />
-                  </div>
+                  <img
+                    src={`${base}edge-screenshots/gui-ai-spotlight.png`}
+                    alt="AI Spotlight"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -2338,15 +2408,12 @@ const base = import.meta.env.BASE_URL;
                   </p>
                 </div>
                 <div class="carousel-image">
-                  <div class="mac-window">
-                    <div class="mac-titlebar">
-                      <div class="mac-dot" style="background: #ff5f57;"></div>
-                      <div class="mac-dot" style="background: #febc2e;"></div>
-                      <div class="mac-dot" style="background: #28c840;"></div>
-                      <span class="ml-3 text-xs font-medium" style="color: var(--edge-text-tertiary);">Home</span>
-                    </div>
-                    <img src={`${base}edge-screenshots/gui-home.png`} alt="Home 首页" class="w-full" loading="lazy" />
-                  </div>
+                  <img
+                    src={`${base}edge-screenshots/gui-home.png`}
+                    alt="Home 首页"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -2362,20 +2429,12 @@ const base = import.meta.env.BASE_URL;
                   </p>
                 </div>
                 <div class="carousel-image">
-                  <div class="mac-window">
-                    <div class="mac-titlebar">
-                      <div class="mac-dot" style="background: #ff5f57;"></div>
-                      <div class="mac-dot" style="background: #febc2e;"></div>
-                      <div class="mac-dot" style="background: #28c840;"></div>
-                      <span class="ml-3 text-xs font-medium" style="color: var(--edge-text-tertiary);">Dashboard</span>
-                    </div>
-                    <img
-                      src={`${base}edge-screenshots/gui-dashboard.png`}
-                      alt="Dashboard 仪表盘"
-                      class="w-full"
-                      loading="lazy"
-                    />
-                  </div>
+                  <img
+                    src={`${base}edge-screenshots/gui-dashboard.png`}
+                    alt="Dashboard 仪表盘"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -2391,20 +2450,12 @@ const base = import.meta.env.BASE_URL;
                   </p>
                 </div>
                 <div class="carousel-image">
-                  <div class="mac-window">
-                    <div class="mac-titlebar">
-                      <div class="mac-dot" style="background: #ff5f57;"></div>
-                      <div class="mac-dot" style="background: #febc2e;"></div>
-                      <div class="mac-dot" style="background: #28c840;"></div>
-                      <span class="ml-3 text-xs font-medium" style="color: var(--edge-text-tertiary);">Timeline</span>
-                    </div>
-                    <img
-                      src={`${base}edge-screenshots/gui-timeline.png`}
-                      alt="Timeline 时序图"
-                      class="w-full"
-                      loading="lazy"
-                    />
-                  </div>
+                  <img
+                    src={`${base}edge-screenshots/gui-timeline.png`}
+                    alt="Timeline 时序图"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -2843,6 +2894,22 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
     </section>
+
+    <!-- Lightbox — Apple-style 详情卡片 -->
+    <div class="edge-lightbox" id="edge-lightbox">
+      <div class="edge-lightbox-backdrop"></div>
+      <div class="edge-lightbox-card">
+        <button class="edge-lightbox-close" aria-label="关闭">✕</button>
+        <div class="edge-lightbox-image">
+          <img id="edge-lightbox-img" src="" alt="" />
+        </div>
+        <div class="edge-lightbox-body">
+          <div class="edge-lightbox-eyebrow" id="edge-lightbox-eyebrow"></div>
+          <h3 class="edge-lightbox-title" id="edge-lightbox-title"></h3>
+          <p class="edge-lightbox-desc" id="edge-lightbox-desc"></p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ════════════════════════════════════════════════════════════
@@ -2864,6 +2931,29 @@ const base = import.meta.env.BASE_URL;
           let current = 0;
           const total = slides.length;
           if (total === 0) return;
+
+          const track = carousel.querySelector('[data-carousel-track]');
+
+          function measureHeight() {
+            if (!track) return;
+            // Temporarily make all slides measurable
+            let maxH = 0;
+            slides.forEach(function (s) {
+              const prev = s.style.position;
+              s.style.position = 'relative';
+              void s.offsetHeight; // force reflow
+              if (s.scrollHeight > maxH) maxH = s.scrollHeight;
+              s.style.position = prev;
+            });
+            if (maxH > 0) track.style.minHeight = maxH + 'px';
+          }
+
+          // Measure after images load + on resize
+          measureHeight();
+          carousel.querySelectorAll('img').forEach(function (img) {
+            if (!img.complete) img.addEventListener('load', measureHeight, { once: true });
+          });
+          window.addEventListener('resize', measureHeight);
 
           function go(index) {
             current = (index + total) % total;
@@ -2940,15 +3030,99 @@ const base = import.meta.env.BASE_URL;
         });
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () {
-          initCarousels();
-          initReveal();
+      function initLightbox() {
+        const lb = document.getElementById('edge-lightbox');
+        const lbImg = document.getElementById('edge-lightbox-img');
+        const lbEyebrow = document.getElementById('edge-lightbox-eyebrow');
+        const lbTitle = document.getElementById('edge-lightbox-title');
+        const lbDesc = document.getElementById('edge-lightbox-desc');
+        if (!lb || !lbImg || lb.dataset.ready) return;
+        lb.dataset.ready = '1';
+
+        const closeBtn = lb.querySelector('.edge-lightbox-close');
+
+        // Extract text from carousel slides
+        document.querySelectorAll('.carousel-slide').forEach(function (slide) {
+          const img = slide.querySelector('.carousel-screenshot');
+          if (!img) return;
+          const eyebrow = slide.querySelector('.carousel-eyebrow');
+          const title = slide.querySelector('.carousel-title');
+          const desc = slide.querySelector('.carousel-subtitle');
+          if (eyebrow) img.dataset.lbEyebrow = eyebrow.textContent.trim();
+          if (title) img.dataset.lbTitle = title.textContent.trim();
+          if (desc) img.dataset.lbDesc = desc.textContent.trim();
         });
-      } else {
+
+        // Extract text from bento cards
+        document.querySelectorAll('.bento-screenshot').forEach(function (card) {
+          const img = card.querySelector('img');
+          if (!img) return;
+          const title = card.querySelector('.bento-card-title');
+          const desc = card.querySelector('.bento-card-desc');
+          if (title) img.dataset.lbTitle = title.textContent.trim();
+          if (desc) img.dataset.lbDesc = desc.textContent.trim();
+        });
+
+        function open(src, alt, eyebrow, title, desc) {
+          lbImg.src = src;
+          lbImg.alt = alt || '';
+          lbEyebrow.textContent = eyebrow || '';
+          lbEyebrow.style.display = eyebrow ? '' : 'none';
+          lbTitle.textContent = title || '';
+          lbDesc.textContent = desc || '';
+          requestAnimationFrame(function () {
+            lb.classList.add('is-open');
+          });
+          document.body.style.overflow = 'hidden';
+        }
+
+        function close() {
+          lb.classList.remove('is-open');
+          document.body.style.overflow = '';
+          setTimeout(function () {
+            lbImg.src = '';
+          }, 500);
+        }
+
+        lb.querySelector('.edge-lightbox-backdrop').addEventListener('click', close);
+        if (closeBtn) closeBtn.addEventListener('click', close);
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && lb.classList.contains('is-open')) close();
+        });
+
+        // Bind click on all screenshot images
+        document.querySelectorAll('.carousel-screenshot, .bento-screenshot img').forEach(function (img) {
+          if (img.dataset.lbBound) return;
+          img.dataset.lbBound = '1';
+          img.style.cursor = 'zoom-in';
+          img.addEventListener('click', function (e) {
+            e.stopPropagation();
+            open(
+              img.src,
+              img.alt,
+              img.dataset.lbEyebrow || '',
+              img.dataset.lbTitle || img.alt || '',
+              img.dataset.lbDesc || ''
+            );
+          });
+        });
+      }
+
+      function boot() {
         initCarousels();
         initReveal();
+        initLightbox();
       }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+      } else {
+        boot();
+      }
+
+      // Astro client-side navigation (View Transitions / swup)
+      document.addEventListener('astro:page-load', boot);
+      document.addEventListener('astro:after-swap', boot);
     })();
   </script>
 </Layout>
