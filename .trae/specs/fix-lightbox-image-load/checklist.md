@@ -1,0 +1,6 @@
+- [x] `open()` 中在设置新 src 前调用了 `clearTimeout(closeTimer)`
+- [x] `close()` 的 setTimeout 赋值给 `closeTimer` 变量
+- [x] `open()` 使用 `new Image()` 预加载，`onload` 后才设置 `lbImg.src`
+- [x] 图片加载过程中 lightbox 不显示 broken image icon（有占位/过渡状态）
+- [x] 快速关闭再打开另一张卡片时，图片显示正常
+- [x] `npm run check` 通过

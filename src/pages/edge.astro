@@ -149,15 +149,84 @@ const base = import.meta.env.BASE_URL;
           transform: scale(1);
         }
       }
-      @keyframes breathe {
-        0%,
-        100% {
-          transform: scale(1);
-          opacity: 0.5;
+      @keyframes orb-drift-1 {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0.45;
+        }
+        25% {
+          transform: translate(40px, -30px) scale(1.08);
+          opacity: 0.6;
         }
         50% {
-          transform: scale(1.05);
-          opacity: 0.7;
+          transform: translate(-20px, -50px) scale(1.02);
+          opacity: 0.5;
+        }
+        75% {
+          transform: translate(30px, 20px) scale(1.1);
+          opacity: 0.55;
+        }
+        100% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0.45;
+        }
+      }
+      @keyframes orb-drift-2 {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0.35;
+        }
+        33% {
+          transform: translate(-50px, 30px) scale(1.12);
+          opacity: 0.5;
+        }
+        66% {
+          transform: translate(30px, -40px) scale(0.95);
+          opacity: 0.4;
+        }
+        100% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0.35;
+        }
+      }
+      @keyframes orb-drift-3 {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0.3;
+        }
+        20% {
+          transform: translate(25px, 40px) scale(1.06);
+          opacity: 0.45;
+        }
+        50% {
+          transform: translate(-35px, -20px) scale(1.1);
+          opacity: 0.5;
+        }
+        80% {
+          transform: translate(15px, -35px) scale(0.97);
+          opacity: 0.35;
+        }
+        100% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0.3;
+        }
+      }
+      @keyframes orb-drift-4 {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0.25;
+        }
+        40% {
+          transform: translate(-30px, -45px) scale(1.15);
+          opacity: 0.4;
+        }
+        70% {
+          transform: translate(40px, 25px) scale(0.92);
+          opacity: 0.35;
+        }
+        100% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0.25;
         }
       }
       @keyframes glow-1 {
@@ -180,28 +249,6 @@ const base = import.meta.env.BASE_URL;
         50% {
           opacity: 0.4;
           transform: translate(-50%, -50%) scale(0.9);
-        }
-      }
-      @keyframes glow-3 {
-        0%,
-        100% {
-          opacity: 0.15;
-          transform: translate(-50%, -50%) scale(0.9);
-        }
-        50% {
-          opacity: 0.35;
-          transform: translate(-50%, -50%) scale(1.15);
-        }
-      }
-      @keyframes glow-4 {
-        0%,
-        100% {
-          opacity: 0.25;
-          transform: translate(-50%, -50%) scale(1.05);
-        }
-        50% {
-          opacity: 0.45;
-          transform: translate(-50%, -50%) scale(0.95);
         }
       }
       @keyframes pulse {
@@ -231,19 +278,13 @@ const base = import.meta.env.BASE_URL;
         animation: scale-in 0.6s ease-out forwards;
       }
       .animate-breathe {
-        animation: breathe 4s ease-in-out infinite;
+        animation: orb-drift-1 12s ease-in-out infinite;
       }
       .animate-glow-1 {
         animation: glow-1 6s ease-in-out infinite;
       }
       .animate-glow-2 {
         animation: glow-2 8s ease-in-out infinite;
-      }
-      .animate-glow-3 {
-        animation: glow-3 7s ease-in-out infinite;
-      }
-      .animate-glow-4 {
-        animation: glow-4 5s ease-in-out infinite;
       }
       .delay-100 {
         animation-delay: 0.1s;
@@ -570,6 +611,9 @@ const base = import.meta.env.BASE_URL;
       .bento-span-4 {
         grid-column: span 4;
       }
+      .bento-span-5 {
+        grid-column: span 5;
+      }
       .bento-span-6 {
         grid-column: span 6;
       }
@@ -621,12 +665,9 @@ const base = import.meta.env.BASE_URL;
       .screenshot-wrap {
         position: relative;
         width: 100%;
-        aspect-ratio: 16 / 10;
+        height: clamp(180px, 18vw, 280px);
         overflow: hidden;
         background: var(--edge-bg-field);
-      }
-      .bento-span-2.bento-screenshot .screenshot-wrap {
-        aspect-ratio: 4 / 5;
       }
       .screenshot-wrap img {
         width: 100%;
@@ -1169,9 +1210,48 @@ const base = import.meta.env.BASE_URL;
       .glow-orb {
         position: absolute;
         border-radius: 50%;
-        filter: blur(80px);
+        filter: blur(100px);
         pointer-events: none;
-        animation: breathe 6s ease-in-out infinite;
+        will-change: transform, opacity;
+      }
+      .glow-orb--indigo {
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 70%);
+      }
+      .glow-orb--purple {
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0.06) 50%, transparent 70%);
+      }
+      .glow-orb--violet {
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, rgba(124, 58, 237, 0.05) 50%, transparent 70%);
+      }
+      .glow-orb--blue {
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 70%);
+      }
+      :global(.dark) .glow-orb--indigo {
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(99, 102, 241, 0.06) 50%, transparent 70%);
+      }
+      :global(.dark) .glow-orb--purple {
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.04) 50%, transparent 70%);
+      }
+      :global(.dark) .glow-orb--violet {
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.18) 0%, rgba(124, 58, 237, 0.03) 50%, transparent 70%);
+      }
+      :global(.dark) .glow-orb--blue {
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.03) 50%, transparent 70%);
+      }
+      .glow-orb-1 {
+        animation: orb-drift-1 14s ease-in-out infinite;
+      }
+      .glow-orb-2 {
+        animation: orb-drift-2 18s ease-in-out infinite;
+      }
+      .glow-orb-3 {
+        animation: orb-drift-3 16s ease-in-out infinite;
+      }
+      .glow-orb-4 {
+        animation: orb-drift-4 20s ease-in-out infinite;
+      }
+      .glow-orb-5 {
+        animation: orb-drift-2 22s ease-in-out infinite reverse;
       }
       .metric-card-hero {
         text-align: center;
@@ -1360,6 +1440,77 @@ const base = import.meta.env.BASE_URL;
         background: var(--edge-gradient-1);
       }
 
+      /* ═══ Highlights 产品亮点网格 ═══ */
+      .highlights-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .highlight-card {
+        border-radius: var(--edge-radius-lg);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition:
+          transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.4s ease;
+        cursor: pointer;
+      }
+      .highlight-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.5);
+      }
+      .highlight-img {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        background: #0a0a10;
+      }
+      .highlight-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .highlight-card:hover .highlight-img img {
+        transform: scale(1.03);
+      }
+      .highlight-img::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: linear-gradient(to top, rgba(14, 14, 22, 1), transparent);
+        pointer-events: none;
+      }
+      .highlight-body {
+        padding: 20px 24px 24px;
+      }
+      .highlight-label {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #7996ff;
+        margin-bottom: 8px;
+      }
+      .highlight-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #e8e9f0;
+        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+      }
+      .highlight-desc {
+        font-size: 13px;
+        color: #6e6e88;
+        line-height: 1.5;
+      }
+
       /* ═══ reveal 滚动动画 ═══ */
       .reveal {
         opacity: 0;
@@ -1381,9 +1532,11 @@ const base = import.meta.env.BASE_URL;
         .bento-grid {
           grid-template-columns: repeat(2, 1fr);
         }
+        .bento-span-1,
         .bento-span-2,
         .bento-span-3,
-        .bento-span-4 {
+        .bento-span-4,
+        .bento-span-5 {
           grid-column: span 2;
         }
         .bento-span-6 {
@@ -1413,6 +1566,7 @@ const base = import.meta.env.BASE_URL;
         .bento-span-2,
         .bento-span-3,
         .bento-span-4,
+        .bento-span-5,
         .bento-span-6,
         .bento-group-label {
           grid-column: span 1;
@@ -1432,6 +1586,9 @@ const base = import.meta.env.BASE_URL;
         .carousel-arrow.next {
           right: 0;
         }
+        .highlights-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -1443,8 +1600,11 @@ const base = import.meta.env.BASE_URL;
         .animate-breathe,
         .animate-glow-1,
         .animate-glow-2,
-        .animate-glow-3,
-        .animate-glow-4 {
+        .glow-orb-1,
+        .glow-orb-2,
+        .glow-orb-3,
+        .glow-orb-4,
+        .glow-orb-5 {
           animation: none !important;
           opacity: 1 !important;
           transform: none !important;
@@ -1464,20 +1624,11 @@ const base = import.meta.env.BASE_URL;
          ════════════════════════════════════════════════════════════ -->
     <section class="relative pt-24 pb-20 md:pt-36 md:pb-32 lg:pt-44 lg:pb-40 overflow-visible">
       <div class="absolute inset-0 pointer-events-none overflow-visible">
-        <div
-          class="glow-orb w-[700px] h-[700px] -top-40 left-1/4 bg-gradient-to-br from-indigo-200/50 via-purple-100/30 to-transparent dark:from-indigo-600/20 dark:via-purple-500/10"
-        >
-        </div>
-        <div
-          class="glow-orb w-[600px] h-[600px] top-1/3 -right-20 bg-gradient-to-bl from-purple-200/40 via-violet-100/20 to-transparent dark:from-purple-600/15 dark:via-violet-500/8"
-          style="animation-delay: 2s;"
-        >
-        </div>
-        <div
-          class="glow-orb w-[500px] h-[500px] -bottom-20 left-1/3 bg-gradient-to-tr from-violet-200/30 via-indigo-100/15 to-transparent dark:from-violet-600/10 dark:via-indigo-500/5"
-          style="animation-delay: 4s;"
-        >
-        </div>
+        <div class="glow-orb glow-orb--indigo glow-orb-1 w-[800px] h-[800px] -top-60 left-[10%]"></div>
+        <div class="glow-orb glow-orb--purple glow-orb-2 w-[650px] h-[650px] top-[20%] -right-32"></div>
+        <div class="glow-orb glow-orb--violet glow-orb-3 w-[700px] h-[700px] bottom-[-15%] left-[25%]"></div>
+        <div class="glow-orb glow-orb--blue glow-orb-4 w-[500px] h-[500px] top-[5%] left-[55%]"></div>
+        <div class="glow-orb glow-orb--indigo glow-orb-5 w-[550px] h-[550px] top-[45%] left-[-5%]"></div>
       </div>
 
       <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -1599,417 +1750,78 @@ const base = import.meta.env.BASE_URL;
     </section>
 
     <!-- ════════════════════════════════════════════════════════════
-         核心能力 Bento Grid（Task 5）
-         ════════════════════════════════════════════════════════════ -->
-    <section class="edge-section">
-      <div class="section-inner">
-        <div class="reveal">
-          <div class="section-kicker">Core Capabilities</div>
-          <h2 class="section-title">重新定义<span class="text-gradient">桌面可观测</span></h2>
-          <p class="section-subtitle">AI 原生架构，从数据采集到智能洞察，每一个环节都精心打磨</p>
-        </div>
-
-        <div class="bento-grid">
-          <!-- AI Copilot — 大卡片横跨两列 -->
-          <div class="glass-card bento-span-4 reveal">
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20"
-              >
-                <svg
-                  class="w-5 h-5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path
-                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
-                  ></path></svg
-                >
-              </div>
-              <span class="text-xs font-semibold tracking-[0.1em] uppercase" style="color: var(--edge-primary);"
-                >AI Copilot</span
-              >
-            </div>
-            <h3 class="text-2xl md:text-3xl font-bold mb-3 tracking-tight" style="color: var(--edge-text-primary);">
-              真正操作 GUI 的智能体
-            </h3>
-            <p class="leading-relaxed mb-6 max-w-lg" style="color: var(--edge-text-secondary);">
-              ReAct Loop 驱动，15 个 GUI 工具，屏幕感知能力。不只是聊天，而是直接操控桌面界面。
-            </p>
-
-            <!-- ReAct Flow -->
-            <div class="copilot-flow">
-              <div class="copilot-flow-step">
-                <div class="step-num">1</div>
-                <div class="step-label">User Prompt</div>
-                <div class="step-sub">用户输入</div>
-              </div>
-              <div class="flow-arrow">→</div>
-              <div class="copilot-flow-step">
-                <div class="step-num">2</div>
-                <div class="step-label">LLM 推理</div>
-                <div class="step-sub">node-llama-cpp</div>
-              </div>
-              <div class="flow-arrow">→</div>
-              <div class="copilot-flow-step">
-                <div class="step-num">3</div>
-                <div class="step-label">Tool Call</div>
-                <div class="step-sub">parse 4 formats</div>
-              </div>
-              <div class="flow-arrow">→</div>
-              <div class="copilot-flow-step">
-                <div class="step-num">4</div>
-                <div class="step-label">GUI 执行</div>
-                <div class="step-sub">IPC → Renderer</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Local First -->
-          <div class="glass-card bento-span-2 reveal">
-            <div
-              class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 mb-4"
-            >
-              <svg
-                class="w-5 h-5 text-white"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><path
-                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-                ></path></svg
-              >
-            </div>
-            <h3 class="text-xl font-bold mb-2 tracking-tight" style="color: var(--edge-text-primary);">
-              100% 本地优先
-            </h3>
-            <p class="text-sm leading-relaxed mb-6" style="color: var(--edge-text-secondary);">
-              数据不出 Mac，隐私零妥协。零云端依赖，100% 离线可用。
-            </p>
-            <div class="space-y-3">
-              <div class="flex items-center gap-3">
-                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-success);"></span>
-                <span class="text-sm" style="color: var(--edge-text-secondary);">SQLite 本地存储</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-success);"></span>
-                <span class="text-sm" style="color: var(--edge-text-secondary);">零遥测上报</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-success);"></span>
-                <span class="text-sm" style="color: var(--edge-text-secondary);">Universal Binary</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- AI-Native -->
-          <div class="glass-card bento-span-2 reveal">
-            <div
-              class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/20 mb-4"
-            >
-              <svg
-                class="w-5 h-5 text-white"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path></svg
-              >
-            </div>
-            <h3 class="text-xl font-bold mb-2 tracking-tight" style="color: var(--edge-text-primary);">
-              AI-Native 洞察
-            </h3>
-            <p class="text-sm leading-relaxed mb-6" style="color: var(--edge-text-secondary);">
-              永远在线的智能分析，让数据自己说话。
-            </p>
-            <div class="space-y-3">
-              <div class="flex items-center gap-3">
-                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-warning);"></span>
-                <span class="text-sm" style="color: var(--edge-text-secondary);">异常检测</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-warning);"></span>
-                <span class="text-sm" style="color: var(--edge-text-secondary);">每日简报</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-warning);"></span>
-                <span class="text-sm" style="color: var(--edge-text-secondary);">成本模拟</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-warning);"></span>
-                <span class="text-sm" style="color: var(--edge-text-secondary);">AI Spotlight</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tech Stack — 横跨两列 -->
-          <div class="glass-card bento-span-4 reveal">
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center shadow-lg shadow-purple-500/20"
-              >
-                <svg
-                  class="w-5 h-5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"></path></svg
-                >
-              </div>
-              <span class="text-xs font-semibold tracking-[0.1em] uppercase" style="color: var(--edge-accent);"
-                >Tech Stack</span
-              >
-            </div>
-            <h3 class="text-2xl md:text-3xl font-bold mb-3 tracking-tight" style="color: var(--edge-text-primary);">
-              生产级技术栈
-            </h3>
-            <p class="leading-relaxed mb-6 max-w-lg" style="color: var(--edge-text-secondary);">
-              Electron 37 + React 19 + Vite 6 + Tailwind CSS 4，llama.cpp 本地推理，Zustand 5 状态管理。
-            </p>
-            <div class="tech-stack-bar" style="justify-content: flex-start;">
-              <div class="tech-stack-item"><span class="ts-icon">⚡</span> Electron 37</div>
-              <div class="tech-stack-item"><span class="ts-icon">⚛</span> React 19</div>
-              <div class="tech-stack-item"><span class="ts-icon">📦</span> Vite 6</div>
-              <div class="tech-stack-item"><span class="ts-icon">🎨</span> Tailwind CSS 4</div>
-              <div class="tech-stack-item"><span class="ts-icon">🦙</span> llama.cpp</div>
-              <div class="tech-stack-item"><span class="ts-icon">🐻</span> Zustand 5</div>
-              <div class="tech-stack-item"><span class="ts-icon">🗃</span> SQLite</div>
-              <div class="tech-stack-item"><span class="ts-icon">📐</span> TanStack Virtual</div>
-              <div class="tech-stack-item"><span class="ts-icon">🎬</span> Framer Motion</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════════════════════
-         AI Copilot 深度展示（Task 7）— 暗色 + 轮播
+         产品亮点 — 四大核心场景
          ════════════════════════════════════════════════════════════ -->
     <section class="edge-section-dark relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-indigo-900/20 via-transparent to-transparent"></div>
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-indigo-500/10 rounded-full blur-3xl">
-      </div>
-
+      <div class="absolute inset-0 bg-gradient-to-b from-indigo-900/15 via-transparent to-transparent"></div>
       <div class="section-inner relative z-10">
-        <div class="reveal">
-          <div class="section-kicker">AI Copilot · NEW</div>
-          <h2 class="section-title">🤖 AI Copilot · <span class="text-gradient">操作 GUI 的智能体</span></h2>
-          <p class="section-subtitle">
-            ReAct Loop · 15 GUI 工具 · 屏幕感知 · 生产级 UX 控件<br />
-            <span style="font-size: 14px; color: var(--edge-text-tertiary);"
-              >真正在操作 GUI 的智能体 · 不只是聊天，而是直接操作界面</span
-            >
+        <div class="reveal" style="text-align: center; margin-bottom: 48px;">
+          <div class="section-kicker">Highlights</div>
+          <h2 class="section-title">四大核心优势，<span class="text-gradient">一览即懂</span></h2>
+          <p class="section-subtitle" style="max-width: 560px; margin: 0 auto;">
+            AI Copilot 驱动 · TUI 终端 · 时序分析 · AI-Native 深度洞察
           </p>
         </div>
 
-        <!-- 轮播：3 个 slide -->
-        <div class="carousel reveal" data-carousel id="carousel-copilot">
-          <div class="carousel-track" data-carousel-track>
-            <!-- Slide 1: ReAct Loop -->
-            <div class="carousel-slide is-active" data-carousel-slide>
-              <div class="carousel-slide-inner">
-                <div class="carousel-text">
-                  <div class="carousel-eyebrow">ReAct Loop · 推理-行动循环</div>
-                  <h4 class="carousel-title">ReAct Loop 驱动，15 个 GUI 工具</h4>
-                  <p class="carousel-subtitle">
-                    最多 5 轮推理-行动循环，AbortController 可中断。屏幕感知能力让 AI
-                    真正理解当前界面状态，直接操控桌面。
-                  </p>
-                </div>
-                <div class="carousel-image">
-                  <img
-                    src={`${base}edge-screenshots/ai-copilot-react-loop.png`}
-                    alt="ReAct Loop 流程"
-                    class="w-full carousel-screenshot"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+        <div class="highlights-grid reveal">
+          <div
+            class="highlight-card"
+            data-lb-title="AI 驱动的实时仪表盘"
+            data-lb-desc="15+ 自研 SVG 图表，4 大数据分组，AI 异常检测自动标记风险。零第三方图表库依赖，从概览到下钻一屏完成，数据驱动决策。"
+          >
+            <div class="highlight-img">
+              <img src={`${base}edge-screenshots/gui-dashboard.png`} alt="Dashboard 仪表盘" loading="lazy" />
             </div>
-
-            <!-- Slide 2: 对话演示 -->
-            <div class="carousel-slide" data-carousel-slide>
-              <div class="carousel-slide-inner reverse">
-                <div class="carousel-text">
-                  <div class="carousel-eyebrow">Dialogue · 自然语言驱动</div>
-                  <h4 class="carousel-title">自然语言驱动，直接操控桌面界面</h4>
-                  <p class="carousel-subtitle">
-                    用户输入 → 工具调用 → GUI 操作 → 自然语言回复。从洞察到行动零距离，AI 直接操作界面而非仅给出建议。
-                  </p>
-                </div>
-                <div class="carousel-image">
-                  <img
-                    src={`${base}edge-screenshots/ai-copilot-dialogue.png`}
-                    alt="AI Copilot 对话示例"
-                    class="w-full carousel-screenshot"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Slide 3: UX 控制项 -->
-            <div class="carousel-slide" data-carousel-slide>
-              <div class="carousel-slide-inner">
-                <div class="carousel-text">
-                  <div class="carousel-eyebrow">Production UX · 生产级控件</div>
-                  <h4 class="carousel-title">不是玩具，是生产级工具</h4>
-                  <p class="carousel-subtitle">
-                    Context 会话保持 · 6 档 MaxTokens · Tools 开关 · Streaming tok/s 实时显示。6 个生产级 UX 控件，让 AI
-                    Copilot 真正可用于生产环境。
-                  </p>
-                </div>
-                <div class="carousel-image">
-                  <img
-                    src={`${base}edge-screenshots/gui-ai-copilot.png`}
-                    alt="AI Copilot UX 控件"
-                    class="w-full carousel-screenshot"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+            <div class="highlight-body">
+              <div class="highlight-label">Dashboard</div>
+              <div class="highlight-title">AI 驱动的实时仪表盘</div>
+              <div class="highlight-desc">15+ 自研图表 · AI 异常检测 · 零依赖</div>
             </div>
           </div>
 
-          <button class="carousel-arrow prev" data-carousel-prev aria-label="上一个">‹</button>
-          <button class="carousel-arrow next" data-carousel-next aria-label="下一个">›</button>
-          <div class="carousel-dots">
-            <button class="carousel-dot is-active" data-carousel-dot aria-label="第 1 张"></button>
-            <button class="carousel-dot" data-carousel-dot aria-label="第 2 张"></button>
-            <button class="carousel-dot" data-carousel-dot aria-label="第 3 张"></button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════════════════════
-         AI-Native 能力轮播（Task 8）
-         ════════════════════════════════════════════════════════════ -->
-    <section class="edge-section-alt">
-      <div class="section-inner">
-        <div class="reveal">
-          <div class="section-kicker">AI-Native · NEW</div>
-          <h2 class="section-title">🧠 AI-Native Capabilities · <span class="text-gradient">让数据自己说话</span></h2>
-          <p class="section-subtitle">
-            异常检测 · 成本模拟 · 每日简报 · Spotlight<br />
-            <span style="font-size: 14px; color: var(--edge-text-tertiary);"
-              >4 个 AI 模块深度集成 · 从数据展示到智能洞察</span
-            >
-          </p>
-        </div>
-
-        <div class="narrative-stage reveal">
-          <div class="narrative-stage-label">AI-Native · 智能洞察</div>
-          <h3 class="narrative-stage-title">不只是展示数据，<span class="text-gradient">是理解数据</span></h3>
-          <p class="narrative-stage-desc">4 个 AI 模块深度集成，让每一次数据交互都有 AI 加持。</p>
-        </div>
-
-        <div class="carousel reveal" data-carousel id="carousel-ai-native">
-          <div class="carousel-track" data-carousel-track>
-            <!-- Slide 1: 异常检测 -->
-            <div class="carousel-slide is-active" data-carousel-slide>
-              <div class="carousel-slide-inner">
-                <div class="carousel-text">
-                  <div class="carousel-eyebrow">⚠️ AiAnomalyDetector</div>
-                  <h4 class="carousel-title">异常检测，自动标记风险</h4>
-                  <p class="carousel-subtitle">
-                    规则 + AI 双引擎异常检测，三级严重度，自动诊断根因。智能识别风险调用，无需人工巡检。
-                  </p>
-                </div>
-                <div class="carousel-image">
-                  <img
-                    src={`${base}edge-screenshots/gui-ai-anomaly.png`}
-                    alt="AI 异常检测"
-                    class="w-full carousel-screenshot"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+          <div
+            class="highlight-card"
+            data-lb-title="TUI 终端 — 键盘优先，极致高效"
+            data-lb-desc="基于 Ink（React for CLI）构建的全屏终端仪表盘。9 大视图覆盖从总览到详情的完整数据浏览链路，Tokyo Night 配色，双语 i18n，键盘优先交互。"
+          >
+            <div class="highlight-img">
+              <img src={`${base}edge-screenshots/tui-dashboard.png`} alt="TUI 终端仪表盘" loading="lazy" />
             </div>
-
-            <!-- Slide 2: 每日简报 -->
-            <div class="carousel-slide" data-carousel-slide>
-              <div class="carousel-slide-inner reverse">
-                <div class="carousel-text">
-                  <div class="carousel-eyebrow">📋 AiDailyBrief</div>
-                  <h4 class="carousel-title">每日简报，昨日数据一目了然</h4>
-                  <p class="carousel-subtitle">
-                    AI 自动生成 Markdown 摘要：昨日会话数、Token 消耗、费用、Top 模型、Top
-                    工具、异常事件，一眼掌握全局。
-                  </p>
-                </div>
-                <div class="carousel-image">
-                  <img
-                    src={`${base}edge-screenshots/gui-ai-daily-brief.png`}
-                    alt="AI 每日简报"
-                    class="w-full carousel-screenshot"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Slide 3: 成本模拟 -->
-            <div class="carousel-slide" data-carousel-slide>
-              <div class="carousel-slide-inner">
-                <div class="carousel-text">
-                  <div class="carousel-eyebrow">💰 AiCostSimulator</div>
-                  <h4 class="carousel-title">成本模拟，40+ 模型实时定价</h4>
-                  <p class="carousel-subtitle">
-                    6 模型成本对比，What-if 场景模拟，AI 分析节省潜力。一键切换模型，立刻看到成本变化。
-                  </p>
-                </div>
-                <div class="carousel-image">
-                  <img
-                    src={`${base}edge-screenshots/gui-ai-cost-simulator.png`}
-                    alt="AI 成本模拟器"
-                    class="w-full carousel-screenshot"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Slide 4: AI Spotlight -->
-            <div class="carousel-slide" data-carousel-slide>
-              <div class="carousel-slide-inner reverse">
-                <div class="carousel-text">
-                  <div class="carousel-eyebrow">🔮 AiSpotlight</div>
-                  <h4 class="carousel-title">AI Spotlight，智能聚焦关键事件</h4>
-                  <p class="carousel-subtitle">
-                    全局 ⌘K 唤起，NL-to-Filter 自然语言过滤，多面板模式。智能聚焦关键事件，快速定位异常。
-                  </p>
-                </div>
-                <div class="carousel-image">
-                  <img
-                    src={`${base}edge-screenshots/gui-ai-spotlight.png`}
-                    alt="AI Spotlight"
-                    class="w-full carousel-screenshot"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+            <div class="highlight-body">
+              <div class="highlight-label">Terminal UI</div>
+              <div class="highlight-title">TUI 终端，键盘优先</div>
+              <div class="highlight-desc">9 大视图 · 全屏仪表盘 · Tokyo Night</div>
             </div>
           </div>
 
-          <button class="carousel-arrow prev" data-carousel-prev aria-label="上一个">‹</button>
-          <button class="carousel-arrow next" data-carousel-next aria-label="下一个">›</button>
-          <div class="carousel-dots">
-            <button class="carousel-dot is-active" data-carousel-dot aria-label="第 1 张"></button>
-            <button class="carousel-dot" data-carousel-dot aria-label="第 2 张"></button>
-            <button class="carousel-dot" data-carousel-dot aria-label="第 3 张"></button>
-            <button class="carousel-dot" data-carousel-dot aria-label="第 4 张"></button>
+          <div
+            class="highlight-card"
+            data-lb-title="时序分析，自由下钻"
+            data-lb-desc="Session / LLM / Tool 三条泳道 + Navigator 密度热力预览，12 级缩放。从秒级到月级的自由下钻，AI 异常自动标记，AI 诊断一键触发。"
+          >
+            <div class="highlight-img">
+              <img src={`${base}edge-screenshots/gui-timeline.png`} alt="Timeline 时序图" loading="lazy" />
+            </div>
+            <div class="highlight-body">
+              <div class="highlight-label">Timeline</div>
+              <div class="highlight-title">时序分析，自由下钻</div>
+              <div class="highlight-desc">三条泳道 · 12 级缩放 · AI 异常标记</div>
+            </div>
+          </div>
+
+          <div
+            class="highlight-card"
+            data-lb-title="6 个 AI 模块深度集成"
+            data-lb-desc="AI 异常检测、AI 每日简报、AI 成本模拟、AI Spotlight、AI Copilot、AI Tag — 从数据展示到智能洞察，每一个环节都有 AI 加持。"
+          >
+            <div class="highlight-img">
+              <img src={`${base}edge-screenshots/ai-copilot-dialogue.png`} alt="AI 模块集成" loading="lazy" />
+            </div>
+            <div class="highlight-body">
+              <div class="highlight-label">AI-Native</div>
+              <div class="highlight-title">6 个 AI 模块深度集成</div>
+              <div class="highlight-desc">异常检测 · 每日简报 · 成本模拟 · Spotlight</div>
+            </div>
           </div>
         </div>
       </div>
@@ -2207,54 +2019,63 @@ const base = import.meta.env.BASE_URL;
           </p>
         </div>
 
-        <!-- Hero Showcase 1: Hero 首页 -->
-        <div class="hero-showcase reveal">
-          <div class="hero-showcase-text">
-            <div class="hero-showcase-eyebrow">Hero · 首页</div>
-            <h4 class="hero-showcase-title">一屏掌握全局</h4>
-            <p class="hero-showcase-subtitle">系统信息、插件状态、快捷入口，关键指标一目了然。</p>
-          </div>
-          <div class="hero-showcase-image">
-            <img src={`${base}edge-screenshots/tui-hero.png`} alt="TUI Hero 首页" loading="lazy" />
-          </div>
-        </div>
+        <!-- Bento Grid: 9 大视图 — 紧凑布局 -->
+        <div class="bento-grid" style="margin-top: 32px;">
+          <div class="bento-group-label reveal"><span>9 大视图 · 终端原生体验</span></div>
 
-        <!-- Hero Showcase 2: Dashboard -->
-        <div class="hero-showcase reveal">
-          <div class="hero-showcase-text">
-            <div class="hero-showcase-eyebrow">Dashboard · 仪表盘</div>
-            <h4 class="hero-showcase-title">关键指标一目了然</h4>
-            <p class="hero-showcase-subtitle">会话数、Token 用量、费用统计、Top 模型/工具，数据驱动的终端仪表盘。</p>
+          <!-- Row 1: 4 + 2 -->
+          <div class="glass-card bento-span-4 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/tui-hero.png`} alt="TUI Hero 首页" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">Hero 首页</div>
+              <div class="bento-card-desc">系统信息 · 插件状态 · 快捷入口 · 一屏掌握全局</div>
+            </div>
           </div>
-          <div class="hero-showcase-image">
-            <img src={`${base}edge-screenshots/tui-dashboard.png`} alt="TUI Dashboard 仪表盘" loading="lazy" />
+
+          <div class="glass-card bento-span-2 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/tui-dashboard.png`} alt="TUI Dashboard 仪表盘" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">Dashboard</div>
+              <div class="bento-card-desc">会话数 · Token 用量 · 费用统计</div>
+            </div>
           </div>
-        </div>
 
-        <!-- Bento Grid: 9 大视图 -->
-        <div class="bento-grid" style="margin-top: 48px;">
-          <div class="bento-group-label reveal"><span>9 大视图 · 数据浏览链路</span></div>
-
-          <div class="glass-card bento-span-3 bento-screenshot reveal">
+          <!-- Row 2: 2 + 2 + 2 -->
+          <div class="glass-card bento-span-2 bento-screenshot reveal">
             <div class="screenshot-wrap">
               <img src={`${base}edge-screenshots/tui-llm-calls.png`} alt="TUI LLM 调用" loading="lazy" />
             </div>
             <div class="screenshot-caption">
               <div class="bento-card-title">LLM 调用</div>
-              <div class="bento-card-desc">查看每次大模型调用的输入、输出、Token 和费用</div>
+              <div class="bento-card-desc">输入 · 输出 · Token · 费用</div>
             </div>
           </div>
 
-          <div class="glass-card bento-span-3 bento-screenshot reveal">
+          <div class="glass-card bento-span-2 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/tui-view-modes.png`} alt="TUI 3 种视图模式" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">3 种视图模式</div>
+              <div class="bento-card-desc">概览 → 详情 → JSON，Tab 一键切换</div>
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-2 bento-screenshot reveal">
             <div class="screenshot-wrap">
               <img src={`${base}edge-screenshots/tui-tool-calls.png`} alt="TUI 工具调用" loading="lazy" />
             </div>
             <div class="screenshot-caption">
               <div class="bento-card-title">工具调用</div>
-              <div class="bento-card-desc">追踪每个工具的参数、结果和执行状态</div>
+              <div class="bento-card-desc">参数 · 结果 · 执行状态</div>
             </div>
           </div>
 
+          <!-- Row 3: 2 + 4 -->
           <div class="glass-card bento-span-2 bento-screenshot reveal">
             <div class="screenshot-wrap">
               <img src={`${base}edge-screenshots/tui-sessions.png`} alt="TUI 会话列表" loading="lazy" />
@@ -2265,6 +2086,38 @@ const base = import.meta.env.BASE_URL;
             </div>
           </div>
 
+          <div class="glass-card bento-span-4 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/tui-logs.png`} alt="TUI 实时日志" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">实时日志</div>
+              <div class="bento-card-desc">Tail 模式 3 秒刷新 · 全文搜索 · 日志级别筛选</div>
+            </div>
+          </div>
+
+          <!-- Row 4: 3 + 3 -->
+          <div class="glass-card bento-span-3 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/tui-filter.png`} alt="TUI 数据源过滤" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">数据源过滤</div>
+              <div class="bento-card-desc">all / openclaw / hermes / claude-code</div>
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-3 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/tui-plugins.png`} alt="TUI 插件管理" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">插件管理</div>
+              <div class="bento-card-desc">安装 · 卸载 · 启用 · 禁用 · 重启</div>
+            </div>
+          </div>
+
+          <!-- Row 5: 2 + 2 + 2 -->
           <div class="glass-card bento-span-2 bento-screenshot reveal">
             <div class="screenshot-wrap">
               <img src={`${base}edge-screenshots/tui-events.png`} alt="TUI 事件列表" loading="lazy" />
@@ -2277,53 +2130,11 @@ const base = import.meta.env.BASE_URL;
 
           <div class="glass-card bento-span-2 bento-screenshot reveal">
             <div class="screenshot-wrap">
-              <img src={`${base}edge-screenshots/tui-logs.png`} alt="TUI 实时日志" loading="lazy" />
-            </div>
-            <div class="screenshot-caption">
-              <div class="bento-card-title">实时日志</div>
-              <div class="bento-card-desc">Tail 模式 3 秒刷新 · 全文搜索</div>
-            </div>
-          </div>
-
-          <div class="glass-card bento-span-4 bento-screenshot reveal">
-            <div class="screenshot-wrap">
-              <img src={`${base}edge-screenshots/tui-view-modes.png`} alt="TUI 3 种视图模式" loading="lazy" />
-            </div>
-            <div class="screenshot-caption">
-              <div class="bento-card-title">3 种视图模式</div>
-              <div class="bento-card-desc">
-                概览 → 详情 → 原始 JSON，<span class="highlight">按 Tab 一键切换</span>，从宏观到微观自由下钻
-              </div>
-            </div>
-          </div>
-
-          <div class="glass-card bento-span-2 bento-screenshot reveal">
-            <div class="screenshot-wrap">
-              <img src={`${base}edge-screenshots/tui-detail.png`} alt="TUI 详情视图" loading="lazy" />
+              <img src={`${base}edge-screenshots/tui-detail.png`} alt="TUI 详情下钻" loading="lazy" />
             </div>
             <div class="screenshot-caption">
               <div class="bento-card-title">详情下钻</div>
-              <div class="bento-card-desc">Tab 切换 · 概览 → 详情 → JSON</div>
-            </div>
-          </div>
-
-          <div class="glass-card bento-span-3 bento-screenshot reveal">
-            <div class="screenshot-wrap">
-              <img src={`${base}edge-screenshots/tui-filter.png`} alt="TUI 数据源过滤" loading="lazy" />
-            </div>
-            <div class="screenshot-caption">
-              <div class="bento-card-title">数据源过滤</div>
-              <div class="bento-card-desc">按 S 键切换：all / openclaw / hermes / claude-code</div>
-            </div>
-          </div>
-
-          <div class="glass-card bento-span-3 bento-screenshot reveal">
-            <div class="screenshot-wrap">
-              <img src={`${base}edge-screenshots/tui-plugins.png`} alt="TUI 插件管理" loading="lazy" />
-            </div>
-            <div class="screenshot-caption">
-              <div class="bento-card-title">插件管理</div>
-              <div class="bento-card-desc">安装、卸载、启用、禁用、重启，终端内完成全生命周期管理</div>
+              <div class="bento-card-desc">概览 → 详情 → JSON · Tab 一键切换</div>
             </div>
           </div>
         </div>
@@ -2470,11 +2281,12 @@ const base = import.meta.env.BASE_URL;
           </div>
         </div>
 
-        <!-- Bento Grid: 11 屏截图 -->
+        <!-- Bento Grid: 11 屏截图 — Apple 错落布局 -->
         <div class="bento-grid" style="margin-top: 48px;">
           <div class="bento-group-label reveal"><span>核心页面 · 11 Screens · 全可观测</span></div>
 
-          <div class="glass-card bento-span-3 bento-screenshot reveal">
+          <!-- Row 1: 5 + 1 (hero + narrow) -->
+          <div class="glass-card bento-span-5 bento-screenshot reveal">
             <div class="screenshot-wrap">
               <img src={`${base}edge-screenshots/gui-home-system.png`} alt="Home 系统状态" loading="lazy" />
             </div>
@@ -2484,6 +2296,17 @@ const base = import.meta.env.BASE_URL;
             </div>
           </div>
 
+          <div class="glass-card bento-span-1 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/gui-sessions.png`} alt="会话列表" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">会话列表</div>
+              <div class="bento-card-desc">开始时间 · 持续时长</div>
+            </div>
+          </div>
+
+          <!-- Row 2: 3 + 3 -->
           <div class="glass-card bento-span-3 bento-screenshot reveal">
             <div class="screenshot-wrap">
               <img src={`${base}edge-screenshots/gui-llm-calls.png`} alt="LLM 调用列表" loading="lazy" />
@@ -2491,36 +2314,6 @@ const base = import.meta.env.BASE_URL;
             <div class="screenshot-caption">
               <div class="bento-card-title">LLM 调用</div>
               <div class="bento-card-desc">TanStack Virtual 虚拟化表格 · Token 四维 · 费用 · AI Tag</div>
-            </div>
-          </div>
-
-          <div class="glass-card bento-span-2 bento-screenshot reveal">
-            <div class="screenshot-wrap">
-              <img src={`${base}edge-screenshots/gui-tool-calls.png`} alt="工具调用列表" loading="lazy" />
-            </div>
-            <div class="screenshot-caption">
-              <div class="bento-card-title">工具调用</div>
-              <div class="bento-card-desc">工具名 · 参数 · 结果 · 状态 · AI Tag</div>
-            </div>
-          </div>
-
-          <div class="glass-card bento-span-2 bento-screenshot reveal">
-            <div class="screenshot-wrap">
-              <img src={`${base}edge-screenshots/gui-sessions.png`} alt="会话列表" loading="lazy" />
-            </div>
-            <div class="screenshot-caption">
-              <div class="bento-card-title">会话列表</div>
-              <div class="bento-card-desc">开始时间 · 持续时长 · 结束原因</div>
-            </div>
-          </div>
-
-          <div class="glass-card bento-span-2 bento-screenshot reveal">
-            <div class="screenshot-wrap">
-              <img src={`${base}edge-screenshots/gui-events.png`} alt="事件列表" loading="lazy" />
-            </div>
-            <div class="screenshot-caption">
-              <div class="bento-card-title">事件列表</div>
-              <div class="bento-card-desc">10 种事件类型 · 数据源筛选</div>
             </div>
           </div>
 
@@ -2534,17 +2327,28 @@ const base = import.meta.env.BASE_URL;
             </div>
           </div>
 
-          <div class="glass-card bento-span-3 bento-screenshot reveal">
+          <!-- Row 3: 2 + 2 + 2 -->
+          <div class="glass-card bento-span-2 bento-screenshot reveal">
             <div class="screenshot-wrap">
-              <img src={`${base}edge-screenshots/gui-database.png`} alt="数据库管理" loading="lazy" />
+              <img src={`${base}edge-screenshots/gui-tool-calls.png`} alt="工具调用列表" loading="lazy" />
             </div>
             <div class="screenshot-caption">
-              <div class="bento-card-title">Database · 数据库管理</div>
-              <div class="bento-card-desc">统计 · 初始化 / 重置 / 删除 · inode 检测</div>
+              <div class="bento-card-title">工具调用</div>
+              <div class="bento-card-desc">工具名 · 参数 · 结果 · 状态 · AI Tag</div>
             </div>
           </div>
 
-          <div class="glass-card bento-span-3 bento-screenshot reveal">
+          <div class="glass-card bento-span-2 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/gui-events.png`} alt="事件列表" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">事件列表</div>
+              <div class="bento-card-desc">10 种事件类型 · 数据源筛选</div>
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-2 bento-screenshot reveal">
             <div class="screenshot-wrap">
               <img src={`${base}edge-screenshots/gui-logs.png`} alt="运行日志" loading="lazy" />
             </div>
@@ -2554,7 +2358,18 @@ const base = import.meta.env.BASE_URL;
             </div>
           </div>
 
-          <div class="glass-card bento-span-3 bento-screenshot reveal">
+          <!-- Row 4: 1 + 5 (narrow + wide, mirror of Row 1) -->
+          <div class="glass-card bento-span-1 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/gui-database.png`} alt="数据库管理" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">Database</div>
+              <div class="bento-card-desc">统计 · 初始化 / 重置 / 删除</div>
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-5 bento-screenshot reveal">
             <div class="screenshot-wrap">
               <img src={`${base}edge-screenshots/gui-plugins.png`} alt="插件管理" loading="lazy" />
             </div>
@@ -2563,17 +2378,227 @@ const base = import.meta.env.BASE_URL;
               <div class="bento-card-desc">安装 / 启用 / 禁用 / 重启 / 卸载全生命周期</div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="glass-card bento-span-6 bento-screenshot reveal">
-            <div class="screenshot-wrap">
-              <img src={`${base}edge-screenshots/gui-onboarding.png`} alt="7 步引导向导" loading="lazy" />
-            </div>
-            <div class="screenshot-caption">
-              <div class="bento-card-title">👋 7-Step Onboarding · 5 分钟完成部署</div>
-              <div class="bento-card-desc">
-                Welcome → Language → Theme → Palette → Setup → AI Model → Done · 自动检测并一键安装 3 个 Agent 插件
+    <!-- ════════════════════════════════════════════════════════════
+         AI Copilot 深度展示（Task 7）— 暗色 + 轮播
+         ════════════════════════════════════════════════════════════ -->
+    <section class="edge-section-dark relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-indigo-900/20 via-transparent to-transparent"></div>
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-indigo-500/10 rounded-full blur-3xl">
+      </div>
+
+      <div class="section-inner relative z-10">
+        <div class="reveal">
+          <div class="section-kicker">AI Copilot · NEW</div>
+          <h2 class="section-title">🤖 AI Copilot · <span class="text-gradient">操作 GUI 的智能体</span></h2>
+          <p class="section-subtitle">
+            ReAct Loop · 15 GUI 工具 · 屏幕感知 · 生产级 UX 控件<br />
+            <span style="font-size: 14px; color: var(--edge-text-tertiary);"
+              >真正在操作 GUI 的智能体 · 不只是聊天，而是直接操作界面</span
+            >
+          </p>
+        </div>
+
+        <!-- 轮播：3 个 slide -->
+        <div class="carousel reveal" data-carousel id="carousel-copilot">
+          <div class="carousel-track" data-carousel-track>
+            <!-- Slide 1: ReAct Loop -->
+            <div class="carousel-slide is-active" data-carousel-slide>
+              <div class="carousel-slide-inner">
+                <div class="carousel-text">
+                  <div class="carousel-eyebrow">ReAct Loop · 推理-行动循环</div>
+                  <h4 class="carousel-title">ReAct Loop 驱动，15 个 GUI 工具</h4>
+                  <p class="carousel-subtitle">
+                    最多 5 轮推理-行动循环，AbortController 可中断。屏幕感知能力让 AI
+                    真正理解当前界面状态，直接操控桌面。
+                  </p>
+                </div>
+                <div class="carousel-image">
+                  <img
+                    src={`${base}edge-screenshots/ai-copilot-dialogue.png`}
+                    alt="ReAct Loop 流程"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
+
+            <!-- Slide 2: 对话演示 -->
+            <div class="carousel-slide" data-carousel-slide>
+              <div class="carousel-slide-inner reverse">
+                <div class="carousel-text">
+                  <div class="carousel-eyebrow">Dialogue · 自然语言驱动</div>
+                  <h4 class="carousel-title">自然语言驱动，直接操控桌面界面</h4>
+                  <p class="carousel-subtitle">
+                    用户输入 → 工具调用 → GUI 操作 → 自然语言回复。从洞察到行动零距离，AI 直接操作界面而非仅给出建议。
+                  </p>
+                </div>
+                <div class="carousel-image">
+                  <img
+                    src={`${base}edge-screenshots/ai-copilot-dialogue.png`}
+                    alt="AI Copilot 对话示例"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3: UX 控制项 -->
+            <div class="carousel-slide" data-carousel-slide>
+              <div class="carousel-slide-inner">
+                <div class="carousel-text">
+                  <div class="carousel-eyebrow">Production UX · 生产级控件</div>
+                  <h4 class="carousel-title">不是玩具，是生产级工具</h4>
+                  <p class="carousel-subtitle">
+                    Context 会话保持 · 6 档 MaxTokens · Tools 开关 · Streaming tok/s 实时显示。6 个生产级 UX 控件，让 AI
+                    Copilot 真正可用于生产环境。
+                  </p>
+                </div>
+                <div class="carousel-image">
+                  <img
+                    src={`${base}edge-screenshots/gui-ai-copilot.png`}
+                    alt="AI Copilot UX 控件"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="carousel-arrow prev" data-carousel-prev aria-label="上一个">‹</button>
+          <button class="carousel-arrow next" data-carousel-next aria-label="下一个">›</button>
+          <div class="carousel-dots">
+            <button class="carousel-dot is-active" data-carousel-dot aria-label="第 1 张"></button>
+            <button class="carousel-dot" data-carousel-dot aria-label="第 2 张"></button>
+            <button class="carousel-dot" data-carousel-dot aria-label="第 3 张"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         AI-Native 能力轮播（Task 8）
+         ════════════════════════════════════════════════════════════ -->
+    <section class="edge-section-alt">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="section-kicker">AI-Native · NEW</div>
+          <h2 class="section-title">🧠 AI-Native Capabilities · <span class="text-gradient">让数据自己说话</span></h2>
+          <p class="section-subtitle">
+            异常检测 · 成本模拟 · 每日简报 · Spotlight<br />
+            <span style="font-size: 14px; color: var(--edge-text-tertiary);"
+              >4 个 AI 模块深度集成 · 从数据展示到智能洞察</span
+            >
+          </p>
+        </div>
+
+        <div class="narrative-stage reveal">
+          <div class="narrative-stage-label">AI-Native · 智能洞察</div>
+          <h3 class="narrative-stage-title">不只是展示数据，<span class="text-gradient">是理解数据</span></h3>
+          <p class="narrative-stage-desc">4 个 AI 模块深度集成，让每一次数据交互都有 AI 加持。</p>
+        </div>
+
+        <div class="carousel reveal" data-carousel id="carousel-ai-native">
+          <div class="carousel-track" data-carousel-track>
+            <!-- Slide 1: 异常检测 -->
+            <div class="carousel-slide is-active" data-carousel-slide>
+              <div class="carousel-slide-inner">
+                <div class="carousel-text">
+                  <div class="carousel-eyebrow">⚠️ AiAnomalyDetector</div>
+                  <h4 class="carousel-title">异常检测，自动标记风险</h4>
+                  <p class="carousel-subtitle">
+                    规则 + AI 双引擎异常检测，三级严重度，自动诊断根因。智能识别风险调用，无需人工巡检。
+                  </p>
+                </div>
+                <div class="carousel-image">
+                  <img
+                    src={`${base}edge-screenshots/gui-ai-anomaly.png`}
+                    alt="AI 异常检测"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2: 每日简报 -->
+            <div class="carousel-slide" data-carousel-slide>
+              <div class="carousel-slide-inner reverse">
+                <div class="carousel-text">
+                  <div class="carousel-eyebrow">📋 AiDailyBrief</div>
+                  <h4 class="carousel-title">每日简报，昨日数据一目了然</h4>
+                  <p class="carousel-subtitle">
+                    AI 自动生成 Markdown 摘要：昨日会话数、Token 消耗、费用、Top 模型、Top
+                    工具、异常事件，一眼掌握全局。
+                  </p>
+                </div>
+                <div class="carousel-image">
+                  <img
+                    src={`${base}edge-screenshots/gui-ai-daily-brief.png`}
+                    alt="AI 每日简报"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3: 成本模拟 -->
+            <div class="carousel-slide" data-carousel-slide>
+              <div class="carousel-slide-inner">
+                <div class="carousel-text">
+                  <div class="carousel-eyebrow">💰 AiCostSimulator</div>
+                  <h4 class="carousel-title">成本模拟，40+ 模型实时定价</h4>
+                  <p class="carousel-subtitle">
+                    6 模型成本对比，What-if 场景模拟，AI 分析节省潜力。一键切换模型，立刻看到成本变化。
+                  </p>
+                </div>
+                <div class="carousel-image">
+                  <img
+                    src={`${base}edge-screenshots/gui-ai-cost-simulator.png`}
+                    alt="AI 成本模拟器"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 4: AI Spotlight -->
+            <div class="carousel-slide" data-carousel-slide>
+              <div class="carousel-slide-inner reverse">
+                <div class="carousel-text">
+                  <div class="carousel-eyebrow">🔮 AiSpotlight</div>
+                  <h4 class="carousel-title">AI Spotlight，智能聚焦关键事件</h4>
+                  <p class="carousel-subtitle">
+                    全局 ⌘K 唤起，NL-to-Filter 自然语言过滤，多面板模式。智能聚焦关键事件，快速定位异常。
+                  </p>
+                </div>
+                <div class="carousel-image">
+                  <img
+                    src={`${base}edge-screenshots/gui-ai-spotlight.png`}
+                    alt="AI Spotlight"
+                    class="w-full carousel-screenshot"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="carousel-arrow prev" data-carousel-prev aria-label="上一个">‹</button>
+          <button class="carousel-arrow next" data-carousel-next aria-label="下一个">›</button>
+          <div class="carousel-dots">
+            <button class="carousel-dot is-active" data-carousel-dot aria-label="第 1 张"></button>
+            <button class="carousel-dot" data-carousel-dot aria-label="第 2 张"></button>
+            <button class="carousel-dot" data-carousel-dot aria-label="第 3 张"></button>
+            <button class="carousel-dot" data-carousel-dot aria-label="第 4 张"></button>
           </div>
         </div>
       </div>
@@ -2638,6 +2663,201 @@ const base = import.meta.env.BASE_URL;
             <span class="value-icon">💻</span>
             <div class="value-title">跨平台支持</div>
             <div class="value-desc">macOS (ARM64/x64) + Linux (ARM64/x64) · 4 种架构自动识别</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         核心能力 Bento Grid（Task 5）
+         ════════════════════════════════════════════════════════════ -->
+    <section class="edge-section">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="section-kicker">Core Capabilities</div>
+          <h2 class="section-title">重新定义<span class="text-gradient">桌面可观测</span></h2>
+          <p class="section-subtitle">AI 原生架构，从数据采集到智能洞察，每一个环节都精心打磨</p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- AI Copilot — 大卡片横跨两列 -->
+          <div class="glass-card bento-span-4 reveal">
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20"
+              >
+                <svg
+                  class="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
+                  ></path></svg
+                >
+              </div>
+              <span class="text-xs font-semibold tracking-[0.1em] uppercase" style="color: var(--edge-primary);"
+                >AI Copilot</span
+              >
+            </div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-3 tracking-tight" style="color: var(--edge-text-primary);">
+              真正操作 GUI 的智能体
+            </h3>
+            <p class="leading-relaxed mb-6 max-w-lg" style="color: var(--edge-text-secondary);">
+              ReAct Loop 驱动，15 个 GUI 工具，屏幕感知能力。不只是聊天，而是直接操控桌面界面。
+            </p>
+
+            <!-- ReAct Flow -->
+            <div class="copilot-flow">
+              <div class="copilot-flow-step">
+                <div class="step-num">1</div>
+                <div class="step-label">User Prompt</div>
+                <div class="step-sub">用户输入</div>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="copilot-flow-step">
+                <div class="step-num">2</div>
+                <div class="step-label">LLM 推理</div>
+                <div class="step-sub">node-llama-cpp</div>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="copilot-flow-step">
+                <div class="step-num">3</div>
+                <div class="step-label">Tool Call</div>
+                <div class="step-sub">parse 4 formats</div>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="copilot-flow-step">
+                <div class="step-num">4</div>
+                <div class="step-label">GUI 执行</div>
+                <div class="step-sub">IPC → Renderer</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Local First -->
+          <div class="glass-card bento-span-2 reveal">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 mb-4"
+            >
+              <svg
+                class="w-5 h-5 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                ></path></svg
+              >
+            </div>
+            <h3 class="text-xl font-bold mb-2 tracking-tight" style="color: var(--edge-text-primary);">
+              100% 本地优先
+            </h3>
+            <p class="text-sm leading-relaxed mb-6" style="color: var(--edge-text-secondary);">
+              数据不出 Mac，隐私零妥协。零云端依赖，100% 离线可用。
+            </p>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-success);"></span>
+                <span class="text-sm" style="color: var(--edge-text-secondary);">SQLite 本地存储</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-success);"></span>
+                <span class="text-sm" style="color: var(--edge-text-secondary);">零遥测上报</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-success);"></span>
+                <span class="text-sm" style="color: var(--edge-text-secondary);">Universal Binary</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI-Native -->
+          <div class="glass-card bento-span-2 reveal">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/20 mb-4"
+            >
+              <svg
+                class="w-5 h-5 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path></svg
+              >
+            </div>
+            <h3 class="text-xl font-bold mb-2 tracking-tight" style="color: var(--edge-text-primary);">
+              AI-Native 洞察
+            </h3>
+            <p class="text-sm leading-relaxed mb-6" style="color: var(--edge-text-secondary);">
+              永远在线的智能分析，让数据自己说话。
+            </p>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-warning);"></span>
+                <span class="text-sm" style="color: var(--edge-text-secondary);">异常检测</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-warning);"></span>
+                <span class="text-sm" style="color: var(--edge-text-secondary);">每日简报</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-warning);"></span>
+                <span class="text-sm" style="color: var(--edge-text-secondary);">成本模拟</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--edge-warning);"></span>
+                <span class="text-sm" style="color: var(--edge-text-secondary);">AI Spotlight</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tech Stack — 横跨两列 -->
+          <div class="glass-card bento-span-4 reveal">
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center shadow-lg shadow-purple-500/20"
+              >
+                <svg
+                  class="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"></path></svg
+                >
+              </div>
+              <span class="text-xs font-semibold tracking-[0.1em] uppercase" style="color: var(--edge-accent);"
+                >Tech Stack</span
+              >
+            </div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-3 tracking-tight" style="color: var(--edge-text-primary);">
+              生产级技术栈
+            </h3>
+            <p class="leading-relaxed mb-6 max-w-lg" style="color: var(--edge-text-secondary);">
+              Electron 37 + React 19 + Vite 6 + Tailwind CSS 4，llama.cpp 本地推理，Zustand 5 状态管理。
+            </p>
+            <div class="tech-stack-bar" style="justify-content: flex-start;">
+              <div class="tech-stack-item"><span class="ts-icon">⚡</span> Electron 37</div>
+              <div class="tech-stack-item"><span class="ts-icon">⚛</span> React 19</div>
+              <div class="tech-stack-item"><span class="ts-icon">📦</span> Vite 6</div>
+              <div class="tech-stack-item"><span class="ts-icon">🎨</span> Tailwind CSS 4</div>
+              <div class="tech-stack-item"><span class="ts-icon">🦙</span> llama.cpp</div>
+              <div class="tech-stack-item"><span class="ts-icon">🐻</span> Zustand 5</div>
+              <div class="tech-stack-item"><span class="ts-icon">🗃</span> SQLite</div>
+              <div class="tech-stack-item"><span class="ts-icon">📐</span> TanStack Virtual</div>
+              <div class="tech-stack-item"><span class="ts-icon">🎬</span> Framer Motion</div>
+            </div>
           </div>
         </div>
       </div>
@@ -3040,6 +3260,7 @@ const base = import.meta.env.BASE_URL;
         lb.dataset.ready = '1';
 
         const closeBtn = lb.querySelector('.edge-lightbox-close');
+        let closeTimer = 0;
 
         // Extract text from carousel slides
         document.querySelectorAll('.carousel-slide').forEach(function (slide) {
@@ -3064,23 +3285,40 @@ const base = import.meta.env.BASE_URL;
         });
 
         function open(src, alt, eyebrow, title, desc) {
-          lbImg.src = src;
+          clearTimeout(closeTimer);
           lbImg.alt = alt || '';
           lbEyebrow.textContent = eyebrow || '';
           lbEyebrow.style.display = eyebrow ? '' : 'none';
           lbTitle.textContent = title || '';
           lbDesc.textContent = desc || '';
+
+          // Hide image until preloaded to avoid broken-image icon
+          lbImg.style.opacity = '0';
+          lbImg.removeAttribute('src');
+
           requestAnimationFrame(function () {
             lb.classList.add('is-open');
           });
           document.body.style.overflow = 'hidden';
+
+          // Preload image; only set src on lightbox img after it's cached
+          const preloader = new Image();
+          preloader.onload = function () {
+            lbImg.src = src;
+            lbImg.style.opacity = '';
+          };
+          preloader.onerror = function () {
+            lbImg.src = src;
+            lbImg.style.opacity = '';
+          };
+          preloader.src = src;
         }
 
         function close() {
           lb.classList.remove('is-open');
           document.body.style.overflow = '';
-          setTimeout(function () {
-            lbImg.src = '';
+          closeTimer = setTimeout(function () {
+            lbImg.removeAttribute('src');
           }, 500);
         }
 
@@ -3091,21 +3329,21 @@ const base = import.meta.env.BASE_URL;
         });
 
         // Bind click on all screenshot images
-        document.querySelectorAll('.carousel-screenshot, .bento-screenshot img').forEach(function (img) {
-          if (img.dataset.lbBound) return;
-          img.dataset.lbBound = '1';
-          img.style.cursor = 'zoom-in';
-          img.addEventListener('click', function (e) {
-            e.stopPropagation();
-            open(
-              img.src,
-              img.alt,
-              img.dataset.lbEyebrow || '',
-              img.dataset.lbTitle || img.alt || '',
-              img.dataset.lbDesc || ''
-            );
+        document
+          .querySelectorAll('.carousel-screenshot, .bento-screenshot img, .highlight-card img')
+          .forEach(function (img) {
+            if (img.dataset.lbBound) return;
+            img.dataset.lbBound = '1';
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', function (e) {
+              e.stopPropagation();
+              const card = img.closest('.highlight-card');
+              const title = img.dataset.lbTitle || (card && card.dataset.lbTitle) || img.alt || '';
+              const desc = img.dataset.lbDesc || (card && card.dataset.lbDesc) || '';
+              const eyebrow = img.dataset.lbEyebrow || '';
+              open(img.src, img.alt, eyebrow, title, desc);
+            });
           });
-        });
       }
 
       function boot() {

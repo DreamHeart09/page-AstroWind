@@ -1,28 +1,136 @@
 ---
-import { Icon } from 'astro-icon/components';
-
 import { UI } from 'astrowind:config';
 
 export interface Props {
   label?: string;
   class?: string;
-  iconClass?: string;
-  iconName?: string;
 }
 
-const {
-  label = 'Toggle between Dark and Light mode',
-  class:
-    className = 'text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center',
-  iconClass = 'w-6 h-6',
-  iconName = 'tabler:sun',
-} = Astro.props;
+const { label = 'Toggle between Dark and Light mode' } = Astro.props;
 ---
 
 {
   !(UI.theme && UI.theme.endsWith(':only')) && (
-    <button type="button" class={className} aria-label={label} data-aw-toggle-color-scheme>
-      <Icon name={iconName} class={iconClass} />
+    <button type="button" class="theme-toggle" aria-label={label} data-aw-toggle-color-scheme>
+      <span class="theme-toggle-bg" />
+      <span class="theme-toggle-icon-wrap">
+        <span class="theme-toggle-sun">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </span>
+        <span class="theme-toggle-moon">
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </span>
+      </span>
     </button>
   )
 }
+
+<style>
+  .theme-toggle {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0;
+  }
+  .theme-toggle-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0);
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .theme-toggle:hover .theme-toggle-bg {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+  :global(.dark) .theme-toggle:hover .theme-toggle-bg {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .theme-toggle:active .theme-toggle-bg {
+    transform: scale(0.94);
+    transition-duration: 0.1s;
+  }
+  .theme-toggle-icon-wrap {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .theme-toggle-sun,
+  .theme-toggle-moon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition:
+      opacity 0.3s ease,
+      transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .theme-toggle-sun {
+    color: var(--edge-text-secondary);
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  :global(.dark) .theme-toggle-sun {
+    opacity: 0;
+    transform: scale(0.4) rotate(120deg);
+  }
+  .theme-toggle-moon {
+    color: var(--edge-text-secondary);
+    opacity: 0;
+    transform: scale(0.4) rotate(-120deg);
+  }
+  :global(.dark) .theme-toggle-moon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+</style>

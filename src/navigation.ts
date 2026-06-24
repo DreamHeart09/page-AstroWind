@@ -10,7 +10,7 @@ export const headerData = {
           href: getPermalink('/web'),
         },
         {
-          text: 'Edge 桌面版 (macOS)',
+          text: 'Edge 桌面版',
           href: getPermalink('/edge'),
           isNew: true,
         },
@@ -88,7 +88,7 @@ export const footerData = {
       title: '产品',
       links: [
         { text: 'WEB / Agent 版本', href: getPermalink('/web') },
-        { text: 'Edge 桌面版 (macOS)', href: getPermalink('/edge') },
+        { text: 'Edge 桌面版', href: getPermalink('/edge') },
       ],
     },
     {
