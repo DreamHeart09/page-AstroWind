@@ -2,11 +2,11 @@
 
 ## 📦 文件说明
 
-| 文件 | 说明 |
-|------|------|
-| `aigov-insight-page.tar.gz` | Docker 镜像文件 |
-| `aigov-insight-page.tar.gz.sha256` | SHA256 校验文件 |
-| `docker-compose.yml` | Docker Compose 配置文件（可选） |
+| 文件                               | 说明                            |
+| ---------------------------------- | ------------------------------- |
+| `aigov-insight-page.tar.gz`        | Docker 镜像文件                 |
+| `aigov-insight-page.tar.gz.sha256` | SHA256 校验文件                 |
+| `docker-compose.yml`               | Docker Compose 配置文件（可选） |
 
 ## 🚀 快速部署
 
@@ -75,4 +75,3 @@ docker run -d -p 9000:8080 --name aigov-insight-page aigov-insight-page:v0.3.0
 # ports:
 #   - 9000:8080
 ```
-

@@ -25,10 +25,12 @@ No new files created. All existing screenshots in `public/edge-screenshots/` are
 ### Task 1: Hero Section — Cinematic Product Showcase
 
 **Files:**
+
 - Modify: `src/pages/edge.astro:1-200` (frontmatter + hero section)
 
 **What changes:**
 Replace the current text-only hero (which has no product screenshot, just text and CTA buttons) with a cinematic Apple-style hero that:
+
 - Shows the product name "Edge" as a massive gradient headline
 - Uses a short, punchy subtitle (not a paragraph)
 - Displays the edge-hero screenshot (`edge-screenshots/tui-hero.png` or a mockup) inside a mac-window frame
@@ -36,6 +38,7 @@ Replace the current text-only hero (which has no product screenshot, just text a
 - Keeps the same CTA buttons but with more refined styling
 
 **Design specs:**
+
 ```
 - Full-width section, min-height: 100vh minus header
 - Background: white dark:bg-[#050508]
@@ -48,6 +51,7 @@ Replace the current text-only hero (which has no product screenshot, just text a
 ```
 
 **Key CSS to carry over from current file:**
+
 - `.mac-window`, `.mac-titlebar`, `.mac-dot` — already exist, keep as-is
 - `.edge-gradient-text` — already exists, keep as-is
 - `.hero-glow` — already exists, keep as-is
@@ -60,18 +64,21 @@ Replace the current text-only hero (which has no product screenshot, just text a
 ### Task 2: Bento Grid — Core Capabilities Showcase
 
 **Files:**
+
 - Modify: `src/pages/edge.astro` — replace §4b AI-Native + §4c Desktop panels + §4d Performance sections
 
 **What changes:**
 Replace the current 3 separate sections (AI-Native 2x2 grid, Desktop panels 2-col, Performance stats) with ONE unified Bento Grid section. This is the visual centerpiece of the page.
 
 **Layout — 4-column Bento Grid (responsive):**
+
 ```
 Row 1: [AI Copilot — spans 2 cols, tall]  [AI-Native Insights — spans 1 col]  [Cost Simulator — spans 1 col]
 Row 2: [Performance — spans 1 col]  [Plugin Ecosystem — spans 1 col]  [Local-First — spans 2 cols]
 ```
 
 **Each Bento card design:**
+
 ```
 - Background: white/50 dark:bg-slate-900/50, backdrop-blur
 - Border: 1px solid rgba(255,255,255,0.08) dark / rgba(0,0,0,0.06) light
@@ -128,12 +135,14 @@ Row 2: [Performance — spans 1 col]  [Plugin Ecosystem — spans 1 col]  [Local
 ### Task 3: "Why Edge" — Value Proposition Section
 
 **Files:**
+
 - Modify: `src/pages/edge.astro` — replace current §4d competitive advantages checklist
 
 **What changes:**
 Replace the flat checklist of 8 competitive advantages with a visually striking Apple-style "Why Edge" section using large typography + visual emphasis.
 
 **Layout:**
+
 ```
 Dark section (bg-slate-900 / bg-[#050508])
 Full-width, centered content
@@ -146,6 +155,7 @@ Large headline: "为什么选择 Edge？"
 ```
 
 **The 3 pillars:**
+
 1. **macOS 原生体验** — Glass UI, 13 color schemes, Universal Binary, native notifications
 2. **AI 原生架构** — ReAct Copilot, AI anomaly detection, cost simulation, daily briefing
 3. **隐私至上** — Local-first, zero telemetry, single SQLite file, 100% offline
@@ -157,16 +167,19 @@ Large headline: "为什么选择 Edge？"
 ### Task 4: Plugin Ecosystem Showcase
 
 **Files:**
+
 - Modify: `src/pages/edge.astro` — replace current §6 plugins section
 
 **What changes:**
 Upgrade the current 3 plugin cards (OpenClaw, Hermes, Claude Code) from simple glass cards to a more visual showcase with:
+
 - Horizontal card layout on desktop (3 cards in a row)
 - Each card has a gradient icon, name, subtitle, feature list as tags, and a small screenshot
 - Subtle border glow on hover matching the plugin's color theme
 - Keep existing screenshots from `edge-screenshots/`
 
 **Card design:**
+
 ```
 - OpenClaw: emerald→teal gradient icon, 7 Hook Types · 2 Agent Tools · MCP Server
 - Hermes: violet→purple gradient icon, Skills · Agents · Hooks · Monitors
@@ -180,6 +193,7 @@ Upgrade the current 3 plugin cards (OpenClaw, Hermes, Claude Code) from simple g
 ### Task 5: Architecture Diagram Section
 
 **Files:**
+
 - Modify: `src/pages/edge.astro` — replace current §8 architecture text block
 
 **What changes:**
@@ -202,9 +216,11 @@ Use a horizontal flow diagram built with CSS flexbox/grid, colored boxes with ar
 ### Task 6: Quick Start + CTA Refinement
 
 **Files:**
+
 - Modify: `src/pages/edge.astro` — replace §9 Quick Start + §10 CTA
 
 **What changes:**
+
 - Quick Start: Keep the 2 install options (DMG + TUI) but restyle to match the Bento Grid card aesthetic
 - CTA: Replace the current simple centered text with a full-width gradient background section (indigo→purple), with large headline "准备好掌控你的 AI Agent 了吗？" and download button
 - Add a subtle floating edge-logo image or icon in the CTA background
@@ -216,9 +232,11 @@ Use a horizontal flow diagram built with CSS flexbox/grid, colored boxes with ar
 ### Task 7: Animation & Scroll Reveal Polish
 
 **Files:**
+
 - Modify: `src/pages/edge.astro` — update `<style>` block and `<script>` block
 
 **What changes:**
+
 - Keep existing Intersection Observer script (it works well)
 - Add `.reveal-group` class for staggered children animation (each child delays by 100ms)
 - Add subtle hover animations for Bento cards (scale 1.01, shadow increase)
@@ -241,13 +259,12 @@ Use a horizontal flow diagram built with CSS flexbox/grid, colored boxes with ar
 
 ## Section-by-Section Final Layout
 
-| # | Section | Style | Key Visual |
-|---|---------|-------|------------|
-| 1 | Hero | Cinematic, full-viewport | Product screenshot in mac-window + glow orbs |
-| 2 | Bento Grid | 4-col responsive grid | 6 feature cards with icons, stats, mini-visuals |
-| 3 | Why Edge | Dark section, 3-col | Large icons + bold titles + key differentiators |
-| 4 | Plugin Ecosystem | Light section, 3-col cards | Gradient icons + screenshots + feature tags |
-| 5 | Architecture | Light section, centered | CSS-only flow diagram |
-| 6 | Quick Start | Dark section, 2-col cards | Install commands in code blocks |
-| 7 | CTA | Full-width gradient | Bold headline + download button |
-
+| #   | Section          | Style                      | Key Visual                                      |
+| --- | ---------------- | -------------------------- | ----------------------------------------------- |
+| 1   | Hero             | Cinematic, full-viewport   | Product screenshot in mac-window + glow orbs    |
+| 2   | Bento Grid       | 4-col responsive grid      | 6 feature cards with icons, stats, mini-visuals |
+| 3   | Why Edge         | Dark section, 3-col        | Large icons + bold titles + key differentiators |
+| 4   | Plugin Ecosystem | Light section, 3-col cards | Gradient icons + screenshots + feature tags     |
+| 5   | Architecture     | Light section, centered    | CSS-only flow diagram                           |
+| 6   | Quick Start      | Dark section, 2-col cards  | Install commands in code blocks                 |
+| 7   | CTA              | Full-width gradient        | Bold headline + download button                 |

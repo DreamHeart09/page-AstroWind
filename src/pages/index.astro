@@ -14,39 +14,94 @@ const base = import.meta.env.BASE_URL;
 <Layout metadata={metadata}>
   <style>
     @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-30px) rotate(2deg); }
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-30px) rotate(2deg);
+      }
     }
     @keyframes pulse-glow {
-      0%, 100% { opacity: 0.4; transform: scale(1); filter: blur(60px); }
-      50% { opacity: 0.7; transform: scale(1.1); filter: blur(80px); }
+      0%,
+      100% {
+        opacity: 0.4;
+        transform: scale(1);
+        filter: blur(60px);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+        filter: blur(80px);
+      }
     }
     @keyframes gradient-shift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
     }
     @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
     }
     @keyframes fade-in-up {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     @keyframes scale-in {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
     @keyframes breathe {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.05); opacity: 0.7; }
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.7;
+      }
     }
-    .animate-float { animation: float 8s ease-in-out infinite; }
-    .animate-pulse-glow { animation: pulse-glow 6s ease-in-out infinite; }
-    .animate-gradient { background-size: 200% 200%; animation: gradient-shift 8s ease infinite; }
-    .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
-    .animate-scale-in { animation: scale-in 0.6s ease-out forwards; }
-    .animate-breathe { animation: breathe 4s ease-in-out infinite; }
+    .animate-float {
+      animation: float 8s ease-in-out infinite;
+    }
+    .animate-pulse-glow {
+      animation: pulse-glow 6s ease-in-out infinite;
+    }
+    .animate-gradient {
+      background-size: 200% 200%;
+      animation: gradient-shift 8s ease infinite;
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.8s ease-out forwards;
+    }
+    .animate-scale-in {
+      animation: scale-in 0.6s ease-out forwards;
+    }
+    .animate-breathe {
+      animation: breathe 4s ease-in-out infinite;
+    }
 
     .text-gradient {
       background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #14b8a6 100%);
@@ -55,12 +110,12 @@ const base = import.meta.env.BASE_URL;
       background-clip: text;
     }
     .hero-badge {
-      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.8) 100%);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
     :global(.dark) .hero-badge {
-      background: linear-gradient(135deg, rgba(30,41,59,0.8) 0%, rgba(15,23,42,0.6) 100%);
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.6) 100%);
     }
     .hero-button-primary {
       background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #14b8a6 100%);
@@ -70,29 +125,34 @@ const base = import.meta.env.BASE_URL;
     .hero-button-primary:hover {
       background-position: 100% 50%;
       transform: translateY(-2px);
-      box-shadow: 0 20px 40px -12px rgba(59,130,246,0.4);
+      box-shadow: 0 20px 40px -12px rgba(59, 130, 246, 0.4);
     }
     .hero-button-secondary {
-      background: rgba(255,255,255,0.8);
+      background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     :global(.dark) .hero-button-secondary {
-      background: linear-gradient(135deg, rgba(30,41,59,0.7) 0%, rgba(15,23,42,0.5) 100%);
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.5) 100%);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(6,182,212,0.2);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
     .hero-button-secondary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
     }
     :global(.dark) .hero-button-secondary:hover {
-      background: linear-gradient(135deg, rgba(30,41,59,0.85) 0%, rgba(15,23,42,0.7) 100%);
-      border-color: rgba(6,182,212,0.4);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 40px rgba(6,182,212,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.7) 100%);
+      border-color: rgba(6, 182, 212, 0.4);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(6, 182, 212, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
     .glow-orb {
       position: absolute;
@@ -109,46 +169,52 @@ const base = import.meta.env.BASE_URL;
       padding: 2.5rem;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .product-card:hover { transform: translateY(-4px); }
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
 
     .tech-card {
-      background: rgba(255,255,255,0.6);
+      background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255,255,255,0.5);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       border-radius: 1.25rem;
       padding: 2rem;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     :global(.dark) .tech-card {
-      background: rgba(15,23,42,0.5);
-      border-color: rgba(255,255,255,0.06);
+      background: rgba(15, 23, 42, 0.5);
+      border-color: rgba(255, 255, 255, 0.06);
     }
     .tech-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 60px -12px rgba(0,0,0,0.12);
+      box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.12);
     }
     :global(.dark) .tech-card:hover {
-      box-shadow: 0 20px 60px -12px rgba(0,0,0,0.4);
+      box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.4);
     }
 
     .metric-card {
       text-align: center;
       padding: 1.5rem 1rem;
       border-radius: 1rem;
-      background: rgba(255,255,255,0.6);
+      background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.5);
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
     :global(.dark) .metric-card {
-      background: rgba(15,23,42,0.5);
-      border-color: rgba(255,255,255,0.06);
+      background: rgba(15, 23, 42, 0.5);
+      border-color: rgba(255, 255, 255, 0.06);
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .animate-float, .animate-pulse-glow, .animate-gradient,
-      .animate-fade-in-up, .animate-scale-in, .animate-breathe {
+      .animate-float,
+      .animate-pulse-glow,
+      .animate-gradient,
+      .animate-fade-in-up,
+      .animate-scale-in,
+      .animate-breathe {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
@@ -159,40 +225,84 @@ const base = import.meta.env.BASE_URL;
   <!-- ═══ HERO ═══ -->
   <section class="relative pt-24 pb-20 md:pt-36 md:pb-32 lg:pt-44 lg:pb-40 overflow-visible">
     <div class="absolute inset-0 pointer-events-none overflow-visible">
-      <div class="glow-orb w-[700px] h-[700px] -top-40 left-1/4 bg-gradient-to-br from-blue-200/50 via-cyan-100/30 to-transparent dark:from-blue-600/20 dark:via-cyan-500/10"></div>
-      <div class="glow-orb w-[600px] h-[600px] top-1/3 -right-20 bg-gradient-to-bl from-cyan-200/40 via-teal-100/20 to-transparent dark:from-cyan-600/15 dark:via-teal-500/8" style="animation-delay: 2s;"></div>
-      <div class="glow-orb w-[500px] h-[500px] -bottom-20 left-1/3 bg-gradient-to-tr from-teal-200/30 via-emerald-100/15 to-transparent dark:from-teal-600/10 dark:via-emerald-500/5" style="animation-delay: 4s;"></div>
+      <div
+        class="glow-orb w-[700px] h-[700px] -top-40 left-1/4 bg-gradient-to-br from-blue-200/50 via-cyan-100/30 to-transparent dark:from-blue-600/20 dark:via-cyan-500/10"
+      >
+      </div>
+      <div
+        class="glow-orb w-[600px] h-[600px] top-1/3 -right-20 bg-gradient-to-bl from-cyan-200/40 via-teal-100/20 to-transparent dark:from-cyan-600/15 dark:via-teal-500/8"
+        style="animation-delay: 2s;"
+      >
+      </div>
+      <div
+        class="glow-orb w-[500px] h-[500px] -bottom-20 left-1/3 bg-gradient-to-tr from-teal-200/30 via-emerald-100/15 to-transparent dark:from-teal-600/10 dark:via-emerald-500/5"
+        style="animation-delay: 4s;"
+      >
+      </div>
       <div class="absolute top-20 left-10 w-2 h-2 rounded-full bg-blue-400/60 dark:bg-blue-500/40 animate-pulse"></div>
-      <div class="absolute top-40 right-20 w-1.5 h-1.5 rounded-full bg-cyan-400/60 dark:bg-cyan-500/40 animate-pulse" style="animation-delay: 1s;"></div>
-      <div class="absolute bottom-32 left-1/4 w-1 h-1 rounded-full bg-teal-400/60 dark:bg-teal-500/40 animate-pulse" style="animation-delay: 2s;"></div>
+      <div
+        class="absolute top-40 right-20 w-1.5 h-1.5 rounded-full bg-cyan-400/60 dark:bg-cyan-500/40 animate-pulse"
+        style="animation-delay: 1s;"
+      >
+      </div>
+      <div
+        class="absolute bottom-32 left-1/4 w-1 h-1 rounded-full bg-teal-400/60 dark:bg-teal-500/40 animate-pulse"
+        style="animation-delay: 2s;"
+      >
+      </div>
     </div>
 
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="animate-fade-in-up opacity-0" style="animation-delay: 0.1s;">
-        <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full hero-badge border border-blue-100/80 dark:border-cyan-800/50 mb-10 md:mb-14 shadow-lg shadow-blue-500/5 dark:shadow-cyan-500/5">
+        <div
+          class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full hero-badge border border-blue-100/80 dark:border-cyan-800/50 mb-10 md:mb-14 shadow-lg shadow-blue-500/5 dark:shadow-cyan-500/5"
+        >
           <span class="relative flex h-2.5 w-2.5">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-gradient-to-r from-blue-500 to-cyan-500"></span>
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 opacity-75"
+            ></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-gradient-to-r from-blue-500 to-cyan-500"
+            ></span>
           </span>
-          <span class="text-sm font-semibold tracking-[0.15em] text-gradient uppercase">Eversec AI Governance Insight</span>
+          <span class="text-sm font-semibold tracking-[0.15em] text-gradient uppercase"
+            >Eversec AI Governance Insight</span
+          >
         </div>
       </div>
 
-      <h1 class="animate-fade-in-up opacity-0 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight dark:text-white mb-6 md:mb-8 leading-[1.1]" style="animation-delay: 0.2s;">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-400 to-purple-500 bg-[length:200%_auto] animate-gradient">AI 世界的「全息沙盘」</span>
+      <h1
+        class="animate-fade-in-up opacity-0 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight dark:text-white mb-6 md:mb-8 leading-[1.1]"
+        style="animation-delay: 0.2s;"
+      >
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-400 to-purple-500 bg-[length:200%_auto] animate-gradient"
+          >AI 世界的「全息沙盘」</span
+        >
       </h1>
 
-      <p class="animate-fade-in-up opacity-0 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight dark:text-white mb-8 md:mb-12 leading-tight" style="animation-delay: 0.3s;">
+      <p
+        class="animate-fade-in-up opacity-0 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight dark:text-white mb-8 md:mb-12 leading-tight"
+        style="animation-delay: 0.3s;"
+      >
         让 AI 的每一次"思考"与"行动"<br class="hidden sm:block" />
         <span class="text-slate-500 dark:text-slate-400 font-normal">全程透明、可溯、可控</span>
       </p>
 
-      <p class="animate-fade-in-up opacity-0 text-lg md:text-xl lg:text-2xl text-slate-500 dark:text-slate-400 max-w-4xl mx-auto leading-relaxed mb-12 md:mb-16" style="animation-delay: 0.4s;">
-        <span class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-400 to-purple-500 bg-[length:200%_auto] animate-gradient">AIGov Insight</span> 是恒安嘉新打造的全球领先 AI 自主智能体全链路可观测平台<br class="hidden md:block" />
+      <p
+        class="animate-fade-in-up opacity-0 text-lg md:text-xl lg:text-2xl text-slate-500 dark:text-slate-400 max-w-4xl mx-auto leading-relaxed mb-12 md:mb-16"
+        style="animation-delay: 0.4s;"
+      >
+        <span
+          class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-400 to-purple-500 bg-[length:200%_auto] animate-gradient"
+          >AIGov Insight</span
+        > 是恒安嘉新打造的全球领先 AI 自主智能体全链路可观测平台<br class="hidden md:block" />
         覆盖 <span class="font-medium text-slate-700 dark:text-slate-300">LLM / Agent / MCP / RAG / OpenClaw</span> 全场景
       </p>
 
-      <div class="animate-fade-in-up opacity-0 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12 md:mb-16" style="animation-delay: 0.5s;">
+      <div
+        class="animate-fade-in-up opacity-0 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12 md:mb-16"
+        style="animation-delay: 0.5s;"
+      >
         <div class="metric-card">
           <div class="text-2xl md:text-3xl font-bold text-gradient mb-1">40+</div>
           <div class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">AI 模型</div>
@@ -211,13 +321,36 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
 
-      <div class="animate-fade-in-up opacity-0 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5" style="animation-delay: 0.6s;">
-        <a href="#products" class="hero-button-primary inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-white font-semibold text-lg shadow-xl shadow-blue-500/25">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      <div
+        class="animate-fade-in-up opacity-0 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5"
+        style="animation-delay: 0.6s;"
+      >
+        <a
+          href="#products"
+          class="hero-button-primary inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-white font-semibold text-lg shadow-xl shadow-blue-500/25"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+          >
           探索产品
         </a>
-        <a href="https://github.com/Eversec-ai/AIGov-Insight-Web" target="_blank" class="hero-button-secondary inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-slate-700 dark:text-slate-200 font-semibold text-lg border border-slate-200/80 dark:border-slate-700/50">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <a
+          href="https://github.com/Eversec-ai/AIGov-Insight-Web"
+          target="_blank"
+          class="hero-button-secondary inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-slate-700 dark:text-slate-200 font-semibold text-lg border border-slate-200/80 dark:border-slate-700/50"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"
+            ><path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+            ></path></svg
+          >
           GitHub
         </a>
       </div>
@@ -229,50 +362,152 @@ const base = import.meta.env.BASE_URL;
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16">
         <p class="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-[0.2em] uppercase mb-4">Products</p>
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">选择适合你的方案</h2>
-        <p class="text-xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto font-light">从生产服务器到开发者桌面——两套方案，一个数据模型</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+          选择适合你的方案
+        </h2>
+        <p class="text-xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto font-light">
+          从生产服务器到开发者桌面——两套方案，一个数据模型
+        </p>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
-        <a href={`${base}web`} class="product-card group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-300 dark:hover:border-blue-600/40">
-          <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-blue-500/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        <a
+          href={`${base}web`}
+          class="product-card group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-300 dark:hover:border-blue-600/40"
+        >
+          <div
+            class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-blue-500/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"
+          >
+          </div>
           <div class="relative">
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-500/20">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg>
+              <div
+                class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-500/20"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"
+                  ></path></svg
+                >
               </div>
-              <span class="text-xs font-semibold tracking-[0.1em] uppercase text-blue-600 dark:text-blue-400">Server · Production</span>
+              <span class="text-xs font-semibold tracking-[0.1em] uppercase text-blue-600 dark:text-blue-400"
+                >Server · Production</span
+              >
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">AIGov Insight <span class="text-blue-500">WEB / Agent</span></h3>
-            <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">基于 eBPF 内核探针的生产级 AI 可观测平台。Web 端可视化分析 + Agent 端深度采集，专为 Linux 服务器环境打造。</p>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
+              AIGov Insight <span class="text-blue-500">WEB / Agent</span>
+            </h3>
+            <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+              基于 eBPF 内核探针的生产级 AI 可观测平台。Web 端可视化分析 + Agent 端深度采集，专为 Linux 服务器环境打造。
+            </p>
             <div class="flex flex-wrap gap-2 mb-6">
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">eBPF</span>
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">Linux</span>
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">生产环境</span>
+              <span
+                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+                >eBPF</span
+              >
+              <span
+                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+                >Linux</span
+              >
+              <span
+                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+                >生产环境</span
+              >
             </div>
-            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:gap-2.5 transition-all">了解更多 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            <span
+              class="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:gap-2.5 transition-all"
+              >了解更多 <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg
+              ></span
+            >
           </div>
         </a>
 
-        <a href={`${base}edge`} class="product-card group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-2xl hover:shadow-indigo-500/10 hover:border-indigo-300 dark:hover:border-indigo-500/40">
-          <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-indigo-500/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        <a
+          href={`${base}edge`}
+          class="product-card group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-2xl hover:shadow-indigo-500/10 hover:border-indigo-300 dark:hover:border-indigo-500/40"
+        >
+          <div
+            class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-indigo-500/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"
+          >
+          </div>
           <div class="relative">
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
+              <div
+                class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"
+                  ></path></svg
+                >
               </div>
               <div class="flex items-center gap-2">
-                <span class="text-xs font-semibold tracking-[0.1em] uppercase text-indigo-600 dark:text-indigo-400">Desktop · Developer</span>
-                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold bg-gradient-to-r from-violet-500 to-purple-500 text-white">NEW</span>
+                <span class="text-xs font-semibold tracking-[0.1em] uppercase text-indigo-600 dark:text-indigo-400"
+                  >Desktop · Developer</span
+                >
+                <span
+                  class="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold bg-gradient-to-r from-violet-500 to-purple-500 text-white"
+                  >NEW</span
+                >
               </div>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">AIGov Insight <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">Edge</span></h3>
-            <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">macOS 端侧 AI 可观测平台。AI Copilot 驱动 GUI 操控，100% 本地运行，支持 OpenClaw、Hermes、Claude Code 插件生态。</p>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
+              AIGov Insight <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent"
+                >Edge</span
+              >
+            </h3>
+            <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+              macOS 端侧 AI 可观测平台。AI Copilot 驱动 GUI 操控，100% 本地运行，支持 OpenClaw、Hermes、Claude Code
+              插件生态。
+            </p>
             <div class="flex flex-wrap gap-2 mb-6">
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">AI Copilot</span>
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">macOS</span>
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">本地优先</span>
+              <span
+                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
+                >AI Copilot</span
+              >
+              <span
+                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
+                >macOS</span
+              >
+              <span
+                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
+                >本地优先</span
+              >
             </div>
-            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 dark:text-indigo-400 group-hover:gap-2.5 transition-all">了解更多 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            <span
+              class="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 dark:text-indigo-400 group-hover:gap-2.5 transition-all"
+              >了解更多 <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg
+              ></span
+            >
           </div>
         </a>
       </div>
@@ -283,38 +518,98 @@ const base = import.meta.env.BASE_URL;
   <section id="why" class="py-24 md:py-32 bg-slate-50 dark:bg-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16">
-        <p class="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-[0.2em] uppercase mb-4">Why AIGov Insight</p>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">传统安全工具<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">看不见</span> AI 的行为</h2>
-        <p class="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">WAF、防火墙、SIEM 只能看 IP 和端口，看不懂自然语言指令背后的恶意意图。AIGov Insight 在语义层面对 AI 行为进行深度观测。</p>
+        <p class="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-[0.2em] uppercase mb-4">
+          Why AIGov Insight
+        </p>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+          传统安全工具<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500"
+            >看不见</span
+          > AI 的行为
+        </h2>
+        <p class="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
+          WAF、防火墙、SIEM 只能看 IP 和端口，看不懂自然语言指令背后的恶意意图。AIGov Insight 在语义层面对 AI
+          行为进行深度观测。
+        </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="tech-card">
           <div class="w-11 h-11 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+            <svg
+              class="w-5 h-5 text-red-600 dark:text-red-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path
+                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+              ></path></svg
+            >
           </div>
           <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2">Prompt Injection 无法防御</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">攻击者通过自然语言注入恶意指令，传统 WAF 和防火墙完全无法识别。AIGov Insight 在 LLM 语义层面实时监测异常意图。</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+            攻击者通过自然语言注入恶意指令，传统 WAF 和防火墙完全无法识别。AIGov Insight 在 LLM
+            语义层面实时监测异常意图。
+          </p>
         </div>
         <div class="tech-card">
           <div class="w-11 h-11 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"/></svg>
+            <svg
+              class="w-5 h-5 text-amber-600 dark:text-amber-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path
+                d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
+              ></path></svg
+            >
           </div>
           <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2">Agent 工具调用是黑盒</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">AI Agent 执行系统命令、访问文件、调用 API 时，安全团队完全看不到过程。AIGov Insight 完整捕获每次工具调用的参数和结果。</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+            AI Agent 执行系统命令、访问文件、调用 API 时，安全团队完全看不到过程。AIGov Insight
+            完整捕获每次工具调用的参数和结果。
+          </p>
         </div>
         <div class="tech-card">
           <div class="w-11 h-11 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+            <svg
+              class="w-5 h-5 text-blue-600 dark:text-blue-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+              ></path></svg
+            >
           </div>
           <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2">合规审计无据可查</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">监管要求记录 AI 决策过程，但现有系统只能记录最终输出。AIGov Insight 提供从 Prompt 到执行的完整审计链路。</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+            监管要求记录 AI 决策过程，但现有系统只能记录最终输出。AIGov Insight 提供从 Prompt 到执行的完整审计链路。
+          </p>
         </div>
         <div class="tech-card">
           <div class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+            <svg
+              class="w-5 h-5 text-emerald-600 dark:text-emerald-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              stroke-linecap="round"
+              stroke-linejoin="round"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path></svg
+            >
           </div>
           <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2">故障排查耗时数小时</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">AI 系统出问题后，工程师需要手动翻日志、拼因果链。AIGov Insight 自动关联会话→LLM→工具→执行，分钟级定位。</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+            AI 系统出问题后，工程师需要手动翻日志、拼因果链。AIGov Insight 自动关联会话→LLM→工具→执行，分钟级定位。
+          </p>
         </div>
       </div>
     </div>
@@ -325,55 +620,129 @@ const base = import.meta.env.BASE_URL;
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16">
         <p class="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-[0.2em] uppercase mb-4">Technology</p>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">核心技术</h2>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+          核心技术
+        </h2>
         <p class="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">用最简单的方式理解四大核心概念</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
         <div class="tech-card">
           <div class="flex items-start gap-4">
-            <div class="w-11 h-11 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            <div
+              class="w-11 h-11 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center flex-shrink-0"
+            >
+              <svg
+                class="w-5 h-5 text-blue-600 dark:text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                ></path></svg
+              >
             </div>
             <div>
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">安检闸机 · Hook 机制</h3>
               <p class="text-xs text-gray-400 dark:text-slate-500 font-mono mb-3">10 event types · &lt; 1ms latency</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">就像地铁站的安检闸机，AI Agent 的每一次操作——调用大模型、执行工具、开启会话——都必须经过检查点。<span class="font-semibold text-gray-700 dark:text-slate-200">自动记录每一次"通过"的详细信息，无需修改 Agent 代码</span>。</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                就像地铁站的安检闸机，AI Agent 的每一次操作——调用大模型、执行工具、开启会话——都必须经过检查点。<span
+                  class="font-semibold text-gray-700 dark:text-slate-200"
+                  >自动记录每一次"通过"的详细信息，无需修改 Agent 代码</span
+                >。
+              </p>
             </div>
           </div>
         </div>
         <div class="tech-card">
           <div class="flex items-start gap-4">
-            <div class="w-11 h-11 rounded-xl bg-cyan-100 dark:bg-cyan-900/40 flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"/></svg>
+            <div
+              class="w-11 h-11 rounded-xl bg-cyan-100 dark:bg-cyan-900/40 flex items-center justify-center flex-shrink-0"
+            >
+              <svg
+                class="w-5 h-5 text-cyan-600 dark:text-cyan-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"
+                ></path></svg
+              >
             </div>
             <div>
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">行车记录仪 · 数据采集</h3>
-              <p class="text-xs text-gray-400 dark:text-slate-500 font-mono mb-3">5 维度 · 50+ 字段 · &gt; 99.9% 完整率</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">就像汽车上的行车记录仪，AI Agent 运行的全过程被自动、完整地记录下来。<span class="font-semibold text-gray-700 dark:text-slate-200">从会话到回答，从工具调用到执行结果——所有关键信息实时采集</span>。</p>
+              <p class="text-xs text-gray-400 dark:text-slate-500 font-mono mb-3">
+                5 维度 · 50+ 字段 · &gt; 99.9% 完整率
+              </p>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                就像汽车上的行车记录仪，AI Agent 运行的全过程被自动、完整地记录下来。<span
+                  class="font-semibold text-gray-700 dark:text-slate-200"
+                  >从会话到回答，从工具调用到执行结果——所有关键信息实时采集</span
+                >。
+              </p>
             </div>
           </div>
         </div>
         <div class="tech-card">
           <div class="flex items-start gap-4">
-            <div class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+            <div
+              class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center flex-shrink-0"
+            >
+              <svg
+                class="w-5 h-5 text-emerald-600 dark:text-emerald-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+                ></path></svg
+              >
             </div>
             <div>
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">本地保险箱 · SQLite 存储</h3>
               <p class="text-xs text-gray-400 dark:text-slate-500 font-mono mb-3">5 表 · 10 索引 · inode 检测</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">就像把贵重物品存放在家里的保险箱，所有数据安全地存放在您自己的设备上。<span class="font-semibold text-gray-700 dark:text-slate-200">数据不上传任何云端，完全在您的掌控之中</span>。</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                就像把贵重物品存放在家里的保险箱，所有数据安全地存放在您自己的设备上。<span
+                  class="font-semibold text-gray-700 dark:text-slate-200">数据不上传任何云端，完全在您的掌控之中</span
+                >。
+              </p>
             </div>
           </div>
         </div>
         <div class="tech-card">
           <div class="flex items-start gap-4">
-            <div class="w-11 h-11 rounded-xl bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+            <div
+              class="w-11 h-11 rounded-xl bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center flex-shrink-0"
+            >
+              <svg
+                class="w-5 h-5 text-purple-600 dark:text-purple-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+                ></path></svg
+              >
             </div>
             <div>
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">万能充电器 · 多平台适配</h3>
               <p class="text-xs text-gray-400 dark:text-slate-500 font-mono mb-3">Unified Schema · source tagging</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">就像一个万能充电器可以给不同品牌的手机充电，AIGov Insight 可以同时监控不同平台的 AI Agent。<span class="font-semibold text-gray-700 dark:text-slate-200">统一 Schema、source 标签、零迁移</span>。</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                就像一个万能充电器可以给不同品牌的手机充电，AIGov Insight 可以同时监控不同平台的 AI Agent。<span
+                  class="font-semibold text-gray-700 dark:text-slate-200">统一 Schema、source 标签、零迁移</span
+                >。
+              </p>
             </div>
           </div>
         </div>
@@ -390,36 +759,81 @@ const base = import.meta.env.BASE_URL;
         <p class="text-lg text-slate-400 max-w-2xl mx-auto">AIGov Insight 核心组件已开源，欢迎社区贡献</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <a href="https://github.com/Eversec-ai/AIGov-Insight-Web" target="_blank" class="group block rounded-2xl p-6 border border-slate-700/50 bg-slate-800/50 hover:border-blue-500/40 hover:bg-slate-800/80 transition-all duration-300">
+        <a
+          href="https://github.com/Eversec-ai/AIGov-Insight-Web"
+          target="_blank"
+          class="group block rounded-2xl p-6 border border-slate-700/50 bg-slate-800/50 hover:border-blue-500/40 hover:bg-slate-800/80 transition-all duration-300"
+        >
           <div class="flex items-center gap-3 mb-4">
-            <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <svg
+              class="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              ><path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              ></path></svg
+            >
             <h3 class="text-white font-semibold group-hover:text-blue-400 transition-colors">AIGov-Insight Web</h3>
           </div>
-          <p class="text-sm text-slate-400 mb-4">可视化分析层。Next.js 16 + React 19 + Tailwind CSS 4，Web 端全链路可观测仪表盘。</p>
+          <p class="text-sm text-slate-400 mb-4">
+            可视化分析层。Next.js 16 + React 19 + Tailwind CSS 4，Web 端全链路可观测仪表盘。
+          </p>
           <span class="text-xs text-slate-500 font-mono">TypeScript · MIT License</span>
         </a>
-        <a href="https://github.com/Eversec-ai/AIGov-Insight-Agent" target="_blank" class="group block rounded-2xl p-6 border border-slate-700/50 bg-slate-800/50 hover:border-cyan-500/40 hover:bg-slate-800/80 transition-all duration-300">
+        <a
+          href="https://github.com/Eversec-ai/AIGov-Insight-Agent"
+          target="_blank"
+          class="group block rounded-2xl p-6 border border-slate-700/50 bg-slate-800/50 hover:border-cyan-500/40 hover:bg-slate-800/80 transition-all duration-300"
+        >
           <div class="flex items-center gap-3 mb-4">
-            <svg class="w-5 h-5 text-slate-400 group-hover:text-cyan-400 transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <svg
+              class="w-5 h-5 text-slate-400 group-hover:text-cyan-400 transition-colors"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              ><path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              ></path></svg
+            >
             <h3 class="text-white font-semibold group-hover:text-cyan-400 transition-colors">AIGov-Insight Agent</h3>
           </div>
-          <p class="text-sm text-slate-400 mb-4">eBPF 数据采集层。内核级探针，零侵入捕获 AI Agent 的命令执行和文件访问。</p>
+          <p class="text-sm text-slate-400 mb-4">
+            eBPF 数据采集层。内核级探针，零侵入捕获 AI Agent 的命令执行和文件访问。
+          </p>
           <span class="text-xs text-slate-500 font-mono">C / eBPF · MIT License</span>
         </a>
-        <a href="https://github.com/Eversec-ai" target="_blank" class="group block rounded-2xl p-6 border border-slate-700/50 bg-slate-800/50 hover:border-indigo-500/40 hover:bg-slate-800/80 transition-all duration-300">
+        <a
+          href="https://github.com/Eversec-ai"
+          target="_blank"
+          class="group block rounded-2xl p-6 border border-slate-700/50 bg-slate-800/50 hover:border-indigo-500/40 hover:bg-slate-800/80 transition-all duration-300"
+        >
           <div class="flex items-center gap-3 mb-4">
-            <svg class="w-5 h-5 text-slate-400 group-hover:text-indigo-400 transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <svg
+              class="w-5 h-5 text-slate-400 group-hover:text-indigo-400 transition-colors"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              ><path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              ></path></svg
+            >
             <h3 class="text-white font-semibold group-hover:text-indigo-400 transition-colors">AIGov Insight Edge</h3>
           </div>
-          <p class="text-sm text-slate-400 mb-4">macOS 桌面端。Electron + React 19 + llama.cpp，AI 原生的本地可观测平台。</p>
+          <p class="text-sm text-slate-400 mb-4">
+            macOS 桌面端。Electron + React 19 + llama.cpp，AI 原生的本地可观测平台。
+          </p>
           <span class="text-xs text-slate-500 font-mono">TypeScript · Electron · NEW</span>
         </a>
       </div>
       <div class="mt-12 rounded-2xl bg-black/40 border border-slate-700/50 p-6 md:p-8">
         <p class="text-sm text-slate-500 mb-4 font-mono"># 快速开始</p>
         <div class="font-mono text-sm space-y-2">
-          <p><span class="text-slate-500">$</span> <span class="text-emerald-400">git clone https://github.com/Eversec-ai/AIGov-Insight-Web.git</span></p>
-          <p><span class="text-slate-500">$</span> <span class="text-emerald-400">cd AIGov-Insight-Web && npm install</span></p>
+          <p>
+            <span class="text-slate-500">$</span>
+            <span class="text-emerald-400">git clone https://github.com/Eversec-ai/AIGov-Insight-Web.git</span>
+          </p>
+          <p>
+            <span class="text-slate-500">$</span>
+            <span class="text-emerald-400">cd AIGov-Insight-Web && npm install</span>
+          </p>
           <p><span class="text-slate-500">$</span> <span class="text-emerald-400">npm run dev</span></p>
         </div>
       </div>
@@ -433,12 +847,36 @@ const base = import.meta.env.BASE_URL;
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
-      { title: 'AIGov Insight 包含哪些产品？', description: 'AIGov Insight 包含三大产品线：WEB/Agent（生产级 Linux 服务器平台，基于 eBPF）、Edge（macOS 桌面端，AI Copilot 驱动）、以及 OpenClaw 安全治理引擎。它们共享统一的数据模型和插件生态。' },
-      { title: 'AIGov Insight 与传统安全工具有什么区别？', description: '传统 WAF 和防火墙基于规则、特征码、IP 和端口工作，看不懂自然语言指令背后的恶意意图。AIGov Insight 专为 AI 系统设计，能够深度解析 AI 对话内容、工具调用、系统命令执行等底层行为，实现语义层面的安全监控。' },
-      { title: '部署需要修改现有代码吗？', description: '不需要。WEB/Agent 版本基于 eBPF 技术运行在操作系统内核态，零业务代码侵入。Edge 版本通过 Hook 机制采集数据，安装插件即可开始监控。' },
-      { title: '支持哪些 AI 框架？', description: '目前支持 OpenClaw、Hermes、Claude Code 三大 Agent 平台，以及主流的大语言模型框架（Ollama、vLLM）和 MCP 协议。Edge 版本支持 40+ AI 模型的定价计算。' },
-      { title: '数据安全如何保障？', description: 'Edge 版本 100% 本地运行，所有数据存储在您 Mac 上的 SQLite 文件中，零云端依赖。WEB/Agent 版本数据存储在您自己的服务器上，满足最严格的数据安全要求。' },
-      { title: '如何预约演示？', description: '请通过页面底部的联系方式与我们取得联系，我们的团队将为您提供产品演示和试用申请流程。恒安嘉新致力于为企业级客户提供专业的 AI 安全解决方案。' },
+      {
+        title: 'AIGov Insight 包含哪些产品？',
+        description:
+          'AIGov Insight 包含三大产品线：WEB/Agent（生产级 Linux 服务器平台，基于 eBPF）、Edge（macOS 桌面端，AI Copilot 驱动）、以及 OpenClaw 安全治理引擎。它们共享统一的数据模型和插件生态。',
+      },
+      {
+        title: 'AIGov Insight 与传统安全工具有什么区别？',
+        description:
+          '传统 WAF 和防火墙基于规则、特征码、IP 和端口工作，看不懂自然语言指令背后的恶意意图。AIGov Insight 专为 AI 系统设计，能够深度解析 AI 对话内容、工具调用、系统命令执行等底层行为，实现语义层面的安全监控。',
+      },
+      {
+        title: '部署需要修改现有代码吗？',
+        description:
+          '不需要。WEB/Agent 版本基于 eBPF 技术运行在操作系统内核态，零业务代码侵入。Edge 版本通过 Hook 机制采集数据，安装插件即可开始监控。',
+      },
+      {
+        title: '支持哪些 AI 框架？',
+        description:
+          '目前支持 OpenClaw、Hermes、Claude Code 三大 Agent 平台，以及主流的大语言模型框架（Ollama、vLLM）和 MCP 协议。Edge 版本支持 40+ AI 模型的定价计算。',
+      },
+      {
+        title: '数据安全如何保障？',
+        description:
+          'Edge 版本 100% 本地运行，所有数据存储在您 Mac 上的 SQLite 文件中，零云端依赖。WEB/Agent 版本数据存储在您自己的服务器上，满足最严格的数据安全要求。',
+      },
+      {
+        title: '如何预约演示？',
+        description:
+          '请通过页面底部的联系方式与我们取得联系，我们的团队将为您提供产品演示和试用申请流程。恒安嘉新致力于为企业级客户提供专业的 AI 安全解决方案。',
+      },
     ]}
   />
 
@@ -450,6 +888,10 @@ const base = import.meta.env.BASE_URL;
     ]}
   >
     <Fragment slot="title"> 开启 AI 安全可观测之旅 </Fragment>
-    <Fragment slot="subtitle">部署后 5 分钟内，您将看到第一个 AI 会话的完整时间轴<br class="hidden md:inline" />无需配置，无需培训，开箱即用</Fragment>
+    <Fragment slot="subtitle"
+      >部署后 5 分钟内，您将看到第一个 AI 会话的完整时间轴<br
+        class="hidden md:inline"
+      />无需配置，无需培训，开箱即用</Fragment
+    >
   </CallToAction>
 </Layout>

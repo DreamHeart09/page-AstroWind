@@ -25,7 +25,7 @@ const siteBase = process.env.ASTRO_BASE ?? '/page-AstroWind/';
 
 export default defineConfig({
   output: 'static',
-  base: siteBase, 
+  base: siteBase,
 
   integrations: [
     tailwind({

@@ -47,6 +47,7 @@ export default [
         'error',
         {
           argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
           destructuredArrayIgnorePattern: '^_',
         },
       ],
@@ -54,6 +55,6 @@ export default [
     },
   },
   {
-    ignores: ['dist', 'node_modules', '.github', 'types.generated.d.ts', '.astro'],
+    ignores: ['dist', 'node_modules', '.github', 'types.generated.d.ts', '.astro', 'AIGovInsightEdge'],
   },
 ];
