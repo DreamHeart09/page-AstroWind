@@ -1525,9 +1525,462 @@ const base = import.meta.env.BASE_URL;
       }
 
       /* ═══ 响应式 ═══ */
+      /* ═══ Security Pipeline 五层纵深分析 ═══ */
+      .security-pipeline {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        margin: 40px 0;
+      }
+      .pipeline-entry-group {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 8px;
+      }
+      .pipeline-entry-card {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 20px;
+        border-radius: var(--edge-radius-md);
+        background: var(--edge-glass-bg-refined);
+        border: 1px solid var(--edge-glass-border);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--edge-text-primary);
+        transition: all var(--edge-transition-fast);
+      }
+      .pipeline-entry-card:hover {
+        border-color: rgba(121, 150, 255, 0.25);
+        transform: translateY(-2px);
+        box-shadow: var(--edge-glow-primary);
+      }
+      .pipeline-entry-card .entry-icon {
+        font-size: 18px;
+      }
+      .pipeline-entry-card .entry-sub {
+        font-size: 11px;
+        color: var(--edge-text-tertiary);
+        font-weight: 400;
+      }
+      .pipeline-connector-line {
+        width: 2px;
+        height: 28px;
+        background: linear-gradient(to bottom, var(--edge-primary), var(--edge-accent));
+        opacity: 0.4;
+        position: relative;
+      }
+      .pipeline-connector-line::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 6px solid var(--edge-accent);
+        opacity: 0.6;
+      }
+      .pipeline-connector-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--edge-text-tertiary);
+        margin: 4px 0;
+        font-family: 'SF Mono', 'JetBrains Mono', monospace;
+      }
+      .pipeline-layer-card {
+        width: 100%;
+        max-width: 720px;
+        padding: 24px 28px;
+        border-radius: var(--edge-radius-lg);
+        background: var(--edge-glass-bg-refined);
+        border: 1px solid var(--edge-glass-border);
+        position: relative;
+        overflow: hidden;
+        transition: all var(--edge-transition-base);
+      }
+      .pipeline-layer-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: var(--edge-glass-highlight);
+        pointer-events: none;
+      }
+      .pipeline-layer-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--edge-glass-shadow-l3);
+        border-color: rgba(121, 150, 255, 0.2);
+      }
+      .pipeline-layer-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 14px;
+        position: relative;
+        z-index: 1;
+      }
+      .pipeline-layer-badge {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: var(--edge-radius-sm);
+        background: var(--edge-primary-subtle);
+        border: 1px solid rgba(121, 150, 255, 0.15);
+        flex-shrink: 0;
+      }
+      .pipeline-layer-badge .badge-num {
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--edge-primary);
+        line-height: 1;
+      }
+      .pipeline-layer-badge .badge-time {
+        font-size: 9px;
+        font-weight: 600;
+        color: var(--edge-text-tertiary);
+        margin-top: 2px;
+        font-family: 'SF Mono', 'JetBrains Mono', monospace;
+      }
+      .pipeline-layer-icon {
+        font-size: 24px;
+        flex-shrink: 0;
+      }
+      .pipeline-layer-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .pipeline-layer-title {
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--edge-text-primary);
+        margin-bottom: 2px;
+      }
+      .pipeline-layer-subtitle {
+        font-size: 13px;
+        color: var(--edge-text-secondary);
+      }
+      .pipeline-layer-tag {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 100px;
+        flex-shrink: 0;
+      }
+      .pipeline-layer-tag.tag-fast {
+        background: var(--edge-success-subtle);
+        color: var(--edge-success);
+        border: 1px solid rgba(64, 214, 117, 0.2);
+      }
+      .pipeline-layer-tag.tag-ai {
+        background: var(--edge-accent-subtle);
+        color: var(--edge-accent);
+        border: 1px solid rgba(185, 138, 255, 0.2);
+      }
+      .pipeline-layer-tag.tag-deep {
+        background: var(--edge-primary-subtle);
+        color: var(--edge-primary);
+        border: 1px solid rgba(121, 150, 255, 0.2);
+      }
+      .pipeline-layer-tag.tag-logic {
+        background: var(--edge-error-subtle);
+        color: var(--edge-error);
+        border: 1px solid rgba(245, 81, 91, 0.2);
+      }
+      .pipeline-layer-tag.tag-score {
+        background: linear-gradient(135deg, var(--edge-primary-subtle), var(--edge-accent-subtle));
+        color: var(--edge-primary);
+        border: 1px solid rgba(121, 150, 255, 0.15);
+      }
+      .pipeline-layer-body {
+        position: relative;
+        z-index: 1;
+      }
+      .pipeline-detail-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .pipeline-detail-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 5px 12px;
+        border-radius: 100px;
+        background: var(--edge-bg-field);
+        border: 1px solid var(--edge-border);
+        color: var(--edge-text-secondary);
+      }
+      .pipeline-detail-pill .pill-emoji {
+        font-size: 13px;
+      }
+      .pipeline-output-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: var(--edge-radius-sm);
+        background: var(--edge-bg-field);
+        border: 1px solid var(--edge-border);
+        color: var(--edge-text-secondary);
+        margin-top: 12px;
+        font-family: 'SF Mono', 'JetBrains Mono', monospace;
+        position: relative;
+        z-index: 1;
+      }
+      .pipeline-output-tag .out-label {
+        color: var(--edge-primary);
+        font-weight: 700;
+      }
+      /* Scoring bars */
+      .scoring-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .scoring-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .scoring-bar-track {
+        flex: 1;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--edge-bg-field);
+        overflow: hidden;
+      }
+      .scoring-bar-fill {
+        height: 100%;
+        border-radius: 3px;
+        background: var(--edge-gradient-1);
+        transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .scoring-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--edge-text-primary);
+        min-width: 72px;
+      }
+      .scoring-detail {
+        font-size: 11px;
+        color: var(--edge-text-tertiary);
+        min-width: 140px;
+        text-align: right;
+        font-family: 'SF Mono', 'JetBrains Mono', monospace;
+      }
+      /* Decision diamond */
+      .pipeline-decision-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 16px 24px;
+        margin: 8px 0;
+      }
+      .decision-diamond-visual {
+        width: 48px;
+        height: 48px;
+        transform: rotate(45deg);
+        border: 2px solid var(--edge-warning);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: rgba(245, 172, 55, 0.06);
+      }
+      .decision-diamond-visual .diamond-text {
+        transform: rotate(-45deg);
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--edge-warning);
+        text-align: center;
+        line-height: 1.2;
+      }
+      .decision-branches {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .decision-branch-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: var(--edge-radius-sm);
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .decision-branch-item.branch-yes {
+        background: var(--edge-success-subtle);
+        border: 1px solid rgba(64, 214, 117, 0.2);
+        color: var(--edge-success);
+      }
+      .decision-branch-item.branch-no {
+        background: var(--edge-bg-field);
+        border: 1px solid var(--edge-border);
+        color: var(--edge-text-secondary);
+      }
+      .decision-branch-item.branch-danger {
+        background: var(--edge-error-subtle);
+        border: 1px solid rgba(245, 81, 91, 0.2);
+        color: var(--edge-error);
+      }
+      .decision-branch-item.branch-safe {
+        background: var(--edge-success-subtle);
+        border: 1px solid rgba(64, 214, 117, 0.2);
+        color: var(--edge-success);
+      }
+      .decision-branch-item.branch-condition {
+        background: var(--edge-warning ? rgba(245, 172, 55, 0.08): var(--edge-bg-field));
+        border: 1px solid rgba(245, 172, 55, 0.2);
+        color: var(--edge-warning);
+      }
+      .decision-branch-item .branch-sub {
+        font-size: 10px;
+        font-weight: 400;
+        opacity: 0.8;
+      }
+      /* Output cards */
+      .pipeline-output-group {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 8px;
+      }
+      .pipeline-output-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 16px 24px;
+        border-radius: var(--edge-radius-md);
+        background: var(--edge-glass-bg-refined);
+        border: 1px solid var(--edge-glass-border);
+        text-align: center;
+        transition: all var(--edge-transition-fast);
+        min-width: 120px;
+      }
+      .pipeline-output-card:hover {
+        border-color: rgba(64, 214, 117, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 0 40px -16px rgba(64, 214, 117, 0.2);
+      }
+      .pipeline-output-card .out-icon {
+        font-size: 22px;
+      }
+      .pipeline-output-card .out-label {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--edge-text-primary);
+      }
+      .pipeline-output-card .out-sub {
+        font-size: 11px;
+        color: var(--edge-text-tertiary);
+      }
+
+      /* ═══ Feature Pill 行 ═══ */
+      .feature-pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .feature-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 100px;
+        background: var(--edge-bg-field);
+        border: 1px solid var(--edge-border);
+        color: var(--edge-text-secondary);
+        font-family: 'SF Mono', 'JetBrains Mono', monospace;
+      }
+      .feature-pill .pill-severity {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .feature-pill .pill-severity.sev-critical {
+        background: var(--edge-error);
+      }
+      .feature-pill .pill-severity.sev-high {
+        background: var(--edge-warning);
+      }
+      .feature-pill .pill-severity.sev-info {
+        background: var(--edge-success);
+      }
+
+      /* ═══ Security 威胁类型网格（5列） ═══ */
+      .threat-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+        margin: 32px 0;
+      }
+      .threat-card {
+        text-align: center;
+        padding: 24px 16px;
+      }
+      .threat-card .threat-icon {
+        font-size: 28px;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .threat-card .threat-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--edge-text-primary);
+        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+      }
+      .threat-card .threat-count {
+        font-size: 12px;
+        color: var(--edge-text-secondary);
+        line-height: 1.5;
+      }
+
       @media (max-width: 1024px) {
         .apple-value-grid {
           grid-template-columns: repeat(2, 1fr);
+        }
+        .threat-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .pipeline-entry-group {
+          flex-wrap: wrap;
+        }
+        .pipeline-layer-card {
+          max-width: 100%;
+        }
+        .pipeline-decision-card {
+          flex-direction: column;
+        }
+        .pipeline-output-group {
+          flex-wrap: wrap;
+        }
+        .scoring-row {
+          flex-wrap: wrap;
+        }
+        .scoring-detail {
+          min-width: auto;
         }
         .bento-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -1559,6 +2012,20 @@ const base = import.meta.env.BASE_URL;
       @media (max-width: 640px) {
         .apple-value-grid {
           grid-template-columns: 1fr;
+        }
+        .threat-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .pipeline-entry-group {
+          flex-direction: column;
+          align-items: center;
+        }
+        .decision-branches {
+          flex-direction: column;
+        }
+        .pipeline-output-group {
+          flex-direction: column;
+          align-items: center;
         }
         .bento-grid {
           grid-template-columns: 1fr;
@@ -1757,13 +2224,28 @@ const base = import.meta.env.BASE_URL;
       <div class="section-inner relative z-10">
         <div class="reveal" style="text-align: center; margin-bottom: 48px;">
           <div class="section-kicker">Highlights</div>
-          <h2 class="section-title">四大核心优势，<span class="text-gradient">一览即懂</span></h2>
-          <p class="section-subtitle" style="max-width: 560px; margin: 0 auto;">
-            AI Copilot 驱动 · TUI 终端 · 时序分析 · AI-Native 深度洞察
+          <h2 class="section-title">五大核心优势，<span class="text-gradient">一览即懂</span></h2>
+          <p class="section-subtitle" style="max-width: 640px; margin: 0 auto;">
+            五层安全分析 · AI Copilot 驱动 · TUI 终端 · 时序分析 · AI-Native 深度洞察
           </p>
         </div>
 
         <div class="highlights-grid reveal">
+          <div
+            class="highlight-card"
+            data-lb-title="五层纵深威胁检测"
+            data-lb-desc="5 层分析架构 · 20 类内置规则 · Llama Guard 3 本地推理 · LLM 深度审计 · 动态安全评分 0-100。从规则引擎到语义分析，从 Prompt 注入到数据泄露，全面覆盖 AI Agent 安全威胁。"
+          >
+            <div class="highlight-img">
+              <img src={`${base}edge-screenshots/gui-security.png`} alt="安全分析 — 五层纵深威胁检测" loading="lazy" />
+            </div>
+            <div class="highlight-body">
+              <div class="highlight-label">Security</div>
+              <div class="highlight-title">五层纵深威胁检测</div>
+              <div class="highlight-desc">20 规则 · Llama Guard 3 · 动态评分</div>
+            </div>
+          </div>
+
           <div
             class="highlight-card"
             data-lb-title="AI 驱动的实时仪表盘"
@@ -2376,6 +2858,610 @@ const base = import.meta.env.BASE_URL;
             <div class="screenshot-caption">
               <div class="bento-card-title">Plugins · 插件管理</div>
               <div class="bento-card-desc">安装 / 启用 / 禁用 / 重启 / 卸载全生命周期</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         安全分析 — 五层纵深威胁检测
+         ════════════════════════════════════════════════════════════ -->
+    <section class="edge-section">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="section-kicker">Threat Detection · Security Analysis</div>
+          <h2 class="section-title">安全分析：<span class="text-gradient">五层纵深威胁检测</span></h2>
+          <p class="section-subtitle">
+            5 层分析架构 · 20 类内置规则 · Llama Guard 3 · 本地 LLM 深度审计 · 动态安全评分
+            <br />
+            <span style="font-size: 14px; color: var(--edge-text-tertiary);"
+              >不只是审计，是 AI Agent 的安全大脑 — 本地推理 · 零数据泄露 · 五层纵深防御</span
+            >
+          </p>
+        </div>
+
+        <!-- ── 核心指标 ── -->
+        <div class="stat-highlight-grid reveal">
+          <div class="stat-highlight-item glass-card">
+            <div class="stat-val">5</div>
+            <div class="stat-label">分析层</div>
+          </div>
+          <div class="stat-highlight-item glass-card">
+            <div class="stat-val">20</div>
+            <div class="stat-label">内置规则</div>
+          </div>
+          <div class="stat-highlight-item glass-card">
+            <div class="stat-val">5</div>
+            <div class="stat-label">威胁类型</div>
+          </div>
+          <div class="stat-highlight-item glass-card">
+            <div class="stat-val">100%</div>
+            <div class="stat-label">Local-first</div>
+          </div>
+        </div>
+
+        <!-- ── Stage 01: 看见威胁 ── -->
+        <div class="narrative-stage reveal">
+          <div class="narrative-stage-label">Stage 01 · 看见威胁</div>
+          <h3 class="narrative-stage-title">
+            AI Agent 的每一次交互，<span class="text-gradient">都在安全监控之下</span>
+          </h3>
+          <p class="narrative-stage-desc">
+            20 类内置规则覆盖 5 大威胁类型，从 Prompt 注入到数据泄露，从恶意工具到非法内容，每一条规则都经过精心设计。
+          </p>
+        </div>
+
+        <!-- ── 五大威胁类型 Bento ── -->
+        <div class="threat-grid reveal">
+          <div class="glass-card threat-card">
+            <span class="threat-icon">💉</span>
+            <div class="threat-name">Prompt 注入</div>
+            <div class="threat-count">5 条规则</div>
+          </div>
+          <div class="glass-card threat-card">
+            <span class="threat-icon">🔓</span>
+            <div class="threat-name">数据泄露</div>
+            <div class="threat-count">5 条规则</div>
+          </div>
+          <div class="glass-card threat-card">
+            <span class="threat-icon">⚔️</span>
+            <div class="threat-name">恶意工具</div>
+            <div class="threat-count">5 条规则</div>
+          </div>
+          <div class="glass-card threat-card">
+            <span class="threat-icon">🚫</span>
+            <div class="threat-name">非法内容</div>
+            <div class="threat-count">3 条规则</div>
+          </div>
+          <div class="glass-card threat-card">
+            <span class="threat-icon">👁️</span>
+            <div class="threat-name">可疑行为</div>
+            <div class="threat-count">2 条规则</div>
+          </div>
+        </div>
+
+        <!-- ── Hero Showcase: 威胁检测主页面 ── -->
+        <div class="hero-showcase reveal">
+          <div class="hero-showcase-text">
+            <div class="hero-showcase-eyebrow">Threat Detection · 威胁检测</div>
+            <h4 class="hero-showcase-title">一屏掌控全局安全态势</h4>
+            <p class="hero-showcase-subtitle">
+              Critical / High / Medium / Low / Info 五级风险统计卡片 + 按风险等级和类型双维筛选 +
+              无限滚动加载，每一笔安全发现都清晰可查。
+            </p>
+          </div>
+          <div class="hero-showcase-image">
+            <img src={`${base}edge-screenshots/gui-security.png`} alt="安全分析 — 威胁检测主页面" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- ── Stage 02: 理解深度 ── -->
+        <div class="narrative-stage reveal">
+          <div class="narrative-stage-label">Stage 02 · 理解深度</div>
+          <h3 class="narrative-stage-title">五层纵深分析架构，<span class="text-gradient">从规则到语义</span></h3>
+          <p class="narrative-stage-desc">
+            不是简单的规则匹配，是规则引擎 + AI 模型 + LLM
+            深度审计的三层递进分析，再叠加语义分析和复合评分，实现从表面到深层的全面威胁感知。
+          </p>
+        </div>
+
+        <!-- ── 五层 Pipeline ── -->
+        <div class="security-pipeline reveal">
+          <!-- Entry Sources -->
+          <div class="pipeline-entry-group">
+            <div class="pipeline-entry-card">
+              <span class="entry-icon">⚡</span>
+              <div>
+                <div>Auto Scan</div>
+                <div class="entry-sub">事件入库 500ms 后</div>
+              </div>
+            </div>
+            <div class="pipeline-entry-card">
+              <span class="entry-icon">👤</span>
+              <div>
+                <div>Manual Trigger</div>
+                <div class="entry-sub">用户手动触发</div>
+              </div>
+            </div>
+            <div class="pipeline-entry-card">
+              <span class="entry-icon">📁</span>
+              <div>
+                <div>File Import</div>
+                <div class="entry-sub">JSON / JSONL / TXT</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-connector-line"></div>
+          <div class="pipeline-connector-label">SecurityEventInput</div>
+          <div class="pipeline-connector-line"></div>
+
+          <!-- Layer 1: 规则引擎 -->
+          <div class="pipeline-layer-card">
+            <div class="pipeline-layer-header">
+              <div class="pipeline-layer-badge">
+                <span class="badge-num">L1</span>
+                <span class="badge-time">~1ms</span>
+              </div>
+              <span class="pipeline-layer-icon">⚡</span>
+              <div class="pipeline-layer-info">
+                <div class="pipeline-layer-title">规则引擎</div>
+                <div class="pipeline-layer-subtitle">Rule Engine · 20 regex rules · 同步执行</div>
+              </div>
+              <span class="pipeline-layer-tag tag-fast">FAST</span>
+            </div>
+            <div class="pipeline-layer-body">
+              <div class="pipeline-detail-grid">
+                <span class="pipeline-detail-pill"><span class="pill-emoji">💉</span> Prompt 注入 × 5</span>
+                <span class="pipeline-detail-pill"><span class="pill-emoji">🔓</span> 数据泄露 × 5</span>
+                <span class="pipeline-detail-pill"><span class="pill-emoji">⚔️</span> 恶意工具 × 5</span>
+                <span class="pipeline-detail-pill"><span class="pill-emoji">🚫</span> 非法内容 × 3</span>
+                <span class="pipeline-detail-pill"><span class="pill-emoji">👁️</span> 可疑行为 × 2</span>
+              </div>
+              <div class="pipeline-output-tag">
+                <span class="out-label">Output:</span> matches[] · highestRiskLevel · riskType
+              </div>
+            </div>
+          </div>
+
+          <!-- Decision: 规则命中? -->
+          <div class="pipeline-connector-line"></div>
+          <div class="pipeline-decision-card">
+            <div class="decision-diamond-visual">
+              <span class="diamond-text">规则<br />命中?</span>
+            </div>
+            <div class="decision-branches">
+              <div class="decision-branch-item branch-yes">
+                <span>YES</span>
+                <span class="branch-sub">记录 matches · 标记 riskType</span>
+              </div>
+              <div class="decision-branch-item branch-no">
+                <span>NO</span>
+                <span class="branch-sub">进入 Layer 2 验证</span>
+              </div>
+            </div>
+          </div>
+          <div class="pipeline-connector-line"></div>
+
+          <!-- Layer 2: Guard Model -->
+          <div class="pipeline-layer-card">
+            <div class="pipeline-layer-header">
+              <div class="pipeline-layer-badge">
+                <span class="badge-num">L2</span>
+                <span class="badge-time">~2-4s</span>
+              </div>
+              <span class="pipeline-layer-icon">🛡️</span>
+              <div class="pipeline-layer-info">
+                <div class="pipeline-layer-title">Guard Model</div>
+                <div class="pipeline-layer-subtitle">Llama Guard 3 8B · node-llama-cpp 本地推理</div>
+              </div>
+              <span class="pipeline-layer-tag tag-ai">AI</span>
+            </div>
+            <div class="pipeline-layer-body">
+              <div class="pipeline-detail-grid">
+                <span class="pipeline-detail-pill">① 格式化 Prompt</span>
+                <span class="pipeline-detail-pill">→</span>
+                <span class="pipeline-detail-pill">② 本地推理</span>
+                <span class="pipeline-detail-pill">→</span>
+                <span class="pipeline-detail-pill">③ 解析 safe / unsafe</span>
+              </div>
+              <div class="pipeline-output-tag">
+                <span class="out-label">Output:</span> safe | unsafe + violation categories
+              </div>
+            </div>
+          </div>
+
+          <!-- Decision: 触发 L3? -->
+          <div class="pipeline-connector-line"></div>
+          <div class="pipeline-decision-card">
+            <div class="decision-diamond-visual">
+              <span class="diamond-text">触发<br />L3?</span>
+            </div>
+            <div class="decision-branches">
+              <div class="decision-branch-item branch-danger">
+                <span>UNSAFE</span>
+                <span class="branch-sub">强制 high</span>
+              </div>
+              <div class="decision-branch-item branch-yes">
+                <span>≥ high</span>
+                <span class="branch-sub">触发深度审计</span>
+              </div>
+              <div class="decision-branch-item branch-no">
+                <span>&lt; high</span>
+                <span class="branch-sub">跳过 → L4</span>
+              </div>
+            </div>
+          </div>
+          <div class="pipeline-connector-line"></div>
+
+          <!-- Layer 3: LLM 深度审计 -->
+          <div class="pipeline-layer-card">
+            <div class="pipeline-layer-header">
+              <div class="pipeline-layer-badge">
+                <span class="badge-num">L3</span>
+                <span class="badge-time">~3-5s</span>
+              </div>
+              <span class="pipeline-layer-icon">🔬</span>
+              <div class="pipeline-layer-info">
+                <div class="pipeline-layer-title">LLM 深度审计</div>
+                <div class="pipeline-layer-subtitle">qwen2.5 · 结构化 JSON 输出 · 可覆盖 L1/L2 结果</div>
+              </div>
+              <span class="pipeline-layer-tag tag-deep">DEEP</span>
+            </div>
+            <div class="pipeline-layer-body">
+              <div class="pipeline-detail-grid">
+                <span class="pipeline-detail-pill">📊 riskLevel</span>
+                <span class="pipeline-detail-pill">🏷️ riskType</span>
+                <span class="pipeline-detail-pill">📝 title</span>
+                <span class="pipeline-detail-pill">📋 description</span>
+                <span class="pipeline-detail-pill">🔍 evidence</span>
+                <span class="pipeline-detail-pill">🏷️ riskTags[]</span>
+              </div>
+              <div class="pipeline-output-tag">
+                <span class="out-label">Output:</span> 结构化 JSON · 覆盖风险等级/类型/证据/标签
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-connector-line"></div>
+
+          <!-- Layer 4: 语义分析 -->
+          <div class="pipeline-layer-card">
+            <div class="pipeline-layer-header">
+              <div class="pipeline-layer-badge">
+                <span class="badge-num">L4</span>
+                <span class="badge-time">~0ms</span>
+              </div>
+              <span class="pipeline-layer-icon">🧠</span>
+              <div class="pipeline-layer-info">
+                <div class="pipeline-layer-title">语义分析</div>
+                <div class="pipeline-layer-subtitle">Semantic Analysis · 标签投票 · 意图识别</div>
+              </div>
+              <span class="pipeline-layer-tag tag-logic">LOGIC</span>
+            </div>
+            <div class="pipeline-layer-body">
+              <div class="pipeline-detail-grid">
+                <span class="pipeline-detail-pill">1 提取 riskTags</span>
+                <span class="pipeline-detail-pill">→</span>
+                <span class="pipeline-detail-pill">2 统计严重标签</span>
+                <span class="pipeline-detail-pill">→</span>
+                <span class="pipeline-detail-pill">3 投票修正 riskType</span>
+                <span class="pipeline-detail-pill">→</span>
+                <span class="pipeline-detail-pill">4 生成意图叙事</span>
+              </div>
+              <div class="pipeline-output-tag">
+                <span class="out-label">Output:</span> 修正后的 riskType · 严重标签计数 · 意图叙事
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-connector-line"></div>
+
+          <!-- Layer 5: 复合评分 -->
+          <div class="pipeline-layer-card" style="border-color: rgba(121, 150, 255, 0.2);">
+            <div class="pipeline-layer-header">
+              <div class="pipeline-layer-badge">
+                <span class="badge-num">L5</span>
+                <span class="badge-time">~0ms</span>
+              </div>
+              <span class="pipeline-layer-icon">📊</span>
+              <div class="pipeline-layer-info">
+                <div class="pipeline-layer-title">复合评分</div>
+                <div class="pipeline-layer-subtitle">Composite Scoring · 五维因子 · 0-100 动态计算</div>
+              </div>
+              <span class="pipeline-layer-tag tag-score">SCORE</span>
+            </div>
+            <div class="pipeline-layer-body">
+              <div class="scoring-grid">
+                <div class="scoring-row">
+                  <span class="scoring-label">风险等级</span>
+                  <div class="scoring-bar-track"><div class="scoring-bar-fill" style="width: 85%"></div></div>
+                  <span class="scoring-detail">critical -65 · high -45</span>
+                </div>
+                <div class="scoring-row">
+                  <span class="scoring-label">规则命中</span>
+                  <div class="scoring-bar-track"><div class="scoring-bar-fill" style="width: 60%"></div></div>
+                  <span class="scoring-detail">每条 -3 · 上限 -15</span>
+                </div>
+                <div class="scoring-row">
+                  <span class="scoring-label">模型违规</span>
+                  <div class="scoring-bar-track"><div class="scoring-bar-fill" style="width: 45%"></div></div>
+                  <span class="scoring-detail">Guard 违规 -10</span>
+                </div>
+                <div class="scoring-row">
+                  <span class="scoring-label">语义标签</span>
+                  <div class="scoring-bar-track"><div class="scoring-bar-fill" style="width: 35%"></div></div>
+                  <span class="scoring-detail">每个严重 -2 · 上限 -10</span>
+                </div>
+                <div class="scoring-row">
+                  <span class="scoring-label">分析深度</span>
+                  <div class="scoring-bar-track"><div class="scoring-bar-fill" style="width: 25%"></div></div>
+                  <span class="scoring-detail">+0 / +1 / +2 / +3</span>
+                </div>
+              </div>
+              <div
+                class="pipeline-output-tag"
+                style="background: var(--edge-primary-subtle); border-color: rgba(121, 150, 255, 0.2);"
+              >
+                <span class="out-label">Final:</span> 安全评分 0-100 · 风险等级 · 处置建议
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="pipeline-connector-line"
+            style="background: linear-gradient(to bottom, var(--edge-accent), var(--edge-success));"
+          >
+          </div>
+
+          <!-- Output -->
+          <div class="pipeline-output-group">
+            <div class="pipeline-output-card">
+              <span class="out-icon">💾</span>
+              <span class="out-label">SQLite</span>
+              <span class="out-sub">risk_findings</span>
+            </div>
+            <div class="pipeline-output-card">
+              <span class="out-icon">🖥️</span>
+              <span class="out-label">GUI / TUI</span>
+              <span class="out-sub">展示 · 筛选 · 导出</span>
+            </div>
+            <div class="pipeline-output-card">
+              <span class="out-icon">📊</span>
+              <span class="out-label">Report</span>
+              <span class="out-sub">一键复制分析报告</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 五层分析职责 Bento ── -->
+        <div class="bento-grid" style="margin-top: 48px;">
+          <div class="bento-group-label reveal"><span>五层分析 · 每一层的职责</span></div>
+
+          <div class="glass-card bento-span-3 reveal">
+            <div class="bento-card-title">⚡ Layer 1 · 规则引擎</div>
+            <div class="bento-card-desc">
+              <span class="highlight">20 类正则/关键词规则</span>，同步执行，零开销。覆盖 5 大威胁类型的全部子类，从 DAN
+              越狱到 AWS 密钥泄露，从 <code
+                style="font-family: 'SF Mono', 'JetBrains Mono', monospace; font-size: 12px; background: var(--edge-bg-field); padding: 2px 6px; border-radius: 4px;"
+                >rm -rf /</code
+              > 到加密货币挖矿。
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-3 reveal">
+            <div class="bento-card-title">🛡️ Layer 2 · Guard Model</div>
+            <div class="bento-card-desc">
+              集成 <span class="highlight">Meta Llama Guard 3 8B</span> 内容安全分类模型，通过 node-llama-cpp 本地推理。模型可下载、加载、卸载，按需启用。
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-3 reveal">
+            <div class="bento-card-title">🔬 Layer 3 · LLM 深度审计</div>
+            <div class="bento-card-desc">
+              当风险等级达到阈值时，触发 <span class="highlight">本地 LLM 深度语义分析</span>。输出结构化
+              JSON：风险等级、类型、标题、描述、证据、风险标签、处置建议。
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-3 reveal">
+            <div class="bento-card-title">📊 Layer 4+5 · 语义 + 评分</div>
+            <div class="bento-card-desc">
+              语义标签投票机制自动修正风险类型，<span class="highlight">动态安全评分 0-100</span> 综合考量五维因子：风险等级、规则命中、模型违规、语义标签、分析深度。
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Hero Showcase: 安全分析详情 ── -->
+        <div class="hero-showcase reveal">
+          <div class="hero-showcase-text">
+            <div class="hero-showcase-eyebrow">Security Detail · 分析详情</div>
+            <h4 class="hero-showcase-title">五层分析，一目了然</h4>
+            <p class="hero-showcase-subtitle">
+              点击任意安全发现，展开五层分析详情弹出页。动态安全评分仪表盘 + 逐层分析进度指示器 +
+              网格布局展示每一层的分析结果，支持一键复制分析报告。
+            </p>
+          </div>
+          <div class="hero-showcase-image">
+            <img
+              src={`${base}edge-screenshots/gui-security-detail.png`}
+              alt="安全分析详情 — 五层分析弹出页"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- ── Stage 03: 采取行动 ── -->
+        <div class="narrative-stage reveal">
+          <div class="narrative-stage-label">Stage 03 · 采取行动</div>
+          <h3 class="narrative-stage-title">不只是检测，<span class="text-gradient">是完整的安全治理闭环</span></h3>
+          <p class="narrative-stage-desc">
+            从配置到扫描，从检测到处置，从内部事件到外部文件导入，构建完整的安全治理工作流。
+          </p>
+        </div>
+
+        <!-- ── 安全治理能力 Bento ── -->
+        <div class="bento-grid">
+          <div class="bento-group-label reveal"><span>安全治理 · 完整工作流</span></div>
+
+          <div class="glass-card bento-span-3 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/gui-security-config.png`} alt="安全策略配置" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">⚙️ Security Config · 策略配置</div>
+              <div class="bento-card-desc">
+                分层开关 · 规则卡片展开/收起 · Guard 模型管理 · 自动扫描阈值 · 误报缓解开关
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-3 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/gui-security-import.png`} alt="外部文件导入扫描" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">📁 External Import · 外部文件扫描</div>
+              <div class="bento-card-desc">拖拽导入 JSON / JSONL / TXT · 40+ 字段智能映射 · 无结构文件自动提取</div>
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-6 reveal" style="padding: 28px;">
+            <div class="bento-card-title" style="font-size: 18px; margin-bottom: 14px;">
+              📐 动态安全评分 · 五维因子综合计算
+            </div>
+            <div class="bento-card-desc" style="font-size: 15px; line-height: 1.85;">
+              安全评分 <span class="highlight">0-100</span>（100 = 完全安全），综合考量五维因子：
+              <br /><br />
+              <span class="highlight">✦ 风险等级</span> — critical -65 · high -45 · medium -25 · low -10 · info -2
+              <br />
+              <span class="highlight">✦ 规则命中</span> — 每命中一条 -3 分，上限 -15
+              <br />
+              <span class="highlight">✦ 模型违规</span> — Guard Model 判定违规 -10 分
+              <br />
+              <span class="highlight">✦ 语义标签</span> — 每个严重标签 -2 分，上限 -10
+              <br />
+              <span class="highlight">✦ 分析深度</span> — rule +0 · +model +1 · +rule+model +2 · +rule+model+llm +3
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 规则详情 Bento ── -->
+        <div class="bento-grid" style="margin-top: 48px;">
+          <div class="bento-group-label reveal"><span>规则详情 · 20 类精心调校的安全规则</span></div>
+
+          <div class="glass-card bento-span-3 reveal">
+            <div class="bento-card-title">💉 Prompt 注入 · 5 规则</div>
+            <div class="bento-card-desc" style="margin-bottom: 8px;">覆盖所有已知的 Prompt 攻击向量：</div>
+            <div class="feature-pill-row">
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>ignore instructions</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>role switch</span>
+              <span class="feature-pill"><span class="pill-severity sev-high"></span>system leak</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>DAN jailbreak</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>encoding bypass</span>
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-3 reveal">
+            <div class="bento-card-title">🔓 数据泄露 · 5 规则</div>
+            <div class="bento-card-desc" style="margin-bottom: 8px;">防止敏感数据通过 Agent 泄露：</div>
+            <div class="feature-pill-row">
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>sensitive path</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>credential</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>PII detection</span>
+              <span class="feature-pill"><span class="pill-severity sev-high"></span>file read</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>network exfil</span>
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-3 reveal">
+            <div class="bento-card-title">⚔️ 恶意工具 · 5 规则</div>
+            <div class="bento-card-desc" style="margin-bottom: 8px;">拦截危险的工具调用行为：</div>
+            <div class="feature-pill-row">
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>destructive cmd</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>shell injection</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>privilege esc</span>
+              <span class="feature-pill"><span class="pill-severity sev-high"></span>network request</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>crypto mining</span>
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-3 reveal">
+            <div class="bento-card-title">🚫 非法 + 可疑 · 5 规则</div>
+            <div class="bento-card-desc" style="margin-bottom: 8px;">内容安全与行为异常检测：</div>
+            <div class="feature-pill-row">
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>violence</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>discrimination</span>
+              <span class="feature-pill"><span class="pill-severity sev-critical"></span>sensitive content</span>
+              <span class="feature-pill"><span class="pill-severity sev-info"></span>large output</span>
+              <span class="feature-pill"><span class="pill-severity sev-high"></span>loop detection</span>
+            </div>
+          </div>
+
+          <div class="glass-card bento-span-6 bento-screenshot reveal">
+            <div class="screenshot-wrap">
+              <img src={`${base}edge-screenshots/gui-security-rules.png`} alt="安全规则详情" loading="lazy" />
+            </div>
+            <div class="screenshot-caption">
+              <div class="bento-card-title">规则管理 · 逐条展开查看详情</div>
+              <div class="bento-card-desc">每条规则支持独立开关 · 展开查看匹配模式和示例 · 按威胁类型分组展示</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 技术力展示 ── -->
+        <div class="narrative-stage reveal">
+          <div class="narrative-stage-label">Technical Strength · 技术力</div>
+          <h3 class="narrative-stage-title">本地推理 · 零云端依赖 · <span class="text-gradient">企业级安全</span></h3>
+          <p class="narrative-stage-desc">
+            所有安全分析在本地完成，数据不出本机。满足金融、医疗、政企最严格的数据合规要求。
+          </p>
+        </div>
+
+        <div class="apple-value-grid reveal">
+          <div class="glass-card apple-value-card">
+            <span class="value-icon">🦙</span>
+            <div class="value-title">本地模型推理</div>
+            <div class="value-desc">Llama Guard 3 8B + qwen2.5 · node-llama-cpp 引擎 · 零网络延迟</div>
+          </div>
+          <div class="glass-card apple-value-card">
+            <span class="value-icon">🔒</span>
+            <div class="value-title">数据零泄露</div>
+            <div class="value-desc">100% 离线分析 · 零云端 API 调用 · 数据主权完全掌控</div>
+          </div>
+          <div class="glass-card apple-value-card">
+            <span class="value-icon">⚡</span>
+            <div class="value-title">实时自动扫描</div>
+            <div class="value-desc">事件入库 500ms 后自动触发 · 可配置阈值 · 后台非阻塞</div>
+          </div>
+          <div class="glass-card apple-value-card">
+            <span class="value-icon">🔌</span>
+            <div class="value-title">10 个 IPC 通道</div>
+            <div class="value-desc">分析 · 导入 · 查询 · 配置 · 模型管理 · Electron 全链路</div>
+          </div>
+        </div>
+
+        <!-- ── 核心竞争力总结 ── -->
+        <div class="bento-grid" style="margin-top: 48px;">
+          <div class="bento-group-label reveal"><span>核心竞争力 · 为什么我们是独一无二的</span></div>
+
+          <div class="glass-card bento-intro bento-span-6 reveal">
+            <div class="bento-card-title" style="font-size: 20px; margin-bottom: 10px;">
+              唯一提供五层纵深 AI 安全分析的 Agent 治理平台
+            </div>
+            <div class="bento-card-desc" style="font-size: 15px; line-height: 1.85;">
+              传统安全工具只做规则匹配，<span class="highlight"
+                >AIGov Insight Edge 是唯一提供五层纵深 AI 安全分析的 Agent 治理平台</span
+              >。
+              <br /><br />
+              <span class="highlight">✦ 五层纵深</span> — 规则引擎 → Guard Model → LLM 深度审计 → 语义分析 → 复合评分，从表面到深层全面覆盖。
+              <br />
+              <span class="highlight">✦ 本地推理</span> — Llama Guard 3 + qwen2.5 全部在本地运行，零云端依赖，零数据泄露风险。
+              <br />
+              <span class="highlight">✦ 动态评分</span> — 五维因子综合计算 0-100 安全评分，语义标签投票自动修正误报。
+              <br />
+              <span class="highlight">✦ 完整闭环</span> — 从策略配置到自动扫描，从威胁检测到一键导出报告，构建完整的安全治理工作流。
             </div>
           </div>
         </div>
