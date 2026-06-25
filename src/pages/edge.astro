@@ -1443,7 +1443,7 @@ const base = import.meta.env.BASE_URL;
       /* ═══ Highlights 产品亮点网格 ═══ */
       .highlights-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
       }
       .highlight-card {
@@ -2224,28 +2224,13 @@ const base = import.meta.env.BASE_URL;
       <div class="section-inner relative z-10">
         <div class="reveal" style="text-align: center; margin-bottom: 48px;">
           <div class="section-kicker">Highlights</div>
-          <h2 class="section-title">五大核心优势，<span class="text-gradient">一览即懂</span></h2>
-          <p class="section-subtitle" style="max-width: 640px; margin: 0 auto;">
-            五层安全分析 · AI Copilot 驱动 · TUI 终端 · 时序分析 · AI-Native 深度洞察
+          <h2 class="section-title">六大核心优势，<span class="text-gradient">一览即懂</span></h2>
+          <p class="section-subtitle" style="max-width: 720px; margin: 0 auto;">
+            五层安全分析 · 深入安全洞察 · AI Copilot 驱动 · TUI 终端 · 时序分析 · AI-Native 深度洞察
           </p>
         </div>
 
         <div class="highlights-grid reveal">
-          <div
-            class="highlight-card"
-            data-lb-title="五层纵深威胁检测"
-            data-lb-desc="5 层分析架构 · 20 类内置规则 · Llama Guard 3 本地推理 · LLM 深度审计 · 动态安全评分 0-100。从规则引擎到语义分析，从 Prompt 注入到数据泄露，全面覆盖 AI Agent 安全威胁。"
-          >
-            <div class="highlight-img">
-              <img src={`${base}edge-screenshots/gui-security.png`} alt="安全分析 — 五层纵深威胁检测" loading="lazy" />
-            </div>
-            <div class="highlight-body">
-              <div class="highlight-label">Security</div>
-              <div class="highlight-title">五层纵深威胁检测</div>
-              <div class="highlight-desc">20 规则 · Llama Guard 3 · 动态评分</div>
-            </div>
-          </div>
-
           <div
             class="highlight-card"
             data-lb-title="AI 驱动的实时仪表盘"
@@ -2258,21 +2243,6 @@ const base = import.meta.env.BASE_URL;
               <div class="highlight-label">Dashboard</div>
               <div class="highlight-title">AI 驱动的实时仪表盘</div>
               <div class="highlight-desc">15+ 自研图表 · AI 异常检测 · 零依赖</div>
-            </div>
-          </div>
-
-          <div
-            class="highlight-card"
-            data-lb-title="TUI 终端 — 键盘优先，极致高效"
-            data-lb-desc="基于 Ink（React for CLI）构建的全屏终端仪表盘。9 大视图覆盖从总览到详情的完整数据浏览链路，Tokyo Night 配色，双语 i18n，键盘优先交互。"
-          >
-            <div class="highlight-img">
-              <img src={`${base}edge-screenshots/tui-dashboard.png`} alt="TUI 终端仪表盘" loading="lazy" />
-            </div>
-            <div class="highlight-body">
-              <div class="highlight-label">Terminal UI</div>
-              <div class="highlight-title">TUI 终端，键盘优先</div>
-              <div class="highlight-desc">9 大视图 · 全屏仪表盘 · Tokyo Night</div>
             </div>
           </div>
 
@@ -2303,6 +2273,51 @@ const base = import.meta.env.BASE_URL;
               <div class="highlight-label">AI-Native</div>
               <div class="highlight-title">6 个 AI 模块深度集成</div>
               <div class="highlight-desc">异常检测 · 每日简报 · 成本模拟 · Spotlight</div>
+            </div>
+          </div>
+
+          <div
+            class="highlight-card"
+            data-lb-title="TUI 终端 — 键盘优先，极致高效"
+            data-lb-desc="基于 Ink（React for CLI）构建的全屏终端仪表盘。9 大视图覆盖从总览到详情的完整数据浏览链路，Tokyo Night 配色，双语 i18n，键盘优先交互。"
+          >
+            <div class="highlight-img">
+              <img src={`${base}edge-screenshots/tui-dashboard.png`} alt="TUI 终端仪表盘" loading="lazy" />
+            </div>
+            <div class="highlight-body">
+              <div class="highlight-label">Terminal UI</div>
+              <div class="highlight-title">TUI 终端，键盘优先</div>
+              <div class="highlight-desc">9 大视图 · 全屏仪表盘 · Tokyo Night</div>
+            </div>
+          </div>
+
+          <div
+            class="highlight-card"
+            data-lb-title="五层纵深威胁检测"
+            data-lb-desc="5 层分析架构 · 20 类内置规则 · Llama Guard 3 本地推理 · LLM 深度审计 · 动态安全评分 0-100。从规则引擎到语义分析，从 Prompt 注入到数据泄露，全面覆盖 AI Agent 安全威胁。"
+          >
+            <div class="highlight-img">
+              <img src={`${base}edge-screenshots/gui-security.png`} alt="安全分析 — 五层纵深威胁检测" loading="lazy" />
+            </div>
+            <div class="highlight-body">
+              <div class="highlight-label">Security</div>
+              <div class="highlight-title">五层纵深威胁检测</div>
+              <div class="highlight-desc">20 规则 · Llama Guard 3 · 动态评分</div>
+            </div>
+          </div>
+
+          <div
+            class="highlight-card"
+            data-lb-title="深入安全分析"
+            data-lb-desc="每个事件均可展开深入的安全分析视图，展示五层检测结果、威胁评分、LLM 审计详情和原始数据。从宏观概览到微观细节，一层点击即可直达，让安全事件无所遁形。"
+          >
+            <div class="highlight-img">
+              <img src={`${base}edge-screenshots/gui-security-detail.png`} alt="深入安全分析" loading="lazy" />
+            </div>
+            <div class="highlight-body">
+              <div class="highlight-label">Security</div>
+              <div class="highlight-title">深入安全分析</div>
+              <div class="highlight-desc">逐事件深度分析 · 五层检测详情 · 威胁评分</div>
             </div>
           </div>
         </div>
