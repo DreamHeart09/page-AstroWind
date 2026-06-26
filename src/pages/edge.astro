@@ -657,6 +657,277 @@ const base = import.meta.env.BASE_URL;
         font-size: 15px;
       }
 
+      /* ═══ EverAgent 品牌专属 ═══ */
+      .everagent-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--edge-warning);
+        background: rgba(245, 172, 55, 0.12);
+        border: 1px solid rgba(245, 172, 55, 0.28);
+        white-space: nowrap;
+        margin-left: auto;
+      }
+      .everagent-plugin-card:hover {
+        border-color: rgba(245, 172, 55, 0.32);
+      }
+
+      /* ═══ EverAgent 专门章节 ═══ */
+      .everagent-hero {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 20px;
+      }
+      .everagent-hero-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        flex-shrink: 0;
+        box-shadow: 0 4px 20px rgba(245, 172, 55, 0.25);
+      }
+      .everagent-hero-name {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--edge-text-primary);
+      }
+      .everagent-hero-sub {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--edge-warning);
+        margin-top: 4px;
+        letter-spacing: 0.01em;
+      }
+      .everagent-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid var(--edge-border);
+        font-size: 12px;
+        color: var(--edge-text-tertiary);
+        font-family: 'SF Mono', 'JetBrains Mono', monospace;
+      }
+      .everagent-meta-dot {
+        color: var(--edge-warning);
+      }
+
+      .everagent-flow {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 0;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+      .everagent-flow-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+        min-width: 120px;
+        padding: 18px 14px;
+        border-radius: var(--edge-radius-md);
+        background: var(--edge-bg-field);
+        border: 1px solid var(--edge-glass-border);
+        text-align: center;
+        transition: all var(--edge-transition-fast);
+        flex: 1;
+      }
+      .everagent-flow-step:hover {
+        border-color: rgba(245, 172, 55, 0.32);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px -10px rgba(245, 172, 55, 0.2);
+      }
+      .everagent-flow-step .flow-emoji {
+        font-size: 24px;
+        line-height: 1;
+      }
+      .everagent-flow-step .flow-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--edge-text-primary);
+        letter-spacing: -0.005em;
+      }
+      .everagent-flow-step .flow-sub {
+        font-size: 11px;
+        color: var(--edge-text-tertiary);
+        line-height: 1.5;
+      }
+      .everagent-flow-arrow {
+        font-size: 18px;
+        color: var(--edge-warning);
+        opacity: 0.55;
+        align-self: center;
+        padding: 0 6px;
+      }
+      .everagent-flow-footer {
+        margin-top: 18px;
+        font-size: 12px;
+        color: var(--edge-text-tertiary);
+        text-align: center;
+        font-family: 'SF Mono', 'JetBrains Mono', monospace;
+        line-height: 1.7;
+      }
+
+      .everagent-capabilities {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .everagent-capability {
+        text-align: left;
+      }
+      .everagent-capability .cap-emoji {
+        font-size: 22px;
+        line-height: 1;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .everagent-capability .cap-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--edge-text-primary);
+        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+      }
+      .everagent-capability .cap-desc {
+        font-size: 13px;
+        color: var(--edge-text-secondary);
+        line-height: 1.65;
+      }
+
+      .everagent-scenarios {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .everagent-scenario {
+        padding: 20px;
+        border-radius: var(--edge-radius-md);
+        background: var(--edge-glass-bg-refined);
+        border: 1px solid var(--edge-glass-border);
+        transition: all var(--edge-transition-fast);
+      }
+      .everagent-scenario:hover {
+        border-color: rgba(245, 172, 55, 0.28);
+        transform: translateY(-2px);
+      }
+      .everagent-scenario .scn-tag {
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--edge-warning);
+        margin-bottom: 6px;
+      }
+      .everagent-scenario .scn-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--edge-text-primary);
+        letter-spacing: -0.005em;
+      }
+
+      .everagent-cta {
+        text-align: center;
+        padding: 48px 32px;
+        background:
+          radial-gradient(circle at 50% 0%, rgba(245, 172, 55, 0.12) 0%, transparent 60%), var(--edge-glass-bg-refined);
+        border: 1px solid rgba(245, 172, 55, 0.22);
+      }
+      .everagent-cta-title {
+        font-size: clamp(24px, 2.6vw, 32px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--edge-text-primary);
+        margin-bottom: 10px;
+      }
+      .everagent-cta-sub {
+        font-size: 14px;
+        color: var(--edge-text-tertiary);
+        font-family: 'SF Mono', 'JetBrains Mono', monospace;
+        margin-bottom: 28px;
+      }
+      .everagent-cta-buttons {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .everagent-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        border-radius: 999px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        background: linear-gradient(135deg, #d4910a 0%, #f5ac37 100%);
+        border: 1px solid rgba(245, 172, 55, 0.5);
+        box-shadow: 0 8px 24px -8px rgba(245, 172, 55, 0.5);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .everagent-btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 32px -10px rgba(245, 172, 55, 0.6);
+      }
+      .everagent-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        border-radius: 999px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--edge-text-primary);
+        background: var(--edge-glass-bg);
+        border: 1px solid var(--edge-glass-border);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transition: all var(--edge-transition-base);
+      }
+      .everagent-btn-secondary:hover {
+        transform: translateY(-2px);
+        border-color: var(--edge-warning);
+      }
+
+      @media (max-width: 900px) {
+        .everagent-capabilities {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .everagent-scenarios {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .everagent-flow-step {
+          min-width: 100px;
+        }
+      }
+      @media (max-width: 600px) {
+        .everagent-capabilities {
+          grid-template-columns: 1fr;
+        }
+        .everagent-scenarios {
+          grid-template-columns: 1fr;
+        }
+        .everagent-flow-arrow {
+          transform: rotate(90deg);
+          padding: 4px 0;
+        }
+        .everagent-hero {
+          flex-direction: column;
+          text-align: center;
+          gap: 14px;
+        }
+      }
+
       /* ═══ 截图卡片 ═══ */
       .bento-screenshot {
         padding: 0;
@@ -1073,6 +1344,25 @@ const base = import.meta.env.BASE_URL;
         color: var(--edge-text-tertiary);
         margin-top: 2px;
         font-family: 'SF Mono', 'JetBrains Mono', monospace;
+      }
+      .arch-node.everagent-node {
+        border-color: rgba(245, 172, 55, 0.35);
+      }
+      .arch-node.everagent-node:hover {
+        border-color: var(--edge-warning);
+        box-shadow: 0 0 80px -24px rgba(245, 172, 55, 0.45);
+      }
+      .everagent-node-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        justify-content: center;
+      }
+      .everagent-node-label img {
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        display: block;
       }
       .arch-arrow-down {
         display: flex;
@@ -2405,6 +2695,13 @@ const base = import.meta.env.BASE_URL;
                 <div class="node-label">Claude Code</div>
                 <div class="node-sub">Observer</div>
               </div>
+              <div class="arch-node everagent-node">
+                <div class="node-label everagent-node-label">
+                  <img src={`${base}edge-screenshots/everagent-icon.png`} alt="EverAgent" />
+                  EverAgent
+                </div>
+                <div class="node-sub">恒安嘉新 · Plugin</div>
+              </div>
             </div>
           </div>
           <div class="arch-arrow-down"><div class="arrow-line"></div></div>
@@ -2451,7 +2748,7 @@ const base = import.meta.env.BASE_URL;
         <div class="reveal">
           <div class="section-kicker">Plugins</div>
           <h2 class="section-title">插件能力：<span class="text-gradient">底层采集，深度可观测</span></h2>
-          <p class="section-subtitle">三大插件覆盖主流 AI Agent 平台，Hook 机制实现零侵入全链路数据采集</p>
+          <p class="section-subtitle">四大插件覆盖主流 AI Agent 平台，Hook 机制实现零侵入全链路数据采集</p>
         </div>
 
         <div class="bento-grid">
@@ -2491,6 +2788,226 @@ const base = import.meta.env.BASE_URL;
               <div class="bento-card-desc" style="margin-top: 6px;">
                 Skills · Agents · Hooks · MCP/LSP Server · Monitors
               </div>
+            </div>
+          </div>
+
+          <!-- 袋鼠智能体 EverAgent -->
+          <div class="glass-card bento-span-2 reveal everagent-plugin-card">
+            <div class="screenshot-wrap" style="aspect-ratio: 16 / 10;">
+              <img
+                src={`${base}edge-screenshots/plugin-everagent.png`}
+                alt="袋鼠智能体 EverAgent 插件"
+                loading="lazy"
+              />
+            </div>
+            <div class="screenshot-caption" style="padding: 18px 20px 4px;">
+              <div class="bento-card-title" style="display: flex; align-items: center; gap: 8px;">
+                <img
+                  src={`${base}edge-screenshots/everagent-icon.png`}
+                  alt="EverAgent"
+                  style="width: 20px; height: 20px; border-radius: 5px;"
+                />
+                袋鼠智能体 EverAgent
+                <span class="everagent-badge">恒安嘉新自研</span>
+              </div>
+              <div class="bento-card-desc" style="margin-top: 6px;">
+                全场景业务智能体工作平台 · Skill 调用与 MCP 工具编排全链路可观测
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         袋鼠智能体 EverAgent 可观测专门章节（恒安嘉新自研）
+         ════════════════════════════════════════════════════════════ -->
+    <section class="edge-section-alt" id="everagent">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="section-kicker">EverAgent Observability · 自家产品可观测</div>
+          <h2 class="section-title">
+            🦘 袋鼠智能体 EverAgent — <span class="text-gradient">全链路可观测</span>
+          </h2>
+          <p class="section-subtitle">
+            AIGovInsight Edge 为恒安嘉新自研 EverAgent 提供完整的 LLM、工具、Skill、会话生命周期观测能力<br />
+            <span style="font-size: 14px; color: var(--edge-text-tertiary);"
+              >零侵入 Hook 接入 · 全量留存 · 成本可追溯 · 异常可回溯</span
+            >
+          </p>
+        </div>
+
+        <div class="bento-grid" style="margin-top: 48px;">
+          <!-- 1. Hero 介绍块 -->
+          <div class="glass-card bento-span-6 reveal" style="transition-delay: 80ms;">
+            <div class="everagent-hero">
+              <img
+                src={`${base}edge-screenshots/everagent-icon.png`}
+                alt="袋鼠智能体 EverAgent"
+                class="everagent-hero-icon"
+              />
+              <div>
+                <div class="everagent-hero-name">袋鼠智能体 EverAgent</div>
+                <div class="everagent-hero-sub">恒安嘉新自研 · AIGovInsight Edge 全链路观测</div>
+              </div>
+            </div>
+            <div class="bento-card-desc" style="font-size: 15px;">
+              EverAgent 是恒安嘉新自研的新一代对话式 Agent 工作台，通过自然语言交互、Skill 调用与 MCP
+              工具编排完成数据分析与业务研判。AIGovInsight Edge 通过数据库级 Hook
+              零侵入接入，对其完整运行链路提供端到端可观测能力——从 LLM
+              调用、工具执行到会话生命周期，全量留存、成本可追溯、异常可回溯。
+            </div>
+            <div class="everagent-meta">
+              <span><span class="everagent-meta-dot">●</span> 观测维度：LLM / 工具 / Skill / 会话</span>
+              <span><span class="everagent-meta-dot">●</span> 接入方式：零侵入 Hook</span>
+              <span><span class="everagent-meta-dot">●</span> 覆盖：多行业全场景</span>
+            </div>
+          </div>
+
+          <!-- 2. 观测链路 5 步流程图 -->
+          <div class="glass-card bento-span-6 reveal" style="transition-delay: 120ms;">
+            <div style="text-align: center; margin-bottom: 8px;">
+              <div
+                style="font-size: 12px; font-weight: 600; color: var(--edge-text-tertiary); letter-spacing: 0.08em; text-transform: uppercase;"
+              >
+                Observability Chain · 全链路观测矩阵
+              </div>
+            </div>
+            <div class="everagent-flow">
+              <div class="everagent-flow-step">
+                <span class="flow-emoji">💬</span>
+                <div class="flow-title">会话观测</div>
+                <div class="flow-sub">自然语言交互全量留存</div>
+              </div>
+              <div class="everagent-flow-arrow">→</div>
+              <div class="everagent-flow-step">
+                <span class="flow-emoji">🧠</span>
+                <div class="flow-title">LLM 调用</div>
+                <div class="flow-sub">Prompt / 思维链 / Token</div>
+              </div>
+              <div class="everagent-flow-arrow">→</div>
+              <div class="everagent-flow-step">
+                <span class="flow-emoji">🧩</span>
+                <div class="flow-title">Skill 调用</div>
+                <div class="flow-sub">业务能力包匹配还原</div>
+              </div>
+              <div class="everagent-flow-arrow">→</div>
+              <div class="everagent-flow-step">
+                <span class="flow-emoji">⚙️</span>
+                <div class="flow-title">MCP 工具</div>
+                <div class="flow-sub">入参 / 返回 / 耗时 / 异常</div>
+              </div>
+              <div class="everagent-flow-arrow">→</div>
+              <div class="everagent-flow-step">
+                <span class="flow-emoji">📊</span>
+                <div class="flow-title">输出审计</div>
+                <div class="flow-sub">报告 / 图表 / 等级留存</div>
+              </div>
+            </div>
+            <div class="everagent-flow-footer">
+              从用户输入到结果输出 · 每一步均被捕获 · 决策链路可还原 · 成本可追溯 · 异常可回溯
+            </div>
+          </div>
+
+          <!-- 3. 观测能力四宫格 -->
+          <div class="bento-group-label reveal" style="transition-delay: 160ms">
+            <span>Observability Dimensions · 观测能力</span>
+          </div>
+          <div class="bento-span-6 reveal" style="transition-delay: 180ms;">
+            <div class="everagent-capabilities">
+              <div class="glass-card everagent-capability">
+                <span class="cap-emoji">🧠</span>
+                <div class="cap-title">LLM 调用观测</div>
+                <div class="cap-desc">完整捕获 Prompt / Completion、思维链内容、Token 计费与模型成本追溯</div>
+              </div>
+              <div class="glass-card everagent-capability">
+                <span class="cap-emoji">⚙️</span>
+                <div class="cap-title">工具执行观测</div>
+                <div class="cap-desc">MCP 工具调用的入参、返回值、执行耗时与异常堆栈全量留存</div>
+              </div>
+              <div class="glass-card everagent-capability">
+                <span class="cap-emoji">🧩</span>
+                <div class="cap-title">Skill 调用观测</div>
+                <div class="cap-desc">业务能力包匹配过程可视化，Agent 决策链路与任务拆解路径完整还原</div>
+              </div>
+              <div class="glass-card everagent-capability">
+                <span class="cap-emoji">📊</span>
+                <div class="cap-title">会话生命周期</div>
+                <div class="cap-desc">从会话开始到结束的完整时间轴，多轮对话关联分析与上下文演进追踪</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. 可观测的业务场景九宫格 -->
+          <div class="bento-group-label reveal" style="transition-delay: 220ms">
+            <span>Observable Scenarios · 可观测的业务场景 · 覆盖多行业全场景</span>
+          </div>
+          <div class="bento-span-6 reveal" style="transition-delay: 240ms;">
+            <div class="everagent-scenarios">
+              <div class="everagent-scenario">
+                <div class="scn-tag">某地市反诈</div>
+                <div class="scn-title">区域反诈预警</div>
+              </div>
+              <div class="everagent-scenario">
+                <div class="scn-tag">某地公安</div>
+                <div class="scn-title">综合业务支撑</div>
+              </div>
+              <div class="everagent-scenario">
+                <div class="scn-tag">某地运营商</div>
+                <div class="scn-title">运营商数据协同</div>
+              </div>
+              <div class="everagent-scenario">
+                <div class="scn-tag">明暗网分析</div>
+                <div class="scn-title">深网线索监测</div>
+              </div>
+              <div class="everagent-scenario">
+                <div class="scn-tag">黑灰产分析</div>
+                <div class="scn-title">产业链识别</div>
+              </div>
+              <div class="everagent-scenario">
+                <div class="scn-tag">APP 分析</div>
+                <div class="scn-title">涉诈应用研判</div>
+              </div>
+              <div class="everagent-scenario">
+                <div class="scn-tag">案件分析</div>
+                <div class="scn-title">串并案研判</div>
+              </div>
+              <div class="everagent-scenario">
+                <div class="scn-tag">资金分析</div>
+                <div class="scn-title">资金流向追踪</div>
+              </div>
+              <div class="everagent-scenario">
+                <div class="scn-tag">工作周报</div>
+                <div class="scn-title">自动生成简报</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. CTA 广告条 -->
+          <div class="glass-card bento-span-6 everagent-cta reveal" style="transition-delay: 280ms;">
+            <div class="everagent-cta-title">体验企业级智能数据分析</div>
+            <div class="everagent-cta-sub">v1.3.2.004 · Windows 64位 / Mac Intel / Mac ARM / Docker 版</div>
+            <div class="everagent-cta-buttons">
+              <a
+                href="https://space.aigovian.com/#/data-agent"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="everagent-btn-primary"
+              >
+                访问 EverAgent 官网
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg
+                >
+              </a>
+              <a href="mailto:xclawguard@eversec.cn" class="everagent-btn-secondary"> License 申请 </a>
             </div>
           </div>
         </div>
