@@ -334,6 +334,7 @@ A：当 OpenClaw 执行系统命令或访问文件时，AIGov-Insight 能够捕�
 
 ## 许可证
 
-**AIGov-Insight** 基于 MIT 许可证开源 —— 详见 [LICENSE](./LICENSE.md) 文件。
+- 本网站页面基于 **AstroWind** 模板构建，AstroWind 采用 MIT 许可证 —— 详见 [LICENSE](./LICENSE.md) 文件。
+- **AIGov-Insight** 产品（包括但不限于 Agent 探针、防护引擎、核心算法与商业功能）为恒安嘉新所有，不属于 MIT 开源范围，未经授权不得用于商业目的。
 
 © 2026 恒安嘉新 Eversec. All rights reserved.
