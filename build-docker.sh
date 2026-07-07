@@ -3,7 +3,10 @@
 set -e
 
 IMAGE_NAME="aigov-insight-page"
-IMAGE_TAG="v0.3.0"
+# 支持 ./build-docker.sh [tag]，tag 可带或不带 v 前缀，不传默认 v0.4.0
+RAW_TAG="${1:-v0.4.0}"
+IMAGE_TAG="${RAW_TAG#v}"
+IMAGE_TAG="v${IMAGE_TAG}"
 OUTPUT_DIR="./dist-docker"
 BUILD_BASE="${ASTRO_BASE:-/}"
 
@@ -29,7 +32,7 @@ echo ""
 echo -e "${DIM}────────────────────────────────────────────────────────────${RESET}"
 echo -e "  ${GREEN}⣿${RESET} ${BOLD}Step 1/6${RESET} ${DIM}Building Docker image...${RESET}"
 echo -e "${DIM}────────────────────────────────────────────────────────────${RESET}"
-ASTRO_BASE="${BUILD_BASE}" docker compose build
+ASTRO_BASE="${BUILD_BASE}" IMAGE_TAG="${IMAGE_TAG}" docker compose build
 
 echo ""
 echo -e "${DIM}────────────────────────────────────────────────────────────${RESET}"
@@ -48,7 +51,8 @@ echo ""
 echo -e "${DIM}────────────────────────────────────────────────────────────${RESET}"
 echo -e "  ${GREEN}⣿${RESET} ${BOLD}Step 4/6${RESET} ${DIM}Copying docker-compose.yml...${RESET}"
 echo -e "${DIM}────────────────────────────────────────────────────────────${RESET}"
-cp docker-compose.yml ${OUTPUT_DIR}/
+# 生成固定版本号的 docker-compose.yml，避免目标服务器缺少 IMAGE_TAG 环境变量
+sed "s/\${IMAGE_TAG:-[^}]*}/${IMAGE_TAG}/g" docker-compose.yml > ${OUTPUT_DIR}/docker-compose.yml
 
 echo ""
 echo -e "${DIM}────────────────────────────────────────────────────────────${RESET}"
@@ -60,7 +64,7 @@ echo ""
 echo -e "${DIM}────────────────────────────────────────────────────────────${RESET}"
 echo -e "  ${GREEN}⣿${RESET} ${BOLD}Step 6/6${RESET} ${DIM}Generating README...${RESET}"
 echo -e "${DIM}────────────────────────────────────────────────────────────${RESET}"
-cat > ${OUTPUT_DIR}/README.md << 'EOF'
+cat > ${OUTPUT_DIR}/README.md << EOF
 # AIGov Insight Page - 离线部署指南
 
 ## 📦 文件说明
@@ -75,20 +79,20 @@ cat > ${OUTPUT_DIR}/README.md << 'EOF'
 
 ### 方式一：docker run（推荐）
 
-```bash
+\`\`\`bash
 # 1. 加载镜像
 docker load -i aigov-insight-page.tar.gz
 
 # 2. 启动容器
-docker run -d -p 8080:8080 --name aigov-insight-page aigov-insight-page:v0.3.0
+docker run -d -p 8080:8080 --name aigov-insight-page aigov-insight-page:${IMAGE_TAG}
 
 # 3. 访问
 # http://localhost:8080/
-```
+\`\`\`
 
 ### 方式二：docker compose
 
-```bash
+\`\`\`bash
 # 1. 加载镜像
 docker load -i aigov-insight-page.tar.gz
 
@@ -97,11 +101,11 @@ docker compose up -d
 
 # 3. 访问
 # http://localhost:8080/
-```
+\`\`\`
 
 ## 🔧 常用命令
 
-```bash
+\`\`\`bash
 # 验证文件完整性
 sha256sum -c aigov-insight-page.tar.gz.sha256
 
@@ -121,23 +125,23 @@ docker start aigov-insight-page
 docker rm -f aigov-insight-page
 
 # 删除镜像
-docker rmi aigov-insight-page:v0.3.0
-```
+docker rmi aigov-insight-page:${IMAGE_TAG}
+\`\`\`
 
 ## 🌐 端口配置
 
-默认端口：`8080`
+默认端口：\`8080\`
 
 修改端口（以 9000 为例）：
 
-```bash
+\`\`\`bash
 # docker run 方式
-docker run -d -p 9000:8080 --name aigov-insight-page aigov-insight-page:v0.3.0
+docker run -d -p 9000:8080 --name aigov-insight-page aigov-insight-page:${IMAGE_TAG}
 
 # docker compose 方式：修改 docker-compose.yml 中的 ports 配置
 # ports:
 #   - 9000:8080
-```
+\`\`\`
 
 EOF
 

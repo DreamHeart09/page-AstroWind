@@ -4,7 +4,7 @@ services:
       context: .
       args:
         ASTRO_BASE: ${ASTRO_BASE:-/}
-    image: aigov-insight-page:v0.3.0
+    image: aigov-insight-page:${IMAGE_TAG:-v0.4.0}
     container_name: aigov-insight-page
     ports:
       - 8080:8080

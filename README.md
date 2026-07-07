@@ -1,302 +1,339 @@
-# 🚀 AstroWind
+# 🛡️ AIGov-Insight
 
-<img src="https://raw.githubusercontent.com/arthelokyo/.github/main/resources/astrowind/lighthouse-score.png" align="right"
-     alt="AstroWind Lighthouse Score" width="100" height="358">
+🌟 _全球领先的 AI 自主智能体全链路可观测平台_ 🌟
 
-🌟 _Most *starred* & *forked* Astro theme in 2022, 2023 & 2024_. 🌟
+**AIGov-Insight** 是恒安嘉新（Eversec）打造的一款面向新一代 AI 系统的安全可观测平台。基于 **Astro 5.0** 与 **Tailwind CSS** 构建官方网站，专注于展示产品能力、解决方案与开源社区动态。
 
-**AstroWind** is a free and open-source template to make your website using **[Astro 5.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
+> **AI 世界的行车记录仪** —— 让 LLM / Agent / MCP / RAG / OpenClaw 的每一次“思考”与“行动”全程透明、可溯、可控。
 
-- ✅ **Production-ready** scores in **PageSpeed Insights** reports.
-- ✅ Integration with **Tailwind CSS** supporting **Dark mode** and **_RTL_**.
-- ✅ **Fast and SEO friendly blog** with automatic **RSS feed**, **MDX** support, **Categories & Tags**, **Social Share**, ...
-- ✅ **Image Optimization** (using new **Astro Assets** and **Unpic** for Universal image CDN).
-- ✅ Generation of **project sitemap** based on your routes.
-- ✅ **Open Graph tags** for social media sharing.
-- ✅ **Analytics** built-in Google Analytics, and Splitbee integration.
+- ✅ **零侵入部署**：基于 eBPF 内核探针技术，旁路采集，无需修改业务代码。
+- ✅ **全链路追踪**：自动关联 AG-UI、LLM、MCP、EXEC、FILE 等多源异构日志。
+- ✅ **OpenClaw 智能防护**：支持拦截、二次确认、告警三种精细化处置模式。
+- ✅ **双引擎架构**：Agent 负责高效采集，Web 负责智能还原与可视化分析。
+- ✅ **开源生态**：Web 前端与 Agent 探针均已开源，欢迎共建。
 
 <br>
 
-![AstroWind Theme Screenshot](https://raw.githubusercontent.com/arthelokyo/.github/main/resources/astrowind/screenshot-astrowind-1.0.png)
-
-[![arthelokyo](https://custom-icon-badges.demolab.com/badge/made%20by%20-arthelokyo-556bf2?style=flat-square&logo=arthelokyo&logoColor=white&labelColor=101827)](https://github.com/arthelokyo)
-[![License](https://img.shields.io/github/license/arthelokyo/astrowind?style=flat-square&color=dddddd&labelColor=000000)](https://github.com/arthelokyo/astrowind/blob/main/LICENSE.md)
-[![Maintained](https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg?style=flat-square)](https://github.com/arthelokyo)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/arthelokyo/astrowind#contributing)
-[![Known Vulnerabilities](https://snyk.io/test/github/arthelokyo/astrowind/badge.svg?style=flat-square)](https://snyk.io/test/github/arthelokyo/astrowind)
-[![Stars](https://img.shields.io/github/stars/arthelokyo/astrowind.svg?style=social&label=stars&maxAge=86400&color=ff69b4)](https://github.com/arthelokyo/astrowind)
-[![Forks](https://img.shields.io/github/forks/arthelokyo/astrowind.svg?style=social&label=forks&maxAge=86400&color=ff69b4)](https://github.com/arthelokyo/astrowind)
+[![Eversec](https://img.shields.io/badge/made%20by-Eversec-556bf2?style=flat-square&logo=github&logoColor=white&labelColor=101827)](https://github.com/Eversec-ai)
+[![License](https://img.shields.io/github/license/Eversec-ai/AIGov-Insight-Web?style=flat-square&color=dddddd&labelColor=000000)](https://github.com/Eversec-ai/AIGov-Insight-Web/blob/main/LICENSE.md)
+[![Astro](https://img.shields.io/badge/Astro-5.0-BC52EE?style=flat-square&logo=astro&logoColor=white)](https://astro.build/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![GitHub Stars](https://img.shields.io/github/stars/Eversec-ai/AIGov-Insight-Web.svg?style=social&label=stars&maxAge=86400&color=ff69b4)](https://github.com/Eversec-ai/AIGov-Insight-Web)
 
 <br>
 
 <details open>
-<summary>Table of Contents</summary>
+<summary>目录</summary>
 
-- [Demo](#demo)
-- [Upcoming: AstroWind 2.0 – We Need Your Vision!](#-upcoming-astrowind-20--we-need-your-vision)
-- [TL;DR](#tldr)
-- [Getting started](#getting-started)
-  - [Project structure](#project-structure)
-  - [Commands](#commands)
-  - [Configuration](#configuration)
-  - [Deploy](#deploy)
-- [Frequently Asked Questions](#frequently-asked-questions)
-- [Related Projects](#related-projects)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
+- [产品简介](#产品简介)
+- [核心能力](#核心能力)
+- [双引擎架构](#双引擎架构)
+- [快速开始](#快速开始)
+  - [项目结构](#项目结构)
+  - [常用命令](#常用命令)
+  - [配置文件](#配置文件)
+  - [本地开发](#本地开发)
+  - [Docker 部署](#docker-部署)
+- [开源项目](#开源项目)
+- [常见问题](#常见问题)
+- [关于恒安嘉新](#关于恒安嘉新)
+- [许可证](#许可证)
 
 </details>
 
 <br>
 
-## Demo
+## 产品简介
 
-📌 [https://astrowind.vercel.app/](https://astrowind.vercel.app/)
+AIGov-Insight 专为解决 AI 系统“黑盒运行、难以审计、风险难溯”的痛点而生。当 AI 从“聊天机器人”进化为“做事智能体”，每一次工具调用、系统命令执行、敏感文件访问都可能成为安全隐患。AIGov-Insight 通过 eBPF 内核探针与智能会话关联算法，构建从用户提问到 AI 推理、再到工具执行的全链路证据链，帮助企业实现：
 
-<br>
-
-## 🔔 Upcoming: AstroWind 2.0 – We Need Your Vision!
-
-We're embarking on an exciting journey with **AstroWind 2.0**, and we want you to be a part of it! We're currently taking the first steps in developing this new version and your insights are invaluable. Join the discussion and share your feedback, ideas, and suggestions to help shape the future of **AstroWind**. Let's make **AstroWind 2.0** even better, together!
-
-[Share Your Feedback in Our Discussion!](https://github.com/arthelokyo/astrowind/discussions/392)
+- **透明**：完整还原 AI 决策与执行过程。
+- **可溯**：一键定位风险事件的完整因果链。
+- **可控**：实时拦截、告警、二次确认危险操作。
 
 <br>
 
-## TL;DR
+## 核心能力
 
-```shell
-npm create astro@latest -- --template arthelokyo/astrowind
+### 1. 全链路可观测
+
+毫秒级捕获大模型流量、系统命令执行与敏感文件访问，完整还原 LLM / Agent / MCP / RAG 的运行全貌。
+
+### 2. 智能会话关联
+
+独创全链路智能会话关联算法，自动聚合多源异构日志，精准建立：
+
+```text
+用户提问 → AI 推理 → 工具调用 → 系统执行 → 结果反馈
 ```
 
-## Getting started
+### 3. MCP 工具追踪
 
-**AstroWind** tries to give you quick access to creating a website using [Astro 5.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
+深度解析 MCP（Model Context Protocol）工具调用，监控 Agent 的“决策-行动”闭环，适配 LangChain、Dify 等主流框架。
 
-Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals.
+### 4. OpenClaw 智能防护中心
 
-In this version the template supports all the options in the `output` configuration, `static`, `hybrid` and `server`, but the blog only works with `prerender = true`. We are working on the next version and aim to make it fully compatible with SSR.
+基于 OpenClaw 智能防护引擎，实现从“被动观测”到“主动治理”的跨越：
 
-### Project structure
+- **智能拦截**：阻断高危操作。
+- **二次确认**：对敏感操作要求人工复核。
+- **告警通知**：实时推送风险事件。
 
-Inside **AstroWind** template, you'll see the following folders and files:
+预置规则库开箱即用，同时支持丰富的自定义规则扩展，为 AI 智能体加装“安全刹车片”。
+
+### 5. 双引擎协同
+
+- **AIGov-Insight Agent**：基于 eBPF 的智能数据采集探针，运行在内核态，零业务侵入。
+- **AIGov-Insight Web**：现代化可观测分析界面，提供流畅、直观、极具视觉冲击力的数据可视化体验。
+
+<br>
+
+## 双引擎架构
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                     AIGov-Insight Web                        │
+│  (Astro + Tailwind / 现代化智能大厦架构 / 可视化分析层)        │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────┐
+│                   AIGov-Insight Agent                        │
+│  (eBPF 内核探针 / LLM 流量识别 / MCP 追踪 / 命令执行监控)      │
+└─────────────────────────────────────────────────────────────┘
+```
+
+- **Agent** 高效采集大模型或智能体特有流量，精准捕获每一个 AI 行为。
+- **Web** 智能还原与可视化分析，让复杂数据变得直观易懂。
+
+<br>
+
+## 快速开始
+
+### 项目结构
 
 ```
 /
-├── public/
-│   ├── _headers
+├── public/                  # 静态资源
+│   ├── screenshots/         # 产品截图
 │   └── robots.txt
 ├── src/
-│   ├── assets/
-│   │   ├── favicons/
-│   │   ├── images/
-│   │   └── styles/
-│   │       └── tailwind.css
-│   ├── components/
-│   │   ├── blog/
-│   │   ├── common/
-│   │   ├── ui/
-│   │   ├── widgets/
-│   │   │   ├── Header.astro
-│   │   │   └── ...
-│   │   ├── CustomStyles.astro
-│   │   ├── Favicons.astro
-│   │   └── Logo.astro
-│   ├── content/
-│   │   ├── post/
-│   │   │   ├── post-slug-1.md
-│   │   │   ├── post-slug-2.mdx
-│   │   │   └── ...
-│   │   └-- config.ts
-│   ├── layouts/
-│   │   ├── Layout.astro
-│   │   ├── MarkdownLayout.astro
-│   │   └── PageLayout.astro
-│   ├── pages/
-│   │   ├── [...blog]/
-│   │   │   ├── [category]/
-│   │   │   ├── [tag]/
-│   │   │   ├── [...page].astro
-│   │   │   └── index.astro
-│   │   ├── index.astro
-│   │   ├── 404.astro
-│   │   ├-- rss.xml.ts
-│   │   └── ...
-│   ├── utils/
-│   ├── config.yaml
-│   └── navigation.js
-├── package.json
-├── astro.config.ts
-└── ...
+│   ├── assets/              # 图片、样式、图标
+│   ├── components/          # Astro 组件
+│   │   ├── blog/            # 博客相关组件
+│   │   ├── common/          # 通用组件
+│   │   ├── ui/              # UI 基础组件
+│   │   └── widgets/         # 页面模块组件
+│   ├── content/             # 内容集合（博客文章等）
+│   ├── data/post/           # Markdown / MDX 文章
+│   ├── layouts/             # 页面布局
+│   ├── pages/               # 路由页面
+│   ├── utils/               # 工具函数
+│   ├── config.yaml          # 站点配置
+│   └── navigation.ts        # 导航配置
+├── nginx/                   # Nginx 配置
+├── Dockerfile               # Docker 构建文件
+├── docker-compose.yml       # Docker Compose 配置
+├── build-docker.sh          # Docker 离线构建脚本
+├── astro.config.ts          # Astro 配置
+├── tailwind.config.js       # Tailwind CSS 配置
+└── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+<br>
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### 常用命令
 
-Any static assets, like images, can be placed in the `public/` directory if they do not require any transformation or in the `assets/` directory if they are imported directly.
+所有命令均在项目根目录下执行：
 
-[![Edit AstroWind on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://githubbox.com/arthelokyo/astrowind/tree/main) [![Open in Gitpod](https://svgshare.com/i/xdi.svg)](https://gitpod.io/?on=gitpod#https://github.com/arthelokyo/astrowind) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/arthelokyo/astrowind)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file `README.md`. Update `src/config.yaml` and contents. Have fun!
+| Command             | Action                                    |
+| :------------------ | :---------------------------------------- |
+| `npm install`       | 安装依赖                                  |
+| `npm run dev`       | 启动本地开发服务器，默认 `localhost:4321` |
+| `npm run build`     | 构建生产版本到 `./dist/`                  |
+| `npm run preview`   | 本地预览生产构建                          |
+| `npm run check`     | 检查 Astro、ESLint、Prettier              |
+| `npm run fix`       | 自动修复 ESLint 与 Prettier 问题          |
+| `npm run astro ...` | 运行 Astro CLI 命令                       |
 
 <br>
 
-### Commands
+### 配置文件
 
-All commands are run from the root of the project, from a terminal:
-
-| Command             | Action                                             |
-| :------------------ | :------------------------------------------------- |
-| `npm install`       | Installs dependencies                              |
-| `npm run dev`       | Starts local dev server at `localhost:4321`        |
-| `npm run build`     | Build your production site to `./dist/`            |
-| `npm run preview`   | Preview your build locally, before deploying       |
-| `npm run check`     | Check your project for errors                      |
-| `npm run fix`       | Run Eslint and format codes with Prettier          |
-| `npm run astro ...` | Run CLI commands like `astro add`, `astro preview` |
-
-<br>
-
-### Configuration
-
-Basic configuration file: `./src/config.yaml`
+站点基础配置位于 [`./src/config.yaml`](./src/config.yaml)：
 
 ```yaml
 site:
-  name: 'Example'
-  site: 'https://example.com'
-  base: '/' # Change this if you need to deploy to Github Pages, for example
-  trailingSlash: false # Generate permalinks with or without "/" at the end
+  name: AIGov-Insight
+  site: 'https://dreamheart09.github.io'
+  base: '/'
+  trailingSlash: false
 
-  googleSiteVerificationId: false # Or some value,
-
-# Default SEO metadata
 metadata:
   title:
-    default: 'Example'
-    template: '%s — Example'
-  description: 'This is the default meta description of Example website'
-  robots:
-    index: true
-    follow: true
-  openGraph:
-    site_name: 'Example'
-    images:
-      - url: '~/assets/images/default.png'
-        width: 1200
-        height: 628
-    type: website
-  twitter:
-    handle: '@twitter_user'
-    site: '@twitter_user'
-    cardType: summary_large_image
+    default: 'AIGov-Insight - 全球领先的AI自主智能体全链路可观测平台'
+    template: '%s — AIGov-Insight | 恒安嘉新'
+  description: 'Eversec AIGov-Insight 专为 LLM/Agent/MCP/RAG/OpenClaw 打造，让 AI 的每一次"思考"与"行动"全程透明、可溯、可控。'
 
 i18n:
-  language: en
+  language: zh
   textDirection: ltr
 
 apps:
   blog:
-    isEnabled: true # If the blog will be enabled
-    postsPerPage: 6 # Number of posts per page
-
-    post:
-      isEnabled: true
-      permalink: '/blog/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
-      robots:
-        index: true
-
-    list:
-      isEnabled: true
-      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
-      robots:
-        index: true
-
-    category:
-      isEnabled: true
-      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
-      robots:
-        index: true
-
-    tag:
-      isEnabled: true
-      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
-      robots:
-        index: false
-
-    isRelatedPostsEnabled: true # If a widget with related posts is to be displayed below each post
-    relatedPostsCount: 4 # Number of related posts to display
-
-analytics:
-  vendors:
-    googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
+    isEnabled: true
+    postsPerPage: 6
 
 ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'system' # system | light | dark | light:only | dark:only
 ```
 
 <br>
 
-#### Customize Design
-
-To customize Font families, Colors or more Elements refer to the following files:
-
-- `src/components/CustomStyles.astro`
-- `src/assets/styles/tailwind.css`
-
-### Deploy
-
-#### Deploy to production (manual)
-
-You can create an optimized production build with:
+### 本地开发
 
 ```shell
-npm run build
+# 1. 克隆仓库
+git clone https://github.com/Eversec-ai/AIGov-Insight-Web.git
+cd AIGov-Insight-Web
+
+# 2. 安装依赖
+npm install
+
+# 3. 启动开发服务器
+npm run dev
+
+# 4. 访问 http://localhost:4321
 ```
 
-Now, your website is ready to be deployed. All generated files are located at
-`dist` folder, which you can deploy the folder to any hosting service you
-prefer.
+<br>
 
-#### Deploy to Netlify
+### Docker 部署
 
-Clone this repository on your own GitHub account and deploy it to Netlify:
+本项目提供 [`build-docker.sh`](./build-docker.sh) 脚本，用于构建离线部署包。
 
-[![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/arthelokyo/astrowind)
+#### 构建镜像
 
-#### Deploy to Vercel
+```shell
+# 默认根路径部署，版本号为 v0.4.0
+./build-docker.sh
 
-Clone this repository on your own GitHub account and deploy to Vercel:
+# 自定义版本号（支持 0.4.1 或 v0.4.1）
+./build-docker.sh 0.4.1
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Farthelokyo%2Fastrowind)
+# 自定义基础路径部署
+ASTRO_BASE=/your-path/ ./build-docker.sh
+```
+
+构建完成后，会在 `./dist-docker/` 目录下生成以下文件：
+
+| 文件 | 说明 |
+|------|------|
+| `aigov-insight-page.tar.gz` | Docker 镜像压缩包 |
+| `aigov-insight-page.tar.gz.sha256` | SHA256 校验文件 |
+| `docker-compose.yml` | Docker Compose 配置文件 |
+| `README.md` | 离线部署说明 |
+
+#### 离线部署步骤
+
+```shell
+# 1. 将以下文件复制到目标服务器
+#    • aigov-insight-page.tar.gz
+#    • aigov-insight-page.tar.gz.sha256
+#    • docker-compose.yml
+#    • README.md
+
+# 2. 校验文件完整性
+sha256sum -c aigov-insight-page.tar.gz.sha256
+
+# 3. 加载镜像
+docker load -i aigov-insight-page.tar.gz
+
+# 4. 启动服务（二选一）
+
+# 方式 A：docker run（推荐）
+docker run -d -p 8080:8080 --name aigov-insight-page aigov-insight-page:v0.4.0
+
+# 方式 B：docker compose
+docker compose up -d
+
+# 5. 访问
+# http://localhost:8080/
+```
+
+#### 常用运维命令
+
+```shell
+# 查看容器状态
+docker ps
+
+# 查看容器日志
+docker logs aigov-insight-page
+
+# 停止 / 启动 / 删除容器
+docker stop aigov-insight-page
+docker start aigov-insight-page
+docker rm -f aigov-insight-page
+
+# 删除镜像
+docker rmi aigov-insight-page:v0.4.0
+```
+
+#### 修改端口
+
+```shell
+# docker run 方式，将宿主机 9000 端口映射到容器 8080
+docker run -d -p 9000:8080 --name aigov-insight-page aigov-insight-page:v0.3.0
+
+# docker compose 方式，编辑 docker-compose.yml 中的 ports 配置
+# ports:
+#   - 9000:8080
+```
 
 <br>
 
-## Frequently Asked Questions
+## 开源项目
 
-- Why?
--
--
+AIGov-Insight 采用前后端/探针分离的开源策略：
+
+| 项目 | 说明 | 仓库 |
+|------|------|------|
+| **AIGov-Insight Web** | 可视化分析层，本仓库 | [Eversec-ai/AIGov-Insight-Web](https://github.com/Eversec-ai/AIGov-Insight-Web) |
+| **AIGov-Insight Agent** | 智能数据采集探针 | [Eversec-ai/AIGov-Insight-Agent](https://github.com/Eversec-ai/AIGov-Insight-Agent) |
+
+欢迎提交 Issue 和 Pull Request，一起共建 AI 安全可观测生态。
 
 <br>
 
-## Related projects
+## 常见问题
 
-- [TailNext](https://tailnext.vercel.app/) - Free template using Next.js 14 and Tailwind CSS with the new App Router.
-- [Qwind](https://qwind.pages.dev/) - Free template to make your website using Qwik + Tailwind CSS.
+**Q：AIGov-Insight 与传统安全工具有什么区别？**
 
-## Contributing
+A：传统 WAF 和防火墙基于规则、特征码、IP 和端口工作，难以理解自然语言指令背后的恶意意图。AIGov-Insight 专为 AI 系统设计，能够深度解析 AI 对话内容、工具调用、系统命令执行等底层行为，实现语义层面的安全监控。
 
-If you have any ideas, suggestions or find any bugs, feel free to open a discussion, an issue or create a pull request.
-That would be very useful for all of us and we would be happy to listen and take action.
+**Q：部署 AIGov-Insight 需要修改现有代码吗？**
 
-## Acknowledgements
+A：不需要。AIGov-Insight Agent 基于 eBPF 技术运行在操作系统内核态，通过挂载内核的 eBPF 钩子进行旁路采集，零业务代码侵入。
 
-Initially created by **Arthelokyo** and maintained by a community of [contributors](https://github.com/arthelokyo/astrowind/graphs/contributors).
+**Q：支持哪些 AI 框架？**
 
-## License
+A：目前支持主流的大语言模型框架（Ollama、vLLM）、智能体框架（Dify、OpenClaw）以及 MCP 协议。我们持续更新解析器以支持更多框架。
 
-**AstroWind** is licensed under the MIT license — see the [LICENSE](./LICENSE.md) file for details.
+**Q：OpenClaw 场景下能监控到什么？**
+
+A：当 OpenClaw 执行系统命令或访问文件时，AIGov-Insight 能够捕获完整的命令行参数、文件路径、执行结果，并将其与用户的原始 Prompt 关联，清晰呈现完整链路。
+
+<br>
+
+## 关于恒安嘉新
+
+**恒安嘉新（Eversec）** 致力于为企业级客户提供专业的 AI 安全解决方案。AIGov-Insight 是我们面向 LLM / Agent / MCP / RAG / OpenClaw 等新一代 AI 系统的全链路可观测与治理平台。
+
+如需产品演示或试用申请，请通过页面底部联系方式与我们取得联系。
+
+<br>
+
+## 许可证
+
+**AIGov-Insight** 基于 MIT 许可证开源 —— 详见 [LICENSE](./LICENSE.md) 文件。
+
+© 2026 恒安嘉新 Eversec. All rights reserved.
